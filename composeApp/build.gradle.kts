@@ -46,16 +46,20 @@ kotlin {
             }
         }
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
+            implementation(compose.runtime)
+            implementation(libs.composeImageLoader)
             implementation(libs.decompose)
             implementation(libs.decompose.compose)
-            implementation(libs.composeImageLoader)
-            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kamel.image)
             implementation(libs.koin.core)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.tabNavigator)
         }
 
         commonTest.dependencies {

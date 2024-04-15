@@ -1,26 +1,51 @@
 package com.rendo.app
 
-import androidx.compose.animation.core.*
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.unit.dp
-import rendo.composeapp.generated.resources.*
+import cafe.adriel.voyager.navigator.tab.CurrentTab
+import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
+import cafe.adriel.voyager.navigator.tab.Tab
+import cafe.adriel.voyager.navigator.tab.TabDisposable
+import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.rendo.app.navigation.tab.CreateTab
+import com.rendo.app.navigation.tab.FavoriteTab
+import com.rendo.app.navigation.tab.HomeTab
+import com.rendo.app.navigation.tab.MyRentsTab
+import com.rendo.app.navigation.tab.ProfileTab
 import com.rendo.app.theme.AppTheme
-import com.rendo.app.theme.LocalThemeIsDark
-import org.jetbrains.compose.resources.Font
-import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun App() = AppTheme {
-    Column(
+    TabNavigator(
+        HomeTab,
+        tabDisposable = {
+            TabDisposable(
+                navigator = it,
+                tabs = listOf(HomeTab, FavoriteTab, ProfileTab)
+            )
+        }
+    ) {
+        Scaffold(
+            content = { innerPadding ->
+                Box(modifier = Modifier.consumeWindowInsets(innerPadding).padding(innerPadding)) {
+                    CurrentTab()
+                }
+            },
+            bottomBar = {
+                NavigationBar {
+                    NavigationBarItem(HomeTab)
+                    NavigationBarItem(FavoriteTab)
+                    NavigationBarItem(CreateTab)
+                    NavigationBarItem(MyRentsTab)
+                    NavigationBarItem(ProfileTab)
+                }
+            },
+        )
+    }
+
+    /*Column(
         modifier = Modifier
             .fillMaxSize()
             .windowInsetsPadding(WindowInsets.safeDrawing)
@@ -89,7 +114,19 @@ internal fun App() = AppTheme {
         ) {
             Text(stringResource(Res.string.open_github))
         }
-    }
+    }*/
+}
+
+@Composable
+private fun RowScope.NavigationBarItem(tab: Tab) {
+    val tabNavigator = LocalTabNavigator.current
+
+    NavigationBarItem(
+        selected = tabNavigator.current.key == tab.key,
+        onClick = { tabNavigator.current = tab },
+        icon = { Icon(painter = tab.options.icon!!, contentDescription = tab.options.title) },
+        label = { Text(tab.options.title) },
+    )
 }
 
 internal expect fun openUrl(url: String?)
