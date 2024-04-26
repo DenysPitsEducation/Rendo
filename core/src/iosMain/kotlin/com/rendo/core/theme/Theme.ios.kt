@@ -1,4 +1,4 @@
-package com.rendo.app.theme
+package com.rendo.core.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

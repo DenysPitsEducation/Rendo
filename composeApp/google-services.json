@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "447278892031",
+    "project_id": "rendo-ef69d",
+    "storage_bucket": "rendo-ef69d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447278892031:android:06cb361cd6ac96c86bddca",
+        "android_client_info": {
+          "package_name": "com.rendo.app.androidApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBobtCVQ7ZZ2NK_UkO06snt0TJO0zLtRd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

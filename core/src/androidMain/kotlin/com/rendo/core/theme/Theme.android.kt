@@ -1,4 +1,4 @@
-package com.rendo.app.theme
+package com.rendo.core.theme
 
 import android.app.Activity
 import androidx.compose.runtime.Composable

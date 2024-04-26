@@ -14,7 +14,7 @@ import com.rendo.app.navigation.tab.FavoriteTab
 import com.rendo.app.navigation.tab.HomeTab
 import com.rendo.app.navigation.tab.MyRentsTab
 import com.rendo.app.navigation.tab.ProfileTab
-import com.rendo.app.theme.AppTheme
+import com.rendo.core.theme.AppTheme
 
 @Composable
 internal fun App() = AppTheme {

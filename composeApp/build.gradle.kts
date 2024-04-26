@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
     alias(libs.plugins.android.application)
+    id(libs.plugins.googleServices.get().pluginId)
 }
 
 kotlin {
@@ -46,20 +47,19 @@ kotlin {
             }
         }
         commonMain.dependencies {
+            implementation(project(":core"))
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
-            implementation(libs.composeImageLoader)
-            implementation(libs.decompose)
-            implementation(libs.decompose.compose)
             implementation(libs.kamel.image)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.tabNavigator)
+            implementation(project.dependencies.platform(libs.firebase.bom))
         }
 
         commonTest.dependencies {
