@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 }
 
 include(":core")
+include(":feature-home")

@@ -11,7 +11,7 @@ import cafe.adriel.voyager.navigator.tab.TabDisposable
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.rendo.app.navigation.tab.CreateTab
 import com.rendo.app.navigation.tab.FavoriteTab
-import com.rendo.app.navigation.tab.HomeTab
+import com.rendo.feature.home.ui.HomeTab
 import com.rendo.app.navigation.tab.MyRentsTab
 import com.rendo.app.navigation.tab.ProfileTab
 import com.rendo.core.theme.AppTheme

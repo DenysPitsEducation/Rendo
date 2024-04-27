@@ -48,6 +48,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(project(":core"))
+            implementation(project(":feature-home"))
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.foundation)
