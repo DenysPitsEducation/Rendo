@@ -7,7 +7,7 @@ compose = "1.6.1"
 firebaseBom = "32.8.1"
 imageLoader = "1.7.8"
 kamelImage = "0.9.4"
-koin = "3.5.3"
+koin-bom = "3.5.6"
 kotlin = "1.9.23"
 kotlinx-coroutines = "1.8.0"
 mvi = "3.3.0"
@@ -21,7 +21,9 @@ androidx-testManifest = { module = "androidx.compose.ui:ui-test-manifest", versi
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamelImage" }
-koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
+koin-compose = { module = "io.insert-koin:koin-compose" }
+koin-core = { module = "io.insert-koin:koin-core" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }

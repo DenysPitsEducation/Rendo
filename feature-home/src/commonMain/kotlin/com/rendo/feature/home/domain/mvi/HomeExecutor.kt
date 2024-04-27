@@ -8,7 +8,8 @@ internal class HomeExecutor(
 ) : CoroutineExecutor<HomeIntent, HomeAction, HomeState, HomeMessage, HomeLabel>() {
     override fun executeAction(action: HomeAction, getState: () -> HomeState) = when (action) {
         HomeAction.Init -> {
-            // TODO Pits:  
+            val products = getProductsUseCase.invoke()
+            dispatch(HomeMessage.ProductListUpdated(products))
         }
     }
 

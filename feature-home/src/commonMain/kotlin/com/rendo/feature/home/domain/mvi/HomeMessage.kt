@@ -1,5 +1,7 @@
 package com.rendo.feature.home.domain.mvi
 
-sealed class HomeMessage {
+import com.rendo.feature.home.domain.model.ProductDomainModel
 
+sealed class HomeMessage {
+    data class ProductListUpdated(val products: List<ProductDomainModel>) : HomeMessage()
 }

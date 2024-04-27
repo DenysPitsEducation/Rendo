@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import org.koin.core.parameter.parametersOf
 
 object HomeTab : Tab {
 
@@ -27,7 +28,7 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
-        //val screenModel = getScreenModel<HomeScreenModel>()
-        HomeScreen()
+        val screenModel = getScreenModel<HomeScreenModel> { parametersOf() }
+        HomeScreen(screenModel)
     }
 }

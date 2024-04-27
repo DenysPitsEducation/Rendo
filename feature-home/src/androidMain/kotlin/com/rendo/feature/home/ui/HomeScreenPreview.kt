@@ -6,5 +6,6 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 private fun HomeScreenPreview() {
-    HomeScreen()
+    // TODO Pits: Show preview
+    //HomeScreen()
 }

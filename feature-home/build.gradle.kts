@@ -27,6 +27,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(project(":core"))
+            implementation(project.dependencies.platform(libs.koin.bom))
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.foundation)
@@ -35,6 +36,7 @@ kotlin {
             implementation(libs.bundles.mvi)
             implementation(libs.imageLoader)
             implementation(libs.kamel.image)
+            implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.voyager.koin)

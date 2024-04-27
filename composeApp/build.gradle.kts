@@ -49,6 +49,8 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":core"))
             implementation(project(":feature-home"))
+            implementation(project.dependencies.platform(libs.firebase.bom))
+            implementation(project.dependencies.platform(libs.koin.bom))
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.foundation)
@@ -56,11 +58,11 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
             implementation(libs.kamel.image)
+            implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.tabNavigator)
-            implementation(project.dependencies.platform(libs.firebase.bom))
         }
 
         commonTest.dependencies {

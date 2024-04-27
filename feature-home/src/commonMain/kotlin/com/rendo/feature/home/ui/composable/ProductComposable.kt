@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,7 +25,7 @@ import com.rendo.feature.home.ui.model.ProductUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
 
 @Composable
-fun ProductComposable(model: ProductUiModel, modifier: Modifier) {
+fun ProductComposable(model: ProductUiModel, modifier: Modifier = Modifier) {
     Box(modifier = modifier.background(MaterialTheme.colorScheme.surfaceContainer)) {
         Column {
             AutoSizeImage(
@@ -49,7 +50,7 @@ fun ProductComposable(model: ProductUiModel, modifier: Modifier) {
         }
         IconButton(onClick = { /*TODO*/ }, modifier = Modifier.align(Alignment.TopEnd)) {
             Icon(
-                painter = rememberVectorPainter(if (model.isInFavorites) Icons.Filled.Favorite else Icons.Outlined.Favorite),
+                painter = rememberVectorPainter(if (model.isInFavorites) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder),
                 null
             )
         }
