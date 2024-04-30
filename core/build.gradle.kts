@@ -31,10 +31,13 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.runtime)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.voyager.core)
         }
         androidMain.dependencies {
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
+            implementation(libs.androidx.lifecycle)
         }
     }
 }
@@ -43,7 +46,7 @@ android {
     namespace = "com.rendo.core"
     compileSdk = 34
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

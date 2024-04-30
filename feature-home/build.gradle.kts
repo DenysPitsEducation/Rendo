@@ -41,7 +41,6 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
-            implementation(libs.voyager.tabNavigator)
         }
         androidMain.dependencies {
             implementation(compose.uiTooling)
@@ -54,7 +53,7 @@ android {
     namespace = "com.rendo.feature.home"
     compileSdk = 34
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

@@ -49,6 +49,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":core"))
             implementation(project(":feature-home"))
+            implementation(project(":feature-product-details"))
             implementation(project.dependencies.platform(libs.firebase.bom))
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(compose.components.resources)
@@ -61,7 +62,9 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.voyager.koin)
             implementation(libs.voyager.navigator)
+            implementation(libs.voyager.screenModel)
             implementation(libs.voyager.tabNavigator)
         }
 
@@ -89,7 +92,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
 
         applicationId = "com.rendo.app.androidApp"

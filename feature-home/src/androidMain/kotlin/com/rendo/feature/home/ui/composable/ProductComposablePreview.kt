@@ -3,7 +3,6 @@ package com.rendo.feature.home.ui.composable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
@@ -33,11 +32,13 @@ private fun ProductComposablePreview() {
     ) {
         ProductComposable(
             model = createProductUiModelMock(1),
+            onUserInteraction = {},
             modifier = Modifier.weight(1f),
         )
         Spacer(modifier = Modifier.width(8.dp))
         ProductComposable(
             model = createProductUiModelMock(2),
+            onUserInteraction = {},
             modifier = Modifier.weight(1f),
         )
     }

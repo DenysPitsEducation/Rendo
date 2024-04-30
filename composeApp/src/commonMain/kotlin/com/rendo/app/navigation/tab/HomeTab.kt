@@ -1,14 +1,14 @@
-package com.rendo.feature.home.ui
+package com.rendo.app.navigation.tab
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import org.koin.core.parameter.parametersOf
+import com.rendo.feature.home.ui.HomeScreen
 
 object HomeTab : Tab {
 
@@ -28,7 +28,6 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
-        val screenModel = getScreenModel<HomeScreenModel> { parametersOf() }
-        HomeScreen(screenModel)
+        Navigator(HomeScreen())
     }
 }

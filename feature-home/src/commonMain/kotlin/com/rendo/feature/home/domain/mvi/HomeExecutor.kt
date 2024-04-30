@@ -17,5 +17,9 @@ internal class HomeExecutor(
         is HomeIntent.SearchInputChanged -> {
             // TODO Pits:  
         }
+
+        is HomeIntent.ProductClicked -> {
+            publish(HomeLabel.OpenProductDetails(id = intent.id))
+        }
     }
 }
