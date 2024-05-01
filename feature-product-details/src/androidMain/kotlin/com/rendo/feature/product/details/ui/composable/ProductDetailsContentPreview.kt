@@ -1,17 +1,15 @@
 package com.rendo.feature.product.details.ui.composable
 
-import android.content.res.Configuration
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.rendo.core.theme.PreviewContainer
 import com.rendo.feature.product.details.ui.model.OwnerUiModel
 import com.rendo.feature.product.details.ui.model.ProductDetailsUiModel
 
 @Composable
 @Preview
 private fun ProductDetailsContentPreview() {
-    Surface {
+    PreviewContainer {
         ProductDetailsContentComposable(
             model = ProductDetailsUiModel(
                 id = 1,
