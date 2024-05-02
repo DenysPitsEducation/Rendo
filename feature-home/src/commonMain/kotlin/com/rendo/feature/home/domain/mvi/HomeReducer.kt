@@ -6,6 +6,17 @@ internal class HomeReducer : Reducer<HomeState, HomeMessage> {
     override fun HomeState.reduce(
         msg: HomeMessage,
     ): HomeState = when (msg) {
+        is HomeMessage.SearchInputChanged -> copy(searchInput = msg.input)
         is HomeMessage.ProductListUpdated -> copy(products = msg.products)
+        is HomeMessage.ProductUpdated -> {
+            val productsUpdated = products.map { product ->
+                if (msg.product.id == product.id) {
+                    msg.product
+                } else {
+                    product
+                }
+            }
+            copy(products = productsUpdated)
+        }
     }
 }

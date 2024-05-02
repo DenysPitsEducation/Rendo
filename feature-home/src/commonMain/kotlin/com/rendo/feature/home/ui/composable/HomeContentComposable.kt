@@ -22,18 +22,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.rendo.feature.home.domain.mvi.HomeIntent
 import com.rendo.feature.home.ui.OnUserInteraction
 import com.rendo.feature.home.ui.model.ProductUiModel
 
 @Composable
-fun HomeContentComposable(products: List<ProductUiModel>, onUserInteraction: OnUserInteraction) {
-    var text by remember { mutableStateOf("") }
+fun HomeContentComposable(searchInput: String, products: List<ProductUiModel>, onUserInteraction: OnUserInteraction) {
     val lazyGridState = rememberLazyGridState()
 
     Column {
         OutlinedTextField(
-            value = text,
-            onValueChange = { text = it },
+            value = searchInput,
+            onValueChange = { onUserInteraction(HomeIntent.SearchInputChanged(it)) },
             placeholder = {
                 Text("Enter a name of the product")
             },

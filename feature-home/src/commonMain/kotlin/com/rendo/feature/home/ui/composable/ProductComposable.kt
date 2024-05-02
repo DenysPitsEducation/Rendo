@@ -67,7 +67,7 @@ fun ProductComposable(
         }
         CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
             IconButton(
-                onClick = { /*TODO*/ },
+                onClick = { onUserInteraction.invoke(HomeIntent.FavoriteStateChanged(model.id)) },
                 modifier = Modifier.align(Alignment.TopEnd).padding(4.dp).size(40.dp).background(Color.White, CircleShape)
             ) {
                 Icon(

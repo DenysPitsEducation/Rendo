@@ -42,11 +42,11 @@ fun HomeScreenComposable(screenModel: HomeScreenModel) {
     val router: HomeRouter = koinInject()
     val stateFlow by screenModel.store.stateFlow.collectAsState()
     val productMapper: ProductUiMapper = koinInject()
-    val products = stateFlow.products.map { productMapper.mapToUiModel(it) }
+    val products = stateFlow.visibleProducts.map { productMapper.mapToUiModel(it) }
     val onUserInteraction: OnUserInteraction = { screenModel.store.accept(it) }
     val navigator = LocalNavigator.currentOrThrow
 
-    HomeContentComposable(products, onUserInteraction)
+    HomeContentComposable(stateFlow.searchInput, products, onUserInteraction)
 
     LabelLaunchedEffect(screenModel.store.labels) {
         when(it) {

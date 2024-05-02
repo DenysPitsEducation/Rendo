@@ -28,7 +28,10 @@ fun featureHomeModule() = module {
     factory(named(HOME_STORE_NAME)) {
         DefaultStoreFactory().create(
             name = HOME_STORE_NAME,
-            initialState = HomeState("", emptyList()),
+            initialState = HomeState(
+                searchInput = "",
+                products = emptyList(),
+            ),
             executorFactory = { get<HomeExecutor>() },
             reducer = get<HomeReducer>(),
             bootstrapper = SimpleBootstrapper<HomeAction>(HomeAction.Init),

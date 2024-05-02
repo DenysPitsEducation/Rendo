@@ -8,7 +8,7 @@ import com.rendo.feature.home.ui.model.ProductUiModel
 @Composable
 @Preview
 private fun HomeScreenPreview() {
-    HomeContentComposable(listOf(
+    HomeContentComposable(searchInput = "", products = listOf(
         ProductUiModel(
             id = 1,
             name = "HyperDrive 3000",
@@ -44,5 +44,5 @@ private fun HomeScreenPreview() {
             price = "29.99 $",
             isInFavorites = false
         )
-    ), {})
+    ), onUserInteraction = {})
 }
