@@ -12,6 +12,7 @@ data class ProductDetailsDomainModel(
     val isInFavorites: Boolean,
     val pickupDate: LocalDate,
     val returnDate: LocalDate,
+    val prohibitedDates: List<LocalDate>,
     val totalPrice: Double,
     val owner: OwnerDomainModel,
 )

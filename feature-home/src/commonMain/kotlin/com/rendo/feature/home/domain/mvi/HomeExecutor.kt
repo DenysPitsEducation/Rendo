@@ -6,14 +6,14 @@ import com.rendo.feature.home.domain.usecase.GetProductsUseCase
 internal class HomeExecutor(
     private val getProductsUseCase: GetProductsUseCase,
 ) : CoroutineExecutor<HomeIntent, HomeAction, HomeState, HomeMessage, HomeLabel>() {
-    override fun executeAction(action: HomeAction, getState: () -> HomeState) = when (action) {
+    override fun executeAction(action: HomeAction) = when (action) {
         HomeAction.Init -> {
             val products = getProductsUseCase.invoke()
             dispatch(HomeMessage.ProductListUpdated(products))
         }
     }
 
-    override fun executeIntent(intent: HomeIntent, getState: () -> HomeState) = when (intent) {
+    override fun executeIntent(intent: HomeIntent) = when (intent) {
         is HomeIntent.SearchInputChanged -> {
             // TODO Pits:  
         }

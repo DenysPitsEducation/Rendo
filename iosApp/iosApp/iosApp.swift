@@ -4,6 +4,10 @@ import ComposeApp
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    
+    override init() {
+        HelperKt.doInitKoin()
+    }
 
     func application(
         _ application: UIApplication,

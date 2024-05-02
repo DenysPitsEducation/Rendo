@@ -1,8 +1,13 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.rendo.feature.product.details.ui.composable
 
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SelectableDates
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.rendo.core.theme.PreviewContainer
+import com.rendo.feature.product.details.ui.model.DatePickerUiModel
 import com.rendo.feature.product.details.ui.model.OwnerUiModel
 import com.rendo.feature.product.details.ui.model.ProductDetailsUiModel
 
@@ -30,8 +35,13 @@ private fun ProductDetailsContentPreview() {
                     name = "George",
                     imageUrl = "https://picsum.photos/100?random=4",
                 ),
+                datePickerUiModel = DatePickerUiModel(1, 1, object : SelectableDates {
+                    override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+                        return true
+                    }
+                })
             ),
-            openBottomSheet = {},
+            onUserInteraction = {},
         )
     }
 }

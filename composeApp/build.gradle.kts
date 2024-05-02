@@ -61,6 +61,7 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
+            implementation(libs.koin.android)
             implementation(libs.kotlinx.coroutines.android)
         }
 

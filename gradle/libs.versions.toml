@@ -15,7 +15,7 @@ kotlinx-coroutines = "1.8.0"
 kotlinx-serialization = "1.6.3"
 kotlinx-datetime = "0.6.0-RC.2"
 kotlinx-datetime-ext = "1.2.0"
-mvi = "3.3.0"
+mvi = "4.0.0"
 voyager = "1.0.0"
 
 [libraries]
@@ -27,6 +27,7 @@ androidx-testManifest = { module = "androidx.compose.ui:ui-test-manifest", versi
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamelImage" }
+koin-android = { module = "io.insert-koin:koin-android" }
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
 koin-core = { module = "io.insert-koin:koin-core" }

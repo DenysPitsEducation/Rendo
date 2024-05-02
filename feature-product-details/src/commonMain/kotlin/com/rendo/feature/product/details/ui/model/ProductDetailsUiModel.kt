@@ -11,4 +11,5 @@ data class ProductDetailsUiModel(
     val returnDate: String,
     val totalPrice: String,
     val ownerUiModel: OwnerUiModel,
+    val datePickerUiModel: DatePickerUiModel,
 )

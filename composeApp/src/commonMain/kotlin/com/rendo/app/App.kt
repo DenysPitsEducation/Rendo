@@ -19,15 +19,10 @@ import com.rendo.core.theme.AppTheme
 import com.rendo.feature.home.di.featureHomeModule
 import com.rendo.feature.product.details.di.featureProductDetailsModule
 import org.koin.compose.KoinApplication
+import org.koin.compose.KoinContext
 
 @Composable
-internal fun App() = KoinApplication(application = {
-    modules(
-        appModule(),
-        featureHomeModule(),
-        featureProductDetailsModule(),
-    )
-}) {
+internal fun App() = KoinContext {
     AppTheme {
         TabNavigator(
             HomeTab,

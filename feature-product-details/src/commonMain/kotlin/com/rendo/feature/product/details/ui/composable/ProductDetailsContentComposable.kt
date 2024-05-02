@@ -35,20 +35,21 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.rendo.feature.product.details.domain.mvi.ProductDetailsIntent
 import com.rendo.feature.product.details.ui.model.ProductDetailsUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductDetailsContentComposable(
     model: ProductDetailsUiModel,
+    onUserInteraction: OnUserInteraction,
     modifier: Modifier = Modifier,
-    openBottomSheet: () -> Unit,
 ) {
     Column(modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
         Column(
@@ -110,13 +111,13 @@ fun ProductDetailsContentComposable(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Button(
-                onClick = { /*todo*/ },
+                onClick = { onUserInteraction(ProductDetailsIntent.RentButtonClicked) },
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(text = "Rent")
             }
             Button(
-                onClick = { openBottomSheet() },
+                onClick = { onUserInteraction(ProductDetailsIntent.ChangeDatesButtonClicked) },
                 modifier = Modifier.fillMaxWidth(),
                 border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
                 colors = ButtonDefaults.outlinedButtonColors(),
@@ -151,7 +152,7 @@ fun ProductDetailsContentComposable(
             }
             Spacer(modifier = Modifier.height(8.dp))
             Button(
-                onClick = { /*todo*/ },
+                onClick = { onUserInteraction(ProductDetailsIntent.CallOwnerButtonClicked) },
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(text = "Call the owner")
