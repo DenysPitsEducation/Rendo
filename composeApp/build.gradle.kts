@@ -38,6 +38,8 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(project(":core"))
+            implementation(project(":core-favorites"))
+            implementation(project(":feature-favorites"))
             implementation(project(":feature-home"))
             implementation(project(":feature-product-details"))
             implementation(project.dependencies.platform(libs.firebase.bom))
@@ -48,7 +50,6 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
-            implementation(libs.kamel.image)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)

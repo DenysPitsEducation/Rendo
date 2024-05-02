@@ -19,11 +19,14 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(project.dependencies.platform(libs.koin.bom))
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.runtime)
+            implementation(libs.imageLoader)
+            implementation(libs.koin.core)
             implementation(libs.kotlinx.datetime)
             implementation(libs.voyager.core)
         }

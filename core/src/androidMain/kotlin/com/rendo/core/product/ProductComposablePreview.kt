@@ -1,4 +1,4 @@
-package com.rendo.feature.home.ui.composable
+package com.rendo.core.product
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rendo.feature.home.ui.model.ProductUiModel
 
 @Composable
 fun createProductUiModelMock(id: Long): ProductUiModel {
@@ -32,13 +31,15 @@ private fun ProductComposablePreview() {
     ) {
         ProductComposable(
             model = createProductUiModelMock(1),
-            onUserInteraction = {},
+            onProductClick = {},
+            onFavoriteButtonClick = {},
             modifier = Modifier.weight(1f),
         )
         Spacer(modifier = Modifier.width(8.dp))
         ProductComposable(
             model = createProductUiModelMock(2),
-            onUserInteraction = {},
+            onProductClick = {},
+            onFavoriteButtonClick = {},
             modifier = Modifier.weight(1f),
         )
     }

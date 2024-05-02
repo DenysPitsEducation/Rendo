@@ -30,7 +30,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.DialogProperties
 import cafe.adriel.voyager.navigator.LocalNavigator
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
@@ -69,7 +68,7 @@ fun ProductDetailsScreenComposable(screenModel: ProductDetailsScreenModel) {
                     )
                 }
             }, actions = {
-                IconButton(onClick = { onUserInteraction(ProductDetailsIntent.FavoriteStateChanged) }) {
+                IconButton(onClick = { onUserInteraction(ProductDetailsIntent.FavoriteButtonClicked) }) {
                     Icon(
                         imageVector = if (uiModel?.isInFavorites == true) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
                         contentDescription = null,

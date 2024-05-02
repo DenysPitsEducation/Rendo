@@ -1,4 +1,4 @@
-package com.rendo.feature.home.ui.composable
+package com.rendo.core.product
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,20 +29,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.rendo.feature.home.domain.mvi.HomeIntent
-import com.rendo.feature.home.ui.OnUserInteraction
-import com.rendo.feature.home.ui.model.ProductUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductComposable(
     model: ProductUiModel,
-    onUserInteraction: OnUserInteraction,
+    onProductClick: () -> Unit,
+    onFavoriteButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(modifier = modifier.clip(RoundedCornerShape(8.dp)).background(MaterialTheme.colorScheme.background).clickable {
-        onUserInteraction(HomeIntent.ProductClicked(model.id))
+        onProductClick()
     }) {
         Column {
             AutoSizeImage(
@@ -67,7 +65,7 @@ fun ProductComposable(
         }
         CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
             IconButton(
-                onClick = { onUserInteraction.invoke(HomeIntent.FavoriteStateChanged(model.id)) },
+                onClick = { onFavoriteButtonClick() },
                 modifier = Modifier.align(Alignment.TopEnd).padding(4.dp).size(40.dp).background(Color.White, CircleShape)
             ) {
                 Icon(

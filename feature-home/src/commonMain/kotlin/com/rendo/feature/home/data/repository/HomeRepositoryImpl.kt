@@ -1,6 +1,6 @@
 package com.rendo.feature.home.data.repository
 
-import com.rendo.feature.home.domain.model.ProductDomainModel
+import com.rendo.core.product.ProductDomainModel
 import com.rendo.feature.home.domain.repository.HomeRepository
 
 class HomeRepositoryImpl : HomeRepository {

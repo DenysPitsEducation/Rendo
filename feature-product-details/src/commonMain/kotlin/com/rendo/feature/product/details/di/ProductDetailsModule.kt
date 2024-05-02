@@ -4,6 +4,7 @@ import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.rendo.feature.product.details.data.repository.ProductDetailsRepositoryImpl
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsAction
+import com.rendo.feature.product.details.domain.mvi.ProductDetailsBootstrapper
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsExecutor
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsPayload
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsReducer
@@ -43,7 +44,9 @@ fun featureProductDetailsModule() = module {
             initialState = ProductDetailsState(product = null),
             executorFactory = { get<ProductDetailsExecutor>() },
             reducer = get<ProductDetailsReducer>(),
-            bootstrapper = SimpleBootstrapper<ProductDetailsAction>(
+            bootstrapper = ProductDetailsBootstrapper(
+                productId = payload.id,
+                getFavoritesFlowUseCase = get(),
                 ProductDetailsAction.Init(
                     payload
                 )
@@ -54,7 +57,8 @@ fun featureProductDetailsModule() = module {
     factory<ProductDetailsExecutor> {
         ProductDetailsExecutor(
             getProductDetailsUseCase = get(),
-            rentProductUseCase = get()
+            rentProductUseCase = get(),
+            changeFavoriteStateUseCase = get(),
         )
     }
 
@@ -63,7 +67,10 @@ fun featureProductDetailsModule() = module {
     }
 
     factory {
-        GetProductDetailsUseCase(productDetailsRepository = get())
+        GetProductDetailsUseCase(
+            productDetailsRepository = get(),
+            getFavoritesUseCase = get(),
+        )
     }
 
     factory {

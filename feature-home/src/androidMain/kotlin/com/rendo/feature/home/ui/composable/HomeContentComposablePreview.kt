@@ -2,8 +2,7 @@ package com.rendo.feature.home.ui.composable
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.rendo.feature.home.domain.model.ProductDomainModel
-import com.rendo.feature.home.ui.model.ProductUiModel
+import com.rendo.core.product.ProductUiModel
 
 @Composable
 @Preview

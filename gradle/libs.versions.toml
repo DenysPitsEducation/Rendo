@@ -8,7 +8,6 @@ compose = "1.6.10-beta01"
 composeCompiler = "1.5.11"
 firebaseBom = "32.8.1"
 imageLoader = "1.7.8"
-kamelImage = "0.9.4"
 koin-bom = "3.5.6"
 kotlin = "1.9.23"
 kotlinx-coroutines = "1.8.0"
@@ -26,7 +25,6 @@ androidx-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref =
 androidx-testManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-uiTest" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
-kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamelImage" }
 koin-android = { module = "io.insert-koin:koin-android" }
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
 koin-compose = { module = "io.insert-koin:koin-compose" }

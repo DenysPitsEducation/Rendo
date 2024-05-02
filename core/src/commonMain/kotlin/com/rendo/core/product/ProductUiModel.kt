@@ -1,4 +1,4 @@
-package com.rendo.feature.home.ui.model
+package com.rendo.core.product
 
 data class ProductUiModel(
     val id: Long,

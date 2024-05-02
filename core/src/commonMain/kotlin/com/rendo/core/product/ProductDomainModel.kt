@@ -1,4 +1,4 @@
-package com.rendo.feature.home.domain.model
+package com.rendo.core.product
 
 data class ProductDomainModel(
     val id: Long,

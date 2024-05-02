@@ -20,6 +20,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(project(":core"))
+            implementation(project(":core-favorites"))
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -28,7 +29,6 @@ kotlin {
             implementation(compose.runtime)
             implementation(libs.bundles.mvi)
             implementation(libs.imageLoader)
-            implementation(libs.kamel.image)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
