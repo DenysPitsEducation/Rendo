@@ -6,10 +6,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import com.rendo.feature.home.ui.HomeScreen
+import com.rendo.feature.rents.ui.RentsScreen
 
-object MyRentsTab : Tab {
+object RentsTab : Tab {
 
     override val options: TabOptions
         @Composable
@@ -27,8 +30,6 @@ object MyRentsTab : Tab {
 
     @Composable
     override fun Content() {
-        Text(
-            text = "My rents tab",
-        )
+        Navigator(RentsScreen())
     }
 }

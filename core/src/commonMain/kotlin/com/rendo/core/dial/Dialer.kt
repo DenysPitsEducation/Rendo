@@ -1,4 +1,4 @@
-package com.rendo.feature.product.details.ui.dial
+package com.rendo.core.dial
 
 interface Dialer {
     fun makeCall(phoneNumber: String)

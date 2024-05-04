@@ -9,16 +9,12 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabDisposable
 import cafe.adriel.voyager.navigator.tab.TabNavigator
-import com.rendo.app.di.appModule
 import com.rendo.app.navigation.tab.CreateTab
 import com.rendo.app.navigation.tab.FavoriteTab
 import com.rendo.app.navigation.tab.HomeTab
-import com.rendo.app.navigation.tab.MyRentsTab
+import com.rendo.app.navigation.tab.RentsTab
 import com.rendo.app.navigation.tab.ProfileTab
 import com.rendo.core.theme.AppTheme
-import com.rendo.feature.home.di.featureHomeModule
-import com.rendo.feature.product.details.di.featureProductDetailsModule
-import org.koin.compose.KoinApplication
 import org.koin.compose.KoinContext
 
 @Composable
@@ -47,7 +43,7 @@ internal fun App() = KoinContext {
                         NavigationBarItem(HomeTab)
                         NavigationBarItem(FavoriteTab)
                         NavigationBarItem(CreateTab)
-                        NavigationBarItem(MyRentsTab)
+                        NavigationBarItem(RentsTab)
                         NavigationBarItem(ProfileTab)
                     }
                 },

@@ -5,7 +5,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -83,7 +88,7 @@ private val darkScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDark,
 )
 
-internal val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
+val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
 
 @Composable
 fun AppTheme(

@@ -25,7 +25,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -39,9 +38,11 @@ fun ProductComposable(
     onFavoriteButtonClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Box(modifier = modifier.clip(RoundedCornerShape(8.dp)).background(MaterialTheme.colorScheme.background).clickable {
-        onProductClick()
-    }) {
+    Box(
+        modifier = modifier.clip(RoundedCornerShape(8.dp))
+            .background(MaterialTheme.colorScheme.background).clickable {
+            onProductClick()
+        }) {
         Column {
             AutoSizeImage(
                 url = model.imageUrl.orEmpty(),
@@ -66,7 +67,11 @@ fun ProductComposable(
         CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
             IconButton(
                 onClick = { onFavoriteButtonClick() },
-                modifier = Modifier.align(Alignment.TopEnd).padding(4.dp).size(40.dp).background(Color.White, CircleShape)
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(4.dp)
+                    .size(40.dp)
+                    .background(MaterialTheme.colorScheme.surface, CircleShape)
             ) {
                 Icon(
                     painter = rememberVectorPainter(if (model.isInFavorites) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder),

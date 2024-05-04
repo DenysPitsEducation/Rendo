@@ -37,7 +37,7 @@ import com.rendo.core.utils.LabelLaunchedEffect
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsIntent
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsLabel
 import com.rendo.feature.product.details.ui.ProductDetailsScreenModel
-import com.rendo.feature.product.details.ui.dial.Dialer
+import com.rendo.core.dial.Dialer
 import com.rendo.feature.product.details.ui.mapper.ProductDetailsUiMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch

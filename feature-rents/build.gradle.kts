@@ -19,28 +19,31 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":core"))
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
+            implementation(libs.bundles.mvi)
             implementation(libs.imageLoader)
+            implementation(libs.koin.compose)
             implementation(libs.koin.core)
-            implementation(libs.kotlinx.datetime)
-            implementation(libs.voyager.core)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.voyager.koin)
+            implementation(libs.voyager.screenModel)
         }
         androidMain.dependencies {
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
-            implementation(libs.androidx.lifecycle)
-            implementation(libs.koin.android)
         }
     }
 }
 
 android {
-    namespace = "com.rendo.core"
+    namespace = "com.rendo.feature.rents"
     compileSdk = 34
     defaultConfig {
         minSdk = 26
