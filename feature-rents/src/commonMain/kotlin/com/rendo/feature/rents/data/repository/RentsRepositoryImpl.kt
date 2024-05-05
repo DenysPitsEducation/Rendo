@@ -14,7 +14,7 @@ class RentsRepositoryImpl : RentsRepository {
                 status = RentDomainModel.Status.WAITING_FOR_ACCEPTANCE,
                 dates = "27 May - 03 June",
                 price = 300.0,
-                currency = "$",
+                currency = "₴",
                 type = RentDomainModel.Type.RENT_IN,
                 phoneNumber = "+380951234567"
             ),
@@ -26,7 +26,7 @@ class RentsRepositoryImpl : RentsRepository {
                 status = RentDomainModel.Status.ACCEPTED,
                 dates = "4 May - 18 May",
                 price = 1000.0,
-                currency = "$",
+                currency = "₴",
                 type = RentDomainModel.Type.RENT_IN,
                 phoneNumber = "+380951234567"
             ),
@@ -38,7 +38,7 @@ class RentsRepositoryImpl : RentsRepository {
                 status = RentDomainModel.Status.WAITING_FOR_ACCEPTANCE,
                 dates = "4 May - 18 May",
                 price = 1000.0,
-                currency = "$",
+                currency = "₴",
                 type = RentDomainModel.Type.RENT_OUT,
                 phoneNumber = "+380951234567"
             ),
@@ -50,7 +50,7 @@ class RentsRepositoryImpl : RentsRepository {
                 status = RentDomainModel.Status.CANCELLED,
                 dates = "4 May - 18 May",
                 price = 1000.0,
-                currency = "$",
+                currency = "₴",
                 type = RentDomainModel.Type.RENT_OUT,
                 phoneNumber = "+380951234567"
             )

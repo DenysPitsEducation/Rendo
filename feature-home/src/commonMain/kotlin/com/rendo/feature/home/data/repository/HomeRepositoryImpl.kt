@@ -11,7 +11,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "HyperDrive 3000",
                 imageUrl = "https://picsum.photos/200?random=1",
                 price = 199.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = false
             ),
             ProductDomainModel(
@@ -19,7 +19,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "DreamGoggles VR",
                 imageUrl = "https://picsum.photos/200?random=2",
                 price = 149.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = true
             ),
             ProductDomainModel(
@@ -27,7 +27,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "EcoBot 5000",
                 imageUrl = "https://picsum.photos/200?random=3",
                 price = 79.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = false
             ),
             ProductDomainModel(
@@ -35,7 +35,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "InfiniteBattery Power Bank",
                 imageUrl = "https://picsum.photos/200?random=4",
                 price = 49.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = true
             ),
             ProductDomainModel(
@@ -43,7 +43,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "IntelliToaster",
                 imageUrl = "https://picsum.photos/200?random=5",
                 price = 29.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = false
             ),
             ProductDomainModel(
@@ -51,7 +51,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "NanoBot Cleaning Drones",
                 imageUrl = "https://picsum.photos/200?random=6",
                 price = 299.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = true
             ),
             ProductDomainModel(
@@ -59,7 +59,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "QuantumWave Wireless Charger",
                 imageUrl = "https://picsum.photos/200?random=7",
                 price = 89.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = false
             ),
             ProductDomainModel(
@@ -67,7 +67,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "MindSync Brainwave Headset",
                 imageUrl = "https://picsum.photos/200?random=8",
                 price = 199.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = true
             ),
             ProductDomainModel(
@@ -75,7 +75,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "EcoFuel Air Purifier",
                 imageUrl = "https://picsum.photos/200?random=9",
                 price = 149.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = false
             ),
             ProductDomainModel(
@@ -83,7 +83,7 @@ class HomeRepositoryImpl : HomeRepository {
                 name = "GalacticGlow LED Plant Light",
                 imageUrl = "https://picsum.photos/200?random=10",
                 price = 39.99,
-                currency = "$",
+                currency = "₴",
                 isInFavorites = true
             )
         )

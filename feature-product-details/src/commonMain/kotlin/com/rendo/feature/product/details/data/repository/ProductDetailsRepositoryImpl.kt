@@ -28,7 +28,7 @@ class ProductDetailsRepositoryImpl : ProductDetailsRepository {
                 "https://picsum.photos/600?random=3"
             ),
             price = 199.99,
-            currency = "$",
+            currency = "₴",
             isInFavorites = true,
             owner = OwnerDomainModel(
                 id = 1,

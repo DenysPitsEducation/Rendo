@@ -1,8 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-import com.android.build.api.dsl.ManagedVirtualDevice
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
-
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
@@ -39,6 +34,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":core"))
             implementation(project(":core-favorites"))
+            implementation(project(":feature-create-rent"))
             implementation(project(":feature-favorites"))
             implementation(project(":feature-home"))
             implementation(project(":feature-product-details"))

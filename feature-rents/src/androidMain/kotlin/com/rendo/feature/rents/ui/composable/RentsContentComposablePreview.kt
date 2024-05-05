@@ -18,7 +18,7 @@ private fun RentsScreenPreview() {
                 imageUrl = "https://picsum.photos/200?random=2",
                 status = StatusUiModel("Waiting for acceptance", Color(0xFFCD5915)),
                 dates = "27 May - 03 June",
-                price = "350 $",
+                price = "350 ₴",
                 showAcceptanceButtons = true,
                 dropdownItems = emptyList(),
             ),
@@ -28,7 +28,7 @@ private fun RentsScreenPreview() {
                 imageUrl = "https://picsum.photos/200?random=3",
                 status = StatusUiModel("Accepted", Color(0xFF188711)),
                 dates = "27 May - 03 June",
-                price = "350 $",
+                price = "350 ₴",
                 showAcceptanceButtons = false,
                 dropdownItems = emptyList(),
             )

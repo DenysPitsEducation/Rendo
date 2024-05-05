@@ -16,7 +16,7 @@ fun createProductUiModelMock(id: Long): ProductUiModel {
         id = id,
         name = "Product name",
         imageUrl = "https://picsum.photos/200",
-        price = "5 $",
+        price = "5 ₴",
         isInFavorites = false
     )
 }
