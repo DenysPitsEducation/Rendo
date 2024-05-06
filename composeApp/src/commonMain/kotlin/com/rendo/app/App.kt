@@ -1,8 +1,19 @@
 package com.rendo.app
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
@@ -12,14 +23,31 @@ import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.rendo.app.navigation.tab.CreateTab
 import com.rendo.app.navigation.tab.FavoriteTab
 import com.rendo.app.navigation.tab.HomeTab
-import com.rendo.app.navigation.tab.RentsTab
 import com.rendo.app.navigation.tab.ProfileTab
+import com.rendo.app.navigation.tab.RentsTab
+import com.rendo.core.domain.model.UiMode
+import com.rendo.core.domain.usecase.GetUiModeFlowUseCase
 import com.rendo.core.theme.AppTheme
+import com.rendo.core.theme.LocalThemeIsDark
+import kotlinx.coroutines.launch
 import org.koin.compose.KoinContext
+import org.koin.compose.koinInject
 
 @Composable
 internal fun App() = KoinContext {
     AppTheme {
+        val getUiModeFlowUseCase: GetUiModeFlowUseCase = koinInject()
+        var isDarkMode by LocalThemeIsDark.current
+        val coroutineScope = rememberCoroutineScope()
+        coroutineScope.launch {
+            getUiModeFlowUseCase.invoke().collect { uiMode ->
+                when (uiMode) {
+                    UiMode.LIGHT -> isDarkMode = false
+                    UiMode.DARK -> isDarkMode = true
+                    UiMode.SYSTEM -> { /* do nothing */ }
+                }
+            }
+        }
         TabNavigator(
             HomeTab,
             tabDisposable = {

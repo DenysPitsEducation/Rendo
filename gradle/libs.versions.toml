@@ -6,7 +6,9 @@ androidx-lifecycle = "2.7.0"
 androidx-uiTest = "1.6.4"
 compose = "1.6.10-beta01"
 composeCompiler = "1.5.11"
+datastore = "1.1.1"
 firebaseBom = "32.8.1"
+googleServices = "4.4.1"
 imageLoader = "1.7.8"
 koin-bom = "3.5.6"
 kotlin = "1.9.23"
@@ -22,6 +24,7 @@ voyager = "1.0.0"
 [libraries]
 
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-datastore-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
 androidx-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-uiTest" }
 androidx-testManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-uiTest" }
@@ -58,7 +61,7 @@ serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref 
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-googleServices = { id = "com.google.gms.google-services" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 
 [bundles]
 
