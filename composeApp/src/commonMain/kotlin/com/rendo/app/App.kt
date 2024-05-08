@@ -9,9 +9,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -28,6 +32,7 @@ import com.rendo.app.navigation.tab.RentsTab
 import com.rendo.core.domain.model.UiMode
 import com.rendo.core.domain.usecase.GetUiModeFlowUseCase
 import com.rendo.core.theme.AppTheme
+import com.rendo.core.theme.LocalSnackbarHostState
 import com.rendo.core.theme.LocalThemeIsDark
 import kotlinx.coroutines.launch
 import org.koin.compose.KoinContext
@@ -39,43 +44,53 @@ internal fun App() = KoinContext {
         val getUiModeFlowUseCase: GetUiModeFlowUseCase = koinInject()
         var isDarkMode by LocalThemeIsDark.current
         val coroutineScope = rememberCoroutineScope()
+        val snackbarHostState = remember { SnackbarHostState() }
         coroutineScope.launch {
             getUiModeFlowUseCase.invoke().collect { uiMode ->
                 when (uiMode) {
                     UiMode.LIGHT -> isDarkMode = false
                     UiMode.DARK -> isDarkMode = true
-                    UiMode.SYSTEM -> { /* do nothing */ }
+                    UiMode.SYSTEM -> { /* do nothing */
+                    }
                 }
             }
         }
-        TabNavigator(
-            HomeTab,
-            tabDisposable = {
-                TabDisposable(
-                    navigator = it,
-                    tabs = listOf(HomeTab, FavoriteTab, ProfileTab)
+        CompositionLocalProvider(
+            LocalSnackbarHostState provides snackbarHostState,
+        ) {
+            TabNavigator(
+                HomeTab,
+                tabDisposable = {
+                    TabDisposable(
+                        navigator = it,
+                        tabs = listOf(HomeTab, FavoriteTab, ProfileTab)
+                    )
+                }
+            ) {
+                Scaffold(
+                    snackbarHost = {
+                        SnackbarHost(hostState = snackbarHostState)
+                    },
+                    content = { innerPadding ->
+                        Box(
+                            modifier = Modifier.consumeWindowInsets(innerPadding)
+                                .padding(innerPadding)
+                        ) {
+                            CurrentTab()
+                        }
+                    },
+                    containerColor = MaterialTheme.colorScheme.surfaceContainer,
+                    bottomBar = {
+                        NavigationBar {
+                            NavigationBarItem(HomeTab)
+                            NavigationBarItem(FavoriteTab)
+                            NavigationBarItem(CreateTab)
+                            NavigationBarItem(RentsTab)
+                            NavigationBarItem(ProfileTab)
+                        }
+                    },
                 )
             }
-        ) {
-            Scaffold(
-                content = { innerPadding ->
-                    Box(
-                        modifier = Modifier.consumeWindowInsets(innerPadding).padding(innerPadding)
-                    ) {
-                        CurrentTab()
-                    }
-                },
-                containerColor = MaterialTheme.colorScheme.surfaceContainer,
-                bottomBar = {
-                    NavigationBar {
-                        NavigationBarItem(HomeTab)
-                        NavigationBarItem(FavoriteTab)
-                        NavigationBarItem(CreateTab)
-                        NavigationBarItem(RentsTab)
-                        NavigationBarItem(ProfileTab)
-                    }
-                },
-            )
         }
     }
 }

@@ -2,6 +2,7 @@ package com.rendo.core.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -89,6 +90,9 @@ private val darkScheme = darkColorScheme(
 )
 
 val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
+
+val LocalSnackbarHostState =
+    compositionLocalOf<SnackbarHostState> { error("No Snackbar Host State") }
 
 @Composable
 fun AppTheme(

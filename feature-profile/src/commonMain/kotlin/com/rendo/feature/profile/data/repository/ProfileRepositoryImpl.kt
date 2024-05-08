@@ -1,19 +1,34 @@
 package com.rendo.feature.profile.data.repository
 
-import com.rendo.feature.profile.domain.model.ProfileDomainModel
-import com.rendo.core.domain.model.UiMode
+import com.rendo.feature.profile.data.mapper.UserDomainMapper
+import com.rendo.feature.profile.domain.model.UserDomainModel
 import com.rendo.feature.profile.domain.repository.ProfileRepository
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.auth.GoogleAuthProvider
+import dev.gitlive.firebase.auth.auth
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
-class ProfileRepositoryImpl : ProfileRepository {
-    override fun getProfile(): ProfileDomainModel {
-        return ProfileDomainModel(
-            id = 1,
-            name = "Denys",
-            imageUrl = "https://picsum.photos/200?random=10",
-        )
+class ProfileRepositoryImpl(
+    private val userMapper: UserDomainMapper,
+) : ProfileRepository {
+    override fun getUser(): UserDomainModel? {
+        val firebaseUser = Firebase.auth.currentUser
+        return userMapper.mapToDomainModel(firebaseUser)
     }
 
-    override fun getUiMode(): UiMode {
-        return UiMode.DARK
+    override fun getUserFlow(): Flow<UserDomainModel?> {
+        return Firebase.auth.authStateChanged.map { firebaseUser ->
+            userMapper.mapToDomainModel(firebaseUser)
+        }
+    }
+
+    override suspend fun signIn(idToken: String) {
+        val authCredential = GoogleAuthProvider.credential(idToken = idToken, accessToken = null)
+        Firebase.auth.signInWithCredential(authCredential)
+    }
+
+    override suspend fun signOut() {
+        Firebase.auth.signOut()
     }
 }

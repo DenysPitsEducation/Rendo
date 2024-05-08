@@ -7,15 +7,13 @@ import com.rendo.feature.product.details.domain.repository.ProductDetailsReposit
 import kotlinx.datetime.DateTimeUnit
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.Month
-import kotlinx.datetime.TimeZone
 import kotlinx.datetime.plus
 
 class ProductDetailsRepositoryImpl : ProductDetailsRepository {
     override fun getProductDetails(id: Long): ProductDetailsDomainModel {
         val prohibitedDates = listOf(
-            LocalDate(2024, Month.MAY, 2),
-            LocalDate(2024, Month.MAY, 5),
-            LocalDate(2024, Month.MAY, 6),
+            LocalDate(2024, Month.MAY, 20),
+            LocalDate(2024, Month.MAY, 21),
         )
         val firstAllowedDate = getFirstAllowedDate(prohibitedDates)
         return ProductDetailsDomainModel(

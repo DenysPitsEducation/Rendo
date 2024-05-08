@@ -40,7 +40,6 @@ kotlin {
             implementation(project(":feature-product-details"))
             implementation(project(":feature-profile"))
             implementation(project(":feature-rents"))
-            implementation(project.dependencies.platform(libs.firebase.bom))
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)

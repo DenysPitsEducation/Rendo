@@ -31,6 +31,10 @@ import com.rendo.feature.profile.domain.mvi.ProfileIntent
 import com.rendo.feature.profile.ui.OnUserInteraction
 import com.rendo.feature.profile.ui.model.ProfileUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
+import rendo.feature_profile.generated.resources.Res
+import rendo.feature_profile.generated.resources.ill_user_placeholder
 
 @Composable
 fun ProfileContentComposable(
@@ -61,17 +65,12 @@ fun ProfileContentComposable(
                 ) {
                     Text(text = "Sign in")
                 }
-                Button(
-                    onClick = { onUserInteraction(ProfileIntent.SignUpButtonClicked) },
-                    modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
-                ) {
-                    Text(text = "Sign up")
-                }
             }
         }
     }
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun ProfileInfoRow(name: String?, imageUrl: String?, onUserInteraction: OnUserInteraction) {
     val isDarkMode by LocalThemeIsDark.current
@@ -85,6 +84,8 @@ fun ProfileInfoRow(name: String?, imageUrl: String?, onUserInteraction: OnUserIn
     ) {
         AutoSizeImage(
             url = imageUrl.orEmpty(),
+            placeholderPainter = { painterResource(Res.drawable.ill_user_placeholder) },
+            errorPainter = { painterResource(Res.drawable.ill_user_placeholder) },
             contentDescription = null,
             modifier = Modifier
                 .clip(CircleShape)

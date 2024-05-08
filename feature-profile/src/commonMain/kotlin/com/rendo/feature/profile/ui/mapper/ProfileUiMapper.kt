@@ -5,7 +5,7 @@ import com.rendo.feature.profile.ui.model.ProfileUiModel
 
 class ProfileUiMapper {
     fun mapToUiModel(state: ProfileState): ProfileUiModel = state.run {
-        val profile = state.profile
+        val profile = state.user
         return if (profile != null) {
             ProfileUiModel.Authorized(profile.name, profile.imageUrl)
         } else {

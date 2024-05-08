@@ -1,7 +1,7 @@
 package com.rendo.feature.profile.domain.mvi
 
-import com.rendo.feature.profile.domain.model.ProfileDomainModel
+import com.rendo.feature.profile.domain.model.UserDomainModel
 
 data class ProfileState(
-    val profile: ProfileDomainModel?,
+    val user: UserDomainModel?,
 )

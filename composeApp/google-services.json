@@ -12,7 +12,20 @@
           "package_name": "com.rendo.app.androidApp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "447278892031-4h9mgt0cah9ps3a6sc0fs9llt4f9qdta.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rendo.app.androidApp",
+            "certificate_hash": "6ae4862e9124447b0d0be36b24dd77e797d0b2d3"
+          }
+        },
+        {
+          "client_id": "447278892031-amppnku3rcprn859pm4ll5an59gumf7h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBobtCVQ7ZZ2NK_UkO06snt0TJO0zLtRd4"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447278892031-amppnku3rcprn859pm4ll5an59gumf7h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

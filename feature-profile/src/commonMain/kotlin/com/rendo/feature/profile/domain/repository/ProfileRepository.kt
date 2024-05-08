@@ -1,9 +1,11 @@
 package com.rendo.feature.profile.domain.repository
 
-import com.rendo.feature.profile.domain.model.ProfileDomainModel
-import com.rendo.core.domain.model.UiMode
+import com.rendo.feature.profile.domain.model.UserDomainModel
+import kotlinx.coroutines.flow.Flow
 
 interface ProfileRepository {
-    fun getProfile(): ProfileDomainModel
-    fun getUiMode(): UiMode
+    fun getUser(): UserDomainModel?
+    fun getUserFlow(): Flow<UserDomainModel?>
+    suspend fun signIn(idToken: String)
+    suspend fun signOut()
 }

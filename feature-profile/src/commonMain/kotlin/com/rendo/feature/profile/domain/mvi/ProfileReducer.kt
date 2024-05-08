@@ -6,6 +6,6 @@ internal class ProfileReducer : Reducer<ProfileState, ProfileMessage> {
     override fun ProfileState.reduce(
         msg: ProfileMessage,
     ): ProfileState = when (msg) {
-        is ProfileMessage.ProfileUpdated -> copy(profile = msg.profile)
+        is ProfileMessage.UserUpdated -> copy(user = msg.user)
     }
 }

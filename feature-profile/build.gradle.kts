@@ -29,6 +29,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(libs.androidx.datastore.core)
             implementation(libs.bundles.mvi)
+            implementation(libs.firebase.auth)
             implementation(libs.imageLoader)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
@@ -39,6 +40,10 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.uiTooling)
             implementation(libs.androidx.activityCompose)
+            implementation(libs.androidx.credentials)
+            implementation(libs.androidx.credentials.playServicesAuth)
+            implementation(libs.google.identity.googleid)
+            implementation(libs.koin.android)
         }
     }
 }
