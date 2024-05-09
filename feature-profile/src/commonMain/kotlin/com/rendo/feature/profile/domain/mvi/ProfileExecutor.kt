@@ -37,7 +37,7 @@ internal class ProfileExecutor(
 
     private fun onGoogleTokenReceived(intent: ProfileIntent.GoogleTokenReceived) {
         scope.launch {
-            signInUseCase.invoke(intent.idToken)
+            signInUseCase.invoke(intent.token)
         }
     }
 

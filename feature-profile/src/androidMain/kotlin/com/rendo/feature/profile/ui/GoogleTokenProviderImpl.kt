@@ -6,16 +6,18 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.rendo.feature.profile.domain.model.GoogleToken
 
 class GoogleTokenProviderImpl(
     private val activityContext: Context,
     private val credentialManager: CredentialManager,
 ) : GoogleTokenProvider {
-    override suspend fun provide(): Result<String> {
+    override suspend fun provide(): Result<GoogleToken> {
         return runCatching {
             val credential = getCredential()
             if (credential is GoogleIdTokenCredential) {
-                credential.idToken
+                // TODO Pits: accessToken?
+                GoogleToken(idToken = credential.idToken, accessToken = null)
             } else {
                 throw Exception()
             }

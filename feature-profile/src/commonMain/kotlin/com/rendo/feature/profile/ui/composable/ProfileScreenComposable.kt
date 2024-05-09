@@ -22,8 +22,8 @@ fun ProfileScreenComposable(screenModel: ProfileScreenModel) {
     val state by screenModel.store.stateFlow.collectAsState()
     val mapper: ProfileUiMapper = koinInject()
     val uiModel = mapper.mapToUiModel(state)
-    val userProviderFactory: GoogleTokenProviderFactory = koinInject()
-    val userProvider = userProviderFactory.create()
+    val tokenProviderFactory: GoogleTokenProviderFactory = koinInject()
+    val tokenProvider = tokenProviderFactory.create()
     val onUserInteraction: OnUserInteraction = { screenModel.store.accept(it) }
     val snackbarState = LocalSnackbarHostState.current
 
@@ -32,10 +32,10 @@ fun ProfileScreenComposable(screenModel: ProfileScreenModel) {
     LabelLaunchedEffect(screenModel.store.labels) { label ->
         when (label) {
             ProfileLabel.OpenSignInFlow -> {
-                val userResult = userProvider.provide()
-                if (userResult.isSuccess) {
-                    val idToken = userResult.getOrThrow()
-                    onUserInteraction(ProfileIntent.GoogleTokenReceived(idToken))
+                val tokenResult = tokenProvider.provide()
+                if (tokenResult.isSuccess) {
+                    val token = tokenResult.getOrThrow()
+                    onUserInteraction(ProfileIntent.GoogleTokenReceived(token))
                 } else {
                     snackbarState.showSnackbar("Something went wrong during google sign in")
                 }

@@ -1,11 +1,13 @@
 import UIKit
-import ComposeApp
+import FirebaseCore
+import composeApp
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     override init() {
+        FirebaseApp.configure()
         HelperKt.doInitKoin()
     }
 

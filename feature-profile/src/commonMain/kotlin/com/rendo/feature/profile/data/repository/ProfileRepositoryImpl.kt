@@ -1,6 +1,7 @@
 package com.rendo.feature.profile.data.repository
 
 import com.rendo.feature.profile.data.mapper.UserDomainMapper
+import com.rendo.feature.profile.domain.model.GoogleToken
 import com.rendo.feature.profile.domain.model.UserDomainModel
 import com.rendo.feature.profile.domain.repository.ProfileRepository
 import dev.gitlive.firebase.Firebase
@@ -23,8 +24,8 @@ class ProfileRepositoryImpl(
         }
     }
 
-    override suspend fun signIn(idToken: String) {
-        val authCredential = GoogleAuthProvider.credential(idToken = idToken, accessToken = null)
+    override suspend fun signIn(token: GoogleToken) {
+        val authCredential = GoogleAuthProvider.credential(idToken = token.idToken, accessToken = token.accessToken)
         Firebase.auth.signInWithCredential(authCredential)
     }
 

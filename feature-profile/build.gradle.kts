@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.multiplatform)
+    alias(libs.plugins.cocoapods)
     alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.android.library)
 }
 
@@ -16,6 +18,22 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+
+    cocoapods {
+        summary = "Feature Profile module"
+        homepage = "Link to a Feature Profile module homepage"
+        version = "1.0"
+        ios.deploymentTarget = "16.0"
+
+        noPodspec()
+
+        framework {
+            baseName = "feature-profile"
+            isStatic = true
+        }
+
+        pod("GoogleSignIn") { version = "7.1.0" }
+    }
 
     sourceSets {
         commonMain.dependencies {
