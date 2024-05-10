@@ -49,7 +49,7 @@ import com.seiko.imageloader.ui.AutoSizeImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RentsContentComposable(
+internal fun RentsContentComposable(
     rentsUiModel: RentsUiModel,
     onUserInteraction: OnUserInteraction
 ) {

@@ -9,7 +9,7 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.Month
 import kotlinx.datetime.plus
 
-class ProductDetailsRepositoryImpl : ProductDetailsRepository {
+internal class ProductDetailsRepositoryImpl : ProductDetailsRepository {
     override fun getProductDetails(id: Long): ProductDetailsDomainModel {
         val prohibitedDates = listOf(
             LocalDate(2024, Month.MAY, 20),

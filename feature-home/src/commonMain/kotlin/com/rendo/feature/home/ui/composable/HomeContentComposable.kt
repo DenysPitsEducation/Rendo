@@ -9,13 +9,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.rendo.feature.home.domain.mvi.HomeIntent
-import com.rendo.feature.home.ui.OnUserInteraction
 import com.rendo.core.product.ProductUiModel
 import com.rendo.core.product.ProductVerticalGrid
+import com.rendo.feature.home.domain.mvi.HomeIntent
+import com.rendo.feature.home.ui.OnUserInteraction
 
 @Composable
-fun HomeContentComposable(
+internal fun HomeContentComposable(
     searchInput: String,
     products: List<ProductUiModel>,
     onUserInteraction: OnUserInteraction

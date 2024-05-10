@@ -31,13 +31,12 @@ import com.rendo.feature.profile.domain.mvi.ProfileIntent
 import com.rendo.feature.profile.ui.OnUserInteraction
 import com.rendo.feature.profile.ui.model.ProfileUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import rendo.feature_profile.generated.resources.Res
 import rendo.feature_profile.generated.resources.ill_user_placeholder
 
 @Composable
-fun ProfileContentComposable(
+internal fun ProfileContentComposable(
     uiModel: ProfileUiModel,
     onUserInteraction: OnUserInteraction
 ) {
@@ -70,9 +69,8 @@ fun ProfileContentComposable(
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
-fun ProfileInfoRow(name: String?, imageUrl: String?, onUserInteraction: OnUserInteraction) {
+private fun ProfileInfoRow(name: String?, imageUrl: String?, onUserInteraction: OnUserInteraction) {
     val isDarkMode by LocalThemeIsDark.current
     Row(
         verticalAlignment = Alignment.CenterVertically,

@@ -1,6 +1,6 @@
 package com.rendo.feature.rents.ui.model
 
-data class RentUiModel(
+internal data class RentUiModel(
     val id: Long,
     val name: String,
     val imageUrl: String?,

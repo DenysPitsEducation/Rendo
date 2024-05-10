@@ -1,6 +1,6 @@
 package com.rendo.feature.create.rent.ui.model
 
-data class CreateRentUiModel(
+internal data class CreateRentUiModel(
     val productName: TextFieldUiModel,
     val productDescription: TextFieldUiModel,
     val productPrice: TextFieldUiModel,

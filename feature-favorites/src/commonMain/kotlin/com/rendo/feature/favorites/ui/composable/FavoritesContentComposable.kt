@@ -3,13 +3,13 @@ package com.rendo.feature.favorites.ui.composable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import com.rendo.feature.favorites.domain.mvi.FavoritesIntent
-import com.rendo.feature.favorites.ui.OnUserInteraction
 import com.rendo.core.product.ProductUiModel
 import com.rendo.core.product.ProductVerticalGrid
+import com.rendo.feature.favorites.domain.mvi.FavoritesIntent
+import com.rendo.feature.favorites.ui.OnUserInteraction
 
 @Composable
-fun FavoritesContentComposable(
+internal fun FavoritesContentComposable(
     products: List<ProductUiModel>,
     onUserInteraction: OnUserInteraction
 ) {

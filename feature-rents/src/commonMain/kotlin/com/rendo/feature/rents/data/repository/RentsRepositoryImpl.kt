@@ -3,7 +3,7 @@ package com.rendo.feature.rents.data.repository
 import com.rendo.feature.rents.domain.model.RentDomainModel
 import com.rendo.feature.rents.domain.repository.RentsRepository
 
-class RentsRepositoryImpl : RentsRepository {
+internal class RentsRepositoryImpl : RentsRepository {
     override fun getRents(): List<RentDomainModel> {
         return listOf(
             RentDomainModel(

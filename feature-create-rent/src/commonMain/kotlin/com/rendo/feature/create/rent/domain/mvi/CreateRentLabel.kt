@@ -1,5 +1,5 @@
 package com.rendo.feature.create.rent.domain.mvi
 
-sealed class CreateRentLabel {
+internal sealed class CreateRentLabel {
     data object ShowSuccessfulCreationDialog : CreateRentLabel()
 }

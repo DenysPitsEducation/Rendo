@@ -33,11 +33,11 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
+import com.rendo.core.dial.Dialer
 import com.rendo.core.utils.LabelLaunchedEffect
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsIntent
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsLabel
 import com.rendo.feature.product.details.ui.ProductDetailsScreenModel
-import com.rendo.core.dial.Dialer
 import com.rendo.feature.product.details.ui.mapper.ProductDetailsUiMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -45,7 +45,7 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalCoroutinesApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun ProductDetailsScreenComposable(screenModel: ProductDetailsScreenModel) {
+internal fun ProductDetailsScreenComposable(screenModel: ProductDetailsScreenModel) {
     val stateFlow by screenModel.store.stateFlow.collectAsState()
     val productMapper: ProductDetailsUiMapper = koinInject()
     val dialer: Dialer = koinInject()

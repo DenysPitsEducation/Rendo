@@ -10,7 +10,7 @@ import dev.gitlive.firebase.auth.auth
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class ProfileRepositoryImpl(
+internal class ProfileRepositoryImpl(
     private val userMapper: UserDomainMapper,
 ) : ProfileRepository {
     override fun getUser(): UserDomainModel? {

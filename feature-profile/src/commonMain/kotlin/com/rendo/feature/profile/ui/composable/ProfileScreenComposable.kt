@@ -18,7 +18,7 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
-fun ProfileScreenComposable(screenModel: ProfileScreenModel) {
+internal fun ProfileScreenComposable(screenModel: ProfileScreenModel) {
     val state by screenModel.store.stateFlow.collectAsState()
     val mapper: ProfileUiMapper = koinInject()
     val uiModel = mapper.mapToUiModel(state)

@@ -1,6 +1,6 @@
 package com.rendo.feature.product.details.domain.model
 
-data class OwnerDomainModel(
+internal data class OwnerDomainModel(
     val id: Long,
     val name: String,
     val phone: String,

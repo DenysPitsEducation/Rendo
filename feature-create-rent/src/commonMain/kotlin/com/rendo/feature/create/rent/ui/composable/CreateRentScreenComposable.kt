@@ -15,7 +15,7 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
-fun CreateRentScreenComposable(screenModel: CreateRentScreenModel) {
+internal fun CreateRentScreenComposable(screenModel: CreateRentScreenModel) {
     val state by screenModel.store.stateFlow.collectAsState()
     val mapper: CreateRentUiMapper = koinInject()
     val uiModel = mapper.mapToUiModel(state)

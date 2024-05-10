@@ -18,7 +18,7 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
-fun HomeScreenComposable(screenModel: HomeScreenModel) {
+internal fun HomeScreenComposable(screenModel: HomeScreenModel) {
     val router: HomeRouter = koinInject()
     val stateFlow by screenModel.store.stateFlow.collectAsState()
     val productMapper: ProductUiMapper = koinInject()

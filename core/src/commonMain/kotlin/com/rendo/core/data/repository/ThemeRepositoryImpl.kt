@@ -7,10 +7,9 @@ import androidx.datastore.preferences.core.edit
 import com.rendo.core.domain.model.UiMode
 import com.rendo.core.domain.repository.ThemeRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
-class ThemeRepositoryImpl(
+internal class ThemeRepositoryImpl(
     private val dataStore: DataStore<Preferences>
 ) : ThemeRepository {
     override fun getUiModeFlow(): Flow<UiMode> {

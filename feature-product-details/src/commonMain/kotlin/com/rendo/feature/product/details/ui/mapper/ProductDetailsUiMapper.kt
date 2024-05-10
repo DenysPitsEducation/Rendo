@@ -19,7 +19,7 @@ import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 
 
-class ProductDetailsUiMapper {
+internal class ProductDetailsUiMapper {
     @OptIn(ExperimentalMaterial3Api::class)
     fun mapToUiModel(model: ProductDetailsDomainModel): ProductDetailsUiModel = model.run {
         val formatter = LocalDateTimeFormatter.ofPattern("dd MMMM", Locale.default())

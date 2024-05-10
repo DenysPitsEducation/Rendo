@@ -2,7 +2,7 @@ package com.rendo.feature.profile.ui
 
 import androidx.compose.runtime.Composable
 
-interface GoogleTokenProviderFactory {
+internal interface GoogleTokenProviderFactory {
     @Composable
     fun create(): GoogleTokenProvider
 }

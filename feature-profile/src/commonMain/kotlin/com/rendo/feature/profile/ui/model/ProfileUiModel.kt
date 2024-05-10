@@ -1,6 +1,6 @@
 package com.rendo.feature.profile.ui.model
 
-sealed class ProfileUiModel {
+internal sealed class ProfileUiModel {
     data class Authorized(
         val name: String,
         val imageUrl: String?,

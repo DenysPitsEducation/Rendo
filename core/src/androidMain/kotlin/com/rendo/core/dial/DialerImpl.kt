@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 
-class DialerImpl(private val context: Context) : Dialer {
+internal class DialerImpl(private val context: Context) : Dialer {
     override fun makeCall(phoneNumber: String) {
         val intent = Intent(Intent.ACTION_DIAL).apply {
             data = Uri.parse("tel:$phoneNumber")

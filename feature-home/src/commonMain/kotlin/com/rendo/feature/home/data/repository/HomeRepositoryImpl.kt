@@ -3,7 +3,7 @@ package com.rendo.feature.home.data.repository
 import com.rendo.core.product.ProductDomainModel
 import com.rendo.feature.home.domain.repository.HomeRepository
 
-class HomeRepositoryImpl : HomeRepository {
+internal class HomeRepositoryImpl : HomeRepository {
     override fun getProducts(): List<ProductDomainModel> {
         return listOf(
             ProductDomainModel(

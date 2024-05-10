@@ -8,7 +8,7 @@ import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.rendo.feature.profile.domain.model.GoogleToken
 
-class GoogleTokenProviderImpl(
+internal class GoogleTokenProviderImpl(
     private val activityContext: Context,
     private val credentialManager: CredentialManager,
 ) : GoogleTokenProvider {

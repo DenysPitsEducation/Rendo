@@ -19,7 +19,7 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
-fun RentsScreenComposable(screenModel: RentsScreenModel) {
+internal fun RentsScreenComposable(screenModel: RentsScreenModel) {
     val router: RentsRouter = koinInject()
     val dialer: Dialer = koinInject()
     val stateFlow by screenModel.store.stateFlow.collectAsState()

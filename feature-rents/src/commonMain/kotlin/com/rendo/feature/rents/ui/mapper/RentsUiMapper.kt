@@ -15,7 +15,7 @@ import com.rendo.feature.rents.ui.model.RentUiModel
 import com.rendo.feature.rents.ui.model.RentsUiModel
 import com.rendo.feature.rents.ui.model.StatusUiModel
 
-class RentsUiMapper {
+internal class RentsUiMapper {
     @Composable
     fun mapToUiModel(model: List<RentDomainModel>): RentsUiModel = model.run {
         val (rentIns, rentOuts) = model.partition { it.type == RentDomainModel.Type.RENT_IN }

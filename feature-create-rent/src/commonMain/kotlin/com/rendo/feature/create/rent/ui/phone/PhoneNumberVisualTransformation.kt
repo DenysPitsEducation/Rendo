@@ -8,7 +8,7 @@ import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.withStyle
 
-fun transformTextPhoneNumber(
+internal fun transformTextPhoneNumber(
     text: AnnotatedString,
     mask: String = "+380 (__) ___-__-__",
     editableSymbol: Char = '_',
@@ -53,8 +53,6 @@ fun transformTextPhoneNumber(
 
     val phoneNumberOffsetTranslator = object : OffsetMapping {
         override fun originalToTransformed(offset: Int): Int {
-            println("Android offset: " + offset)
-            println("My offset: " + offsets[offset])
             return offsets[offset]
         }
 

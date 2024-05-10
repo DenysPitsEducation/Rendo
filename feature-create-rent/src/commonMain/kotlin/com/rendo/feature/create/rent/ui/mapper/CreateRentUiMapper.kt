@@ -5,7 +5,7 @@ import com.rendo.feature.create.rent.domain.mvi.CreateRentState
 import com.rendo.feature.create.rent.ui.model.CreateRentUiModel
 import com.rendo.feature.create.rent.ui.model.TextFieldUiModel
 
-class CreateRentUiMapper {
+internal class CreateRentUiMapper {
     @Composable
     fun mapToUiModel(model: CreateRentState): CreateRentUiModel = model.run {
         return CreateRentUiModel(

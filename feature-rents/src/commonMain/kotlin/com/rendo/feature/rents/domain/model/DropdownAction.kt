@@ -1,5 +1,5 @@
 package com.rendo.feature.rents.domain.model
 
-enum class DropdownAction {
+internal enum class DropdownAction {
     CANCEL_RENT, DELETE_RENT
 }

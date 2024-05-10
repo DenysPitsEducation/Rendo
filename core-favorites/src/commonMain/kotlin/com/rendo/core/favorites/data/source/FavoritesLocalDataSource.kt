@@ -4,7 +4,7 @@ import com.rendo.core.product.ProductDomainModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class FavoritesLocalDataSource {
+internal class FavoritesLocalDataSource {
     private val dataFlow = MutableStateFlow(listOf(
         ProductDomainModel(
             id = 2,

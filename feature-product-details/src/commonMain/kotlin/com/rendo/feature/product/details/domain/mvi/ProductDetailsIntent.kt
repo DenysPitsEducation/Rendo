@@ -1,6 +1,6 @@
 package com.rendo.feature.product.details.domain.mvi
 
-sealed class ProductDetailsIntent {
+internal sealed class ProductDetailsIntent {
     data object FavoriteButtonClicked : ProductDetailsIntent()
     data object RentButtonClicked : ProductDetailsIntent()
     data object ChangeDatesButtonClicked : ProductDetailsIntent()

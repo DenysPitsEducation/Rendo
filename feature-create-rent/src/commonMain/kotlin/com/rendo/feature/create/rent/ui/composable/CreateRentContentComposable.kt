@@ -46,7 +46,7 @@ import com.seiko.imageloader.model.ImageRequest
 import com.seiko.imageloader.ui.AutoSizeImage
 
 @Composable
-fun CreateRentContentComposable(
+internal fun CreateRentContentComposable(
     uiModel: CreateRentUiModel,
     onUserInteraction: OnUserInteraction
 ) {

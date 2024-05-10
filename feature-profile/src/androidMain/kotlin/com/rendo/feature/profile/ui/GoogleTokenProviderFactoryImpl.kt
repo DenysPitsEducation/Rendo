@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.credentials.CredentialManager
 
-class GoogleTokenProviderFactoryImpl(
+internal class GoogleTokenProviderFactoryImpl(
     private val credentialManager: CredentialManager
 ) : GoogleTokenProviderFactory {
     @Composable

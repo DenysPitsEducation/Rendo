@@ -1,6 +1,6 @@
 package com.rendo.feature.rents.domain.model
 
-data class RentDomainModel(
+internal data class RentDomainModel(
     val id: Long,
     val productId: Long,
     val name: String,

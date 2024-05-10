@@ -8,7 +8,7 @@ import platform.UIKit.UIApplication
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class GoogleTokenProviderImpl : GoogleTokenProvider {
+internal class GoogleTokenProviderImpl : GoogleTokenProvider {
 
     @OptIn(ExperimentalForeignApi::class)
     override suspend fun provide(): Result<GoogleToken> = suspendCoroutine { continutation ->

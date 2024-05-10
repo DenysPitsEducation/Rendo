@@ -2,7 +2,7 @@ package com.rendo.feature.home.domain.mvi
 
 import com.rendo.core.product.ProductDomainModel
 
-data class HomeState(
+internal data class HomeState(
     val searchInput: String,
     val products: List<ProductDomainModel>,
 ) {
