@@ -44,6 +44,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":core"))
             implementation(project(":core-favorites"))
+            implementation(project(":feature-advertisements"))
             implementation(project(":feature-create-rent"))
             implementation(project(":feature-favorites"))
             implementation(project(":feature-home"))

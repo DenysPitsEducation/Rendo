@@ -2,6 +2,7 @@ package com.rendo.feature.profile.ui.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.FormatListBulleted
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material3.Button
@@ -46,6 +48,21 @@ internal fun ProfileContentComposable(
             imageUrl = (uiModel as? ProfileUiModel.Authorized)?.imageUrl,
             onUserInteraction = onUserInteraction,
         )
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(horizontal = 8.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .clickable { onUserInteraction(ProfileIntent.AdvertisementsButtonClicked) }
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(16.dp),
+        ) {
+            Icon(Icons.AutoMirrored.Filled.FormatListBulleted, null)
+            Spacer(modifier = Modifier.width(16.dp))
+            Text("My advertisements")
+        }
         Spacer(modifier = Modifier.height(12.dp))
         when (uiModel) {
             is ProfileUiModel.Authorized -> {

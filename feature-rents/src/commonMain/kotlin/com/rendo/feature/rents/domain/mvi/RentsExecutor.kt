@@ -14,8 +14,6 @@ internal class RentsExecutor(
             val rents = getRentsUseCase.invoke()
             dispatch(RentsMessage.RentsUpdated(rents))
         }
-
-        is RentsAction.FavoriteStateChanged -> {}
     }
 
     override fun executeIntent(intent: RentsIntent) = when (intent) {

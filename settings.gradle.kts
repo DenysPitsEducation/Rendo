@@ -18,6 +18,7 @@ dependencyResolutionManagement {
 
 include(":core")
 include(":core-favorites")
+include(":feature-advertisements")
 include(":feature-create-rent")
 include(":feature-favorites")
 include(":feature-home")

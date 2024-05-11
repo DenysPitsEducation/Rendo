@@ -31,8 +31,13 @@ internal class ProfileExecutor(
     override fun executeIntent(intent: ProfileIntent) = when (intent) {
         is ProfileIntent.UiModeButtonClicked -> onUiModeButtonClicked(intent)
         is ProfileIntent.GoogleTokenReceived -> onGoogleTokenReceived(intent)
+        is ProfileIntent.AdvertisementsButtonClicked -> onAdvertisementsButtonClicked()
         is ProfileIntent.SignInButtonClicked -> onSignInButtonClicked()
         is ProfileIntent.SignOutButtonClicked -> onSignOutButtonClicked()
+    }
+
+    private fun onAdvertisementsButtonClicked() {
+        publish(ProfileLabel.OpenAdvertisements)
     }
 
     private fun onGoogleTokenReceived(intent: ProfileIntent.GoogleTokenReceived) {
