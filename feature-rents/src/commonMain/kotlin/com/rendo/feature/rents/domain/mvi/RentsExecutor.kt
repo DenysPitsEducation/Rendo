@@ -55,13 +55,13 @@ internal class RentsExecutor(
         }
     }
 
-    private fun onCancelRentSelected(id: Long) {
+    private fun onCancelRentSelected(id: String) {
         val rent = state().rents.firstOrNull { it.id == id } ?: return
         val rentUpdated = rent.copy(status = RentDomainModel.Status.CANCELLED)
         dispatch(RentsMessage.RentUpdated(rentUpdated))
     }
 
-    private fun onDeleteRentSelected(id: Long) {
+    private fun onDeleteRentSelected(id: String) {
         val rentsUpdated = state().rents.filter { it.id != id }
         dispatch(RentsMessage.RentsUpdated(rentsUpdated))
     }

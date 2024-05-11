@@ -3,7 +3,7 @@ package com.rendo.feature.product.details.domain.model
 import kotlinx.datetime.LocalDate
 
 internal data class ProductDetailsDomainModel(
-    val id: Long,
+    val id: String,
     val name: String,
     val description: String,
     val imageUrls: List<String>,

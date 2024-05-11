@@ -125,6 +125,7 @@ internal fun CreateRentContentComposable(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 isError = uiModel.productName.errorText != null,
                 supportingText = uiModel.productName.errorText?.let { { Text(it) } },
+                shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -144,6 +145,7 @@ internal fun CreateRentContentComposable(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 isError = uiModel.productDescription.errorText != null,
                 supportingText = uiModel.productDescription.errorText?.let { { Text(it) } },
+                shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -161,6 +163,7 @@ internal fun CreateRentContentComposable(
                 ),
                 isError = uiModel.productPrice.errorText != null,
                 supportingText = uiModel.productPrice.errorText?.let { { Text(it) } },
+                shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -183,6 +186,7 @@ internal fun CreateRentContentComposable(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 isError = uiModel.ownerName.errorText != null,
                 supportingText = uiModel.ownerName.errorText?.let { { Text(it) } },
+                shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth(),
             )
             Spacer(modifier = Modifier.height(16.dp))
@@ -213,6 +217,7 @@ internal fun CreateRentContentComposable(
                 },
                 isError = uiModel.ownerPhoneNumber.errorText != null,
                 supportingText = uiModel.ownerPhoneNumber.errorText?.let { { Text(it) } },
+                shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth(),
             )
         }
@@ -221,7 +226,7 @@ internal fun CreateRentContentComposable(
             onClick = { onUserInteraction.invoke(CreateRentIntent.CreateRentButtonClicked) },
             modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth()
         ) {
-            Text("Create rent")
+            Text("Create the rental advertisement")
         }
         Spacer(modifier = Modifier.height(32.dp))
     }

@@ -13,7 +13,7 @@ private fun RentsScreenPreview() {
     RentsContentComposable(rentsUiModel = RentsUiModel(
         rentIns = listOf(
             RentUiModel(
-                id = 1,
+                id = "1",
                 name = "DreamGoggles VR balbla sasdkljsf kljdalfk jlkdsafj kldsjflk jdslkaj lkfdjalfk sdd",
                 imageUrl = "https://picsum.photos/200?random=2",
                 status = StatusUiModel("Waiting for acceptance", Color(0xFFCD5915)),
@@ -23,7 +23,7 @@ private fun RentsScreenPreview() {
                 dropdownItems = emptyList(),
             ),
             RentUiModel(
-                id = 2,
+                id = "2",
                 name = "DreamGoggles VR",
                 imageUrl = "https://picsum.photos/200?random=3",
                 status = StatusUiModel("Accepted", Color(0xFF188711)),

@@ -1,11 +1,18 @@
 package com.rendo.feature.home.data.repository
 
 import com.rendo.core.product.ProductDomainModel
+import com.rendo.feature.home.data.model.ProductDto
 import com.rendo.feature.home.domain.repository.HomeRepository
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.firestore.firestore
 
 internal class HomeRepositoryImpl : HomeRepository {
-    override fun getProducts(): List<ProductDomainModel> {
-        return listOf(
+    override suspend fun getProducts(): List<ProductDomainModel> {
+        return Firebase.firestore.collection("products").get().documents.mapIndexed { index, document ->
+            val productDto = document.data(ProductDto.serializer())
+            productDto.mapToDomainModel(document.id)
+        }
+        /*return listOf(
             ProductDomainModel(
                 id = 1,
                 name = "HyperDrive 3000",
@@ -86,6 +93,17 @@ internal class HomeRepositoryImpl : HomeRepository {
                 currency = "₴",
                 isInFavorites = true
             )
+        )*/
+    }
+
+    private fun ProductDto.mapToDomainModel(id: String): ProductDomainModel {
+        return ProductDomainModel(
+            id = id,
+            name = name,
+            imageUrl = imageUrl,
+            price = price,
+            currency = currency,
+            isInFavorites = false,
         )
     }
 }

@@ -17,7 +17,7 @@ private fun ProductDetailsContentPreview() {
     PreviewContainer {
         ProductDetailsContentComposable(
             model = ProductDetailsUiModel(
-                id = 1,
+                id = "1",
                 name = "HyperDrive 3000",
                 description = "It is the description of the HyperDrive 3000 product. It is awesome",
                 imageUrls = listOf(

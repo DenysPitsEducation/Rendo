@@ -3,6 +3,7 @@ package com.rendo.feature.home.domain.mvi
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.rendo.core.favorites.domain.usecase.ChangeFavoriteStateUseCase
 import com.rendo.feature.home.domain.usecase.GetProductsUseCase
+import kotlinx.coroutines.launch
 
 internal class HomeExecutor(
     private val getProductsUseCase: GetProductsUseCase,
@@ -10,12 +11,15 @@ internal class HomeExecutor(
 ) : CoroutineExecutor<HomeIntent, HomeAction, HomeState, HomeMessage, HomeLabel>() {
 
     override fun executeAction(action: HomeAction) = when (action) {
-        is HomeAction.Init -> {
+        is HomeAction.Init -> onInit()
+        is HomeAction.FavoriteStateChanged -> onFavoriteStateChanged(action)
+    }
+
+    private fun onInit() {
+        scope.launch {
             val products = getProductsUseCase.invoke()
             dispatch(HomeMessage.ProductListUpdated(products))
         }
-
-        is HomeAction.FavoriteStateChanged -> onFavoriteStateChanged(action)
     }
 
     override fun executeIntent(intent: HomeIntent) = when (intent) {

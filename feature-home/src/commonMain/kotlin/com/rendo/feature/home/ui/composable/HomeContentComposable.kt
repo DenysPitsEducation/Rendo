@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +28,7 @@ internal fun HomeContentComposable(
             placeholder = {
                 Text("Enter a name of the product")
             },
+            shape = RoundedCornerShape(8.dp),
             modifier = Modifier.fillMaxWidth().padding(8.dp),
             singleLine = true,
         )

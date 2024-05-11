@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun createProductUiModelMock(id: Long): ProductUiModel {
+fun createProductUiModelMock(id: String): ProductUiModel {
     return ProductUiModel(
         id = id,
         name = "Product name",
@@ -30,14 +30,14 @@ private fun ProductComposablePreview() {
             .fillMaxWidth()
     ) {
         ProductComposable(
-            model = createProductUiModelMock(1),
+            model = createProductUiModelMock("1"),
             onProductClick = {},
             onFavoriteButtonClick = {},
             modifier = Modifier.weight(1f),
         )
         Spacer(modifier = Modifier.width(8.dp))
         ProductComposable(
-            model = createProductUiModelMock(2),
+            model = createProductUiModelMock("2"),
             onProductClick = {},
             onFavoriteButtonClick = {},
             modifier = Modifier.weight(1f),

@@ -6,6 +6,7 @@ import com.rendo.core.utils.fromEpochMilliseconds
 import com.rendo.feature.product.details.domain.mapper.toProductDomainModel
 import com.rendo.feature.product.details.domain.usecase.GetProductDetailsUseCase
 import com.rendo.feature.product.details.domain.usecase.RentProductUseCase
+import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.daysUntil
 
@@ -15,12 +16,15 @@ internal class ProductDetailsExecutor(
     private val changeFavoriteStateUseCase: ChangeFavoriteStateUseCase,
 ) : CoroutineExecutor<ProductDetailsIntent, ProductDetailsAction, ProductDetailsState, ProductDetailsMessage, ProductDetailsLabel>() {
     override fun executeAction(action: ProductDetailsAction) = when (action) {
-        is ProductDetailsAction.Init -> {
+        is ProductDetailsAction.Init -> onInit(action)
+        is ProductDetailsAction.FavoriteStateChanged -> onFavoriteStateChanged(action)
+    }
+
+    private fun onInit(action: ProductDetailsAction.Init) {
+        scope.launch {
             val product = getProductDetailsUseCase.invoke(action.payload.id)
             dispatch(ProductDetailsMessage.ProductUpdated(product))
         }
-
-        is ProductDetailsAction.FavoriteStateChanged -> onFavoriteStateChanged(action)
     }
 
     private fun onFavoriteStateChanged(action: ProductDetailsAction.FavoriteStateChanged) {
@@ -34,7 +38,9 @@ internal class ProductDetailsExecutor(
         is ProductDetailsIntent.RentButtonClicked -> onRentButtonClicked()
         is ProductDetailsIntent.ChangeDatesButtonClicked -> onChangeDatesButtonClicked()
         is ProductDetailsIntent.CallOwnerButtonClicked -> onCallOwnerButtonClicked()
-        is ProductDetailsIntent.ChooseDateDialogButtonClicked -> onChooseDateDialogButtonClicked(intent)
+        is ProductDetailsIntent.ChooseDateDialogButtonClicked -> onChooseDateDialogButtonClicked(
+            intent
+        )
     }
 
     private fun onFavoriteButtonClicked() {

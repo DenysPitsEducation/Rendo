@@ -20,8 +20,8 @@ import androidx.compose.ui.unit.dp
 fun ProductVerticalGrid(
     products: List<ProductUiModel>,
     contentPadding: PaddingValues,
-    onProductClick: (id: Long) -> Unit,
-    onFavoriteButtonClick: (id: Long) -> Unit,
+    onProductClick: (id: String) -> Unit,
+    onFavoriteButtonClick: (id: String) -> Unit,
 ) {
     val lazyGridState = rememberLazyGridState()
     LazyVerticalGrid(

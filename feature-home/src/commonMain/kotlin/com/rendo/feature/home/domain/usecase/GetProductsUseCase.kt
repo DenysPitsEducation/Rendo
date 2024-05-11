@@ -8,7 +8,7 @@ internal class GetProductsUseCase(
     private val homeRepository: HomeRepository,
     private val getFavoritesUseCase: GetFavoritesUseCase,
 ) {
-    fun invoke(): List<ProductDomainModel> {
+    suspend fun invoke(): List<ProductDomainModel> {
         val favoriteProducts = getFavoritesUseCase.invoke()
         return homeRepository.getProducts().map {product ->
             product.copy(isInFavorites = favoriteProducts.any { it.id == product.id })

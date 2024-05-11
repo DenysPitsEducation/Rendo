@@ -7,8 +7,8 @@ internal class RentsRepositoryImpl : RentsRepository {
     override fun getRents(): List<RentDomainModel> {
         return listOf(
             RentDomainModel(
-                id = 1,
-                productId = 1,
+                id = "1",
+                productId = "1",
                 name = "HyperDrive 3000",
                 imageUrl = "https://picsum.photos/200?random=1",
                 status = RentDomainModel.Status.WAITING_FOR_ACCEPTANCE,
@@ -19,8 +19,8 @@ internal class RentsRepositoryImpl : RentsRepository {
                 phoneNumber = "+380951234567"
             ),
             RentDomainModel(
-                id = 2,
-                productId = 2,
+                id = "2",
+                productId = "2",
                 name = "DreamGoggles VR",
                 imageUrl = "https://picsum.photos/200?random=2",
                 status = RentDomainModel.Status.ACCEPTED,
@@ -31,8 +31,8 @@ internal class RentsRepositoryImpl : RentsRepository {
                 phoneNumber = "+380951234567"
             ),
             RentDomainModel(
-                id = 3,
-                productId = 3,
+                id = "3",
+                productId = "3",
                 name = "EcoBot 5000",
                 imageUrl = "https://picsum.photos/200?random=3",
                 status = RentDomainModel.Status.WAITING_FOR_ACCEPTANCE,
@@ -43,8 +43,8 @@ internal class RentsRepositoryImpl : RentsRepository {
                 phoneNumber = "+380951234567"
             ),
             RentDomainModel(
-                id = 4,
-                productId = 4,
+                id = "4",
+                productId = "4",
                 name = "InfiniteBattery Power Bank",
                 imageUrl = "https://picsum.photos/200?random=4",
                 status = RentDomainModel.Status.CANCELLED,

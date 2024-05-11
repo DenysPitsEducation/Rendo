@@ -1,7 +1,7 @@
 package com.rendo.feature.product.details.ui.model
 
 internal data class ProductDetailsUiModel(
-    val id: Long,
+    val id: String,
     val name: String,
     val description: String,
     val imageUrls: List<String>,

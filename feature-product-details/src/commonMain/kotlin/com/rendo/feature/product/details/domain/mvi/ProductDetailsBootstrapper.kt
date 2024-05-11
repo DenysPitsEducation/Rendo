@@ -7,7 +7,7 @@ import com.rendo.core.utils.toDiffFlow
 import kotlinx.coroutines.launch
 
 internal class ProductDetailsBootstrapper(
-    private val productId: Long,
+    private val productId: String,
     private val getFavoritesFlowUseCase: GetFavoritesFlowUseCase,
     private vararg val actions: ProductDetailsAction,
 ) : CoroutineBootstrapper<ProductDetailsAction>() {
