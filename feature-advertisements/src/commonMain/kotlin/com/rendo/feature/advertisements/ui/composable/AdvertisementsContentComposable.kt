@@ -30,6 +30,9 @@ import com.rendo.feature.advertisements.ui.OnUserInteraction
 import com.rendo.feature.advertisements.ui.model.AdvertisementUiModel
 import com.rendo.feature.advertisements.ui.model.AdvertisementsUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
+import org.jetbrains.compose.resources.painterResource
+import rendo.core.generated.resources.Res
+import rendo.core.generated.resources.ill_no_photo
 
 @Composable
 internal fun AdvertisementsContentComposable(
@@ -65,6 +68,8 @@ private fun AdvertisementComposable(
         Row {
             AutoSizeImage(
                 url = uiModel.imageUrl.orEmpty(),
+                placeholderPainter = { painterResource(Res.drawable.ill_no_photo) },
+                errorPainter = { painterResource(Res.drawable.ill_no_photo) },
                 contentDescription = null,
                 modifier = Modifier.clip(RoundedCornerShape(8.dp)).size(88.dp),
             )

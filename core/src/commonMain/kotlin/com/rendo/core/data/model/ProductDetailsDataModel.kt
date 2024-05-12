@@ -1,10 +1,10 @@
-package com.rendo.feature.product.details.data.model
+package com.rendo.core.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class ProductDetailsDto(
+data class ProductDetailsDataModel(
     @SerialName("name")
     val name: String,
     @SerialName("description")
@@ -18,5 +18,5 @@ internal data class ProductDetailsDto(
     @SerialName("prohibited_dates")
     val prohibitedDates: List<String>,
     @SerialName("owner")
-    val owner: OwnerDto,
+    val owner: OwnerDataModel,
 )

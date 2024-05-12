@@ -1,7 +1,7 @@
 package com.rendo.feature.product.details.data.repository
 
+import com.rendo.core.data.model.ProductDetailsDataModel
 import com.rendo.feature.product.details.data.mapper.ProductDetailsDomainMapper
-import com.rendo.feature.product.details.data.model.ProductDetailsDto
 import com.rendo.feature.product.details.domain.model.ProductDetailsDomainModel
 import com.rendo.feature.product.details.domain.repository.ProductDetailsRepository
 import dev.gitlive.firebase.Firebase
@@ -11,9 +11,9 @@ internal class ProductDetailsRepositoryImpl(
     private val mapper: ProductDetailsDomainMapper,
 ) : ProductDetailsRepository {
 
-    override suspend fun getProductDetails(id: String): ProductDetailsDomainModel {
+    override suspend fun getProductDetails(id: String): Result<ProductDetailsDomainModel> = runCatching {
         val productDetailsDocument = Firebase.firestore.collection("product_details").document(id)
-        val productDetailsDto = productDetailsDocument.get().data(ProductDetailsDto.serializer())
-        return mapper.mapToDomainModel(productDetailsDto, id)
+        val productDetailsDataModel = productDetailsDocument.get().data(ProductDetailsDataModel.serializer())
+        mapper.mapToDomainModel(productDetailsDataModel, id)
     }
 }

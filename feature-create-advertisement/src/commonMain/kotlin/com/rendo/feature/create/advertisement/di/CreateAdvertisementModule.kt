@@ -1,9 +1,9 @@
 package com.rendo.feature.create.advertisement.di
 
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
+import com.rendo.feature.create.advertisement.data.mapper.ProductDataMapper
 import com.rendo.feature.create.advertisement.data.repository.CreateAdvertisementRepositoryImpl
 import com.rendo.feature.create.advertisement.domain.model.InputDomainModel
-import com.rendo.feature.create.advertisement.domain.mvi.CreateAdvertisementAction
 import com.rendo.feature.create.advertisement.domain.mvi.CreateAdvertisementBootstrapper
 import com.rendo.feature.create.advertisement.domain.mvi.CreateAdvertisementExecutor
 import com.rendo.feature.create.advertisement.domain.mvi.CreateAdvertisementReducer
@@ -35,6 +35,7 @@ fun featureCreateAdvertisementModule() = module {
         DefaultStoreFactory().create(
             name = CREATE_ADVERTISEMENT_STORE_NAME,
             initialState = CreateAdvertisementState(
+                isAuthorized = false,
                 productName = InputDomainModel("", null),
                 productDescription = InputDomainModel("", null),
                 productPrice = InputDomainModel("", null),
@@ -43,7 +44,7 @@ fun featureCreateAdvertisementModule() = module {
             ),
             executorFactory = { get<CreateAdvertisementExecutor>() },
             reducer = get<CreateAdvertisementReducer>(),
-            bootstrapper = CreateAdvertisementBootstrapper(CreateAdvertisementAction.Init),
+            bootstrapper = CreateAdvertisementBootstrapper(),
         )
     }
 
@@ -64,6 +65,12 @@ fun featureCreateAdvertisementModule() = module {
     }
 
     factory<CreateAdvertisementRepository> {
-        CreateAdvertisementRepositoryImpl()
+        CreateAdvertisementRepositoryImpl(
+            mapper = get(),
+        )
+    }
+
+    factory {
+        ProductDataMapper()
     }
 }

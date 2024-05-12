@@ -2,18 +2,19 @@ package com.rendo.feature.create.advertisement.domain.mvi
 
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.rendo.core.utils.toDoubleOrNullWithCleanup
+import com.rendo.feature.create.advertisement.domain.model.AdvertisementDomainModel
 import com.rendo.feature.create.advertisement.domain.model.InputDomainModel
 import com.rendo.feature.create.advertisement.domain.model.InputType
-import com.rendo.feature.create.advertisement.domain.model.AdvertisementDomainModel
 import com.rendo.feature.create.advertisement.domain.usecase.CreateAdvertisementUseCase
+import kotlinx.coroutines.launch
 
 internal class CreateAdvertisementExecutor(
     private val createAdvertisementUseCase: CreateAdvertisementUseCase,
 ) : CoroutineExecutor<CreateAdvertisementIntent, CreateAdvertisementAction, CreateAdvertisementState, CreateAdvertisementMessage, CreateAdvertisementLabel>() {
 
     override fun executeAction(action: CreateAdvertisementAction) = when (action) {
-        is CreateAdvertisementAction.Init -> {
-            // TODO Pits: Do nothing?
+        is CreateAdvertisementAction.AuthorizationStateUpdated -> {
+            dispatch(CreateAdvertisementMessage.AuthorizationStateUpdated(action.isAuthorized))
         }
     }
 
@@ -32,25 +33,37 @@ internal class CreateAdvertisementExecutor(
     }
 
     private fun onCreateAdvertisementButtonClicked() {
-        val state = state()
-
-        if (validateFields(
+        scope.launch {
+            val state = state()
+            val areFieldsValid = validateFields(
                 productName = state.productName,
                 productDescription = state.productDescription,
                 productPrice = state.productPrice,
                 ownerName = state.ownerName,
                 ownerPhoneNumber = state.ownerPhoneNumber
             )
-        ) {
-            createAdvertisementUseCase.invoke(
-                AdvertisementDomainModel(
-                    productName = state.productName.text,
-                    productDescription = state.productDescription.text,
-                    productPrice = getProductPriceDouble(state.productPrice)!!,
-                    ownerName = state.ownerName.text,
-                    ownerPhoneNumber = "380" + state.ownerPhoneNumber.text,
-                )
-            )
+            if (areFieldsValid) {
+                createAdvertisementUseCase.invoke(
+                    AdvertisementDomainModel(
+                        productName = state.productName.text,
+                        productDescription = state.productDescription.text,
+                        productPrice = getProductPriceDouble(state.productPrice)!!,
+                        ownerName = state.ownerName.text,
+                        ownerPhoneNumber = "380" + state.ownerPhoneNumber.text,
+                    )
+                ).onSuccess {
+                    val stateUpdated = CreateAdvertisementState(
+                        isAuthorized = true,
+                        productName = InputDomainModel("", null),
+                        productDescription = InputDomainModel("", null),
+                        productPrice = InputDomainModel("", null),
+                        ownerName = InputDomainModel("", null),
+                        ownerPhoneNumber = InputDomainModel("", null)
+                    )
+                    dispatch(CreateAdvertisementMessage.StateUpdated(stateUpdated))
+                    publish(CreateAdvertisementLabel.ShowSuccessfulCreationDialog)
+                }
+            }
         }
     }
 
@@ -72,7 +85,12 @@ internal class CreateAdvertisementExecutor(
 
         if (productDescription.text.isBlank()) {
             val fieldUpdated = productDescription.copy(errorText = blankFieldError)
-            dispatch(CreateAdvertisementMessage.InputUpdated(fieldUpdated, InputType.PRODUCT_DESCRIPTION))
+            dispatch(
+                CreateAdvertisementMessage.InputUpdated(
+                    fieldUpdated,
+                    InputType.PRODUCT_DESCRIPTION
+                )
+            )
             isValid = false
         }
 
@@ -96,7 +114,12 @@ internal class CreateAdvertisementExecutor(
 
         if (ownerPhoneNumber.text.length != SHORT_PHONE_NUMBER_LENGTH) {
             val fieldUpdated = ownerPhoneNumber.copy(errorText = blankFieldError)
-            dispatch(CreateAdvertisementMessage.InputUpdated(fieldUpdated, InputType.OWNER_PHONE_NUMBER))
+            dispatch(
+                CreateAdvertisementMessage.InputUpdated(
+                    fieldUpdated,
+                    InputType.OWNER_PHONE_NUMBER
+                )
+            )
             isValid = false
         }
 

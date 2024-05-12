@@ -1,6 +1,7 @@
 package com.rendo.feature.product.details.ui.composable
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,10 +29,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsIntent
 import com.rendo.feature.product.details.ui.model.ProductDetailsUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
+import org.jetbrains.compose.resources.painterResource
+import rendo.core.generated.resources.Res
+import rendo.core.generated.resources.ill_no_photo
 
 @Composable
 internal fun ProductDetailsContentComposable(
@@ -41,24 +46,40 @@ internal fun ProductDetailsContentComposable(
 ) {
     Column(modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
         Column(
-            modifier = Modifier.background(
-                MaterialTheme.colorScheme.background,
-                RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp)
-            )
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    MaterialTheme.colorScheme.background,
+                    RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp)
+                )
         ) {
-            LazyRow(
-                contentPadding = PaddingValues(horizontal = 8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                items(items = model.imageUrls) {
-                    AutoSizeImage(
-                        url = it,
-                        contentDescription = null,
-                        modifier = Modifier.clip(RoundedCornerShape(16.dp))
-                            .fillParentMaxWidth(0.8f)
-                            .aspectRatio(1f),
-                    )
+            if (model.imageUrls.isNotEmpty()) {
+                LazyRow(
+                    contentPadding = PaddingValues(horizontal = 8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    items(items = model.imageUrls) {
+                        AutoSizeImage(
+                            url = it,
+                            contentDescription = null,
+                            contentScale = ContentScale.FillHeight,
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .height(250.dp),
+                        )
+                    }
                 }
+            } else {
+                Image(
+                    painter = painterResource(Res.drawable.ill_no_photo),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                        .height(250.dp)
+                        .aspectRatio(1f),
+                )
             }
             Spacer(modifier = Modifier.height(16.dp))
             Text(
@@ -116,6 +137,7 @@ internal fun ProductDetailsContentComposable(
         Spacer(modifier = Modifier.height(8.dp))
         Column(
             modifier = Modifier.padding(horizontal = 8.dp)
+                .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.background, RoundedCornerShape(8.dp))
                 .padding(16.dp)
         ) {

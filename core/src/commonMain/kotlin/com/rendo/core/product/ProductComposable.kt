@@ -29,6 +29,9 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.seiko.imageloader.ui.AutoSizeImage
+import org.jetbrains.compose.resources.painterResource
+import rendo.core.generated.resources.Res
+import rendo.core.generated.resources.ill_no_photo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,6 +49,8 @@ fun ProductComposable(
         Column {
             AutoSizeImage(
                 url = model.imageUrl.orEmpty(),
+                placeholderPainter = { painterResource(Res.drawable.ill_no_photo) },
+                errorPainter = { painterResource(Res.drawable.ill_no_photo) },
                 contentDescription = null,
                 modifier = Modifier.aspectRatio(1f),
             )

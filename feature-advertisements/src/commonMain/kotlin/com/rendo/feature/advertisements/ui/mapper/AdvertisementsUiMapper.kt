@@ -17,7 +17,7 @@ internal class AdvertisementsUiMapper {
     @Composable
     private fun AdvertisementDomainModel.toUiModel(): AdvertisementUiModel {
         return AdvertisementUiModel(
-            id = id,
+            id = productId,
             name = name,
             imageUrl = imageUrl,
             price = price.formatPrice(currency),

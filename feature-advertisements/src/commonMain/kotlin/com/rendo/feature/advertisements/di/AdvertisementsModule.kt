@@ -1,6 +1,7 @@
 package com.rendo.feature.advertisements.di
 
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
+import com.rendo.feature.advertisements.data.mapper.AdvertisementDomainMapper
 import com.rendo.feature.advertisements.data.repository.AdvertisementsRepositoryImpl
 import com.rendo.feature.advertisements.domain.mvi.AdvertisementsAction
 import com.rendo.feature.advertisements.domain.mvi.AdvertisementsBootstrapper
@@ -8,6 +9,7 @@ import com.rendo.feature.advertisements.domain.mvi.AdvertisementsExecutor
 import com.rendo.feature.advertisements.domain.mvi.AdvertisementsReducer
 import com.rendo.feature.advertisements.domain.mvi.AdvertisementsState
 import com.rendo.feature.advertisements.domain.repository.AdvertisementsRepository
+import com.rendo.feature.advertisements.domain.usecase.DeleteAdvertisementUseCase
 import com.rendo.feature.advertisements.domain.usecase.GetAdvertisementsUseCase
 import com.rendo.feature.advertisements.ui.AdvertisementsScreenModel
 import com.rendo.feature.advertisements.ui.mapper.AdvertisementsUiMapper
@@ -39,6 +41,7 @@ fun featureAdvertisementsModule() = module {
 
     factory<AdvertisementsExecutor> {
         AdvertisementsExecutor(
+            deleteAdvertisementUseCase = get(),
             getAdvertisementsUseCase = get(),
         )
     }
@@ -48,12 +51,24 @@ fun featureAdvertisementsModule() = module {
     }
 
     factory {
+        DeleteAdvertisementUseCase(
+            rentsRepository = get(),
+        )
+    }
+
+    factory {
         GetAdvertisementsUseCase(
             rentsRepository = get(),
         )
     }
 
     factory<AdvertisementsRepository> {
-        AdvertisementsRepositoryImpl()
+        AdvertisementsRepositoryImpl(
+            mapper = get(),
+        )
+    }
+
+    factory {
+        AdvertisementDomainMapper()
     }
 }

@@ -22,8 +22,9 @@ internal class ProductDetailsExecutor(
 
     private fun onInit(action: ProductDetailsAction.Init) {
         scope.launch {
-            val product = getProductDetailsUseCase.invoke(action.payload.id)
-            dispatch(ProductDetailsMessage.ProductUpdated(product))
+            getProductDetailsUseCase.invoke(action.payload.id).onSuccess { product ->
+                dispatch(ProductDetailsMessage.ProductUpdated(product))
+            }
         }
     }
 

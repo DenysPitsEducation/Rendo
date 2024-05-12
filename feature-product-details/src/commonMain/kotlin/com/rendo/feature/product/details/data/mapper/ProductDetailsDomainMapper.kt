@@ -3,8 +3,7 @@ package com.rendo.feature.product.details.data.mapper
 import com.raedghazal.kotlinx_datetime_ext.LocalDateTimeFormatter
 import com.raedghazal.kotlinx_datetime_ext.Locale
 import com.raedghazal.kotlinx_datetime_ext.now
-import com.rendo.core.product.ProductDomainModel
-import com.rendo.feature.product.details.data.model.ProductDetailsDto
+import com.rendo.core.data.model.ProductDetailsDataModel
 import com.rendo.feature.product.details.domain.model.OwnerDomainModel
 import com.rendo.feature.product.details.domain.model.ProductDetailsDomainModel
 import kotlinx.datetime.DateTimeUnit
@@ -13,7 +12,7 @@ import kotlinx.datetime.plus
 
 internal class ProductDetailsDomainMapper {
 
-    fun mapToDomainModel(model: ProductDetailsDto, id: String): ProductDetailsDomainModel = model.run {
+    fun mapToDomainModel(model: ProductDetailsDataModel, id: String): ProductDetailsDomainModel = model.run {
         val formatter = LocalDateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.default())
         val prohibitedDates = model.prohibitedDates.map {
             formatter.parseToLocalDate(it)

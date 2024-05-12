@@ -31,6 +31,7 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
             implementation(libs.bundles.mvi)
+            implementation(libs.firebase.auth)
             implementation(libs.firebase.firestore)
             implementation(libs.imageLoader)
             implementation(libs.koin.compose)

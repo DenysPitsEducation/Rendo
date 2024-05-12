@@ -48,24 +48,24 @@ internal fun ProfileContentComposable(
             imageUrl = (uiModel as? ProfileUiModel.Authorized)?.imageUrl,
             onUserInteraction = onUserInteraction,
         )
-        Spacer(modifier = Modifier.height(8.dp))
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .padding(horizontal = 8.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .clickable { onUserInteraction(ProfileIntent.AdvertisementsButtonClicked) }
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.background)
-                .padding(16.dp),
-        ) {
-            Icon(Icons.AutoMirrored.Filled.FormatListBulleted, null)
-            Spacer(modifier = Modifier.width(16.dp))
-            Text("My advertisements")
-        }
-        Spacer(modifier = Modifier.height(12.dp))
         when (uiModel) {
             is ProfileUiModel.Authorized -> {
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .clickable { onUserInteraction(ProfileIntent.AdvertisementsButtonClicked) }
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.background)
+                        .padding(16.dp),
+                ) {
+                    Icon(Icons.AutoMirrored.Filled.FormatListBulleted, null)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text("My advertisements")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
                 Button(
                     onClick = { onUserInteraction(ProfileIntent.SignOutButtonClicked) },
                     modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
@@ -75,6 +75,7 @@ internal fun ProfileContentComposable(
             }
 
             is ProfileUiModel.Unauthorized -> {
+                Spacer(modifier = Modifier.height(12.dp))
                 Button(
                     onClick = { onUserInteraction(ProfileIntent.SignInButtonClicked) },
                     modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),

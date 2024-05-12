@@ -8,9 +8,10 @@ internal class GetProductDetailsUseCase(
     private val productDetailsRepository: ProductDetailsRepository,
     private val getFavoritesUseCase: GetFavoritesUseCase,
 ) {
-    suspend fun invoke(id: String): ProductDetailsDomainModel {
+    suspend fun invoke(id: String): Result<ProductDetailsDomainModel> {
         val favoriteProducts = getFavoritesUseCase.invoke()
-        return productDetailsRepository.getProductDetails(id)
-            .copy(isInFavorites = favoriteProducts.any { it.id == id })
+        return productDetailsRepository.getProductDetails(id).map { productDetails ->
+            productDetails.copy(isInFavorites = favoriteProducts.any { it.id == id })
+        }
     }
 }

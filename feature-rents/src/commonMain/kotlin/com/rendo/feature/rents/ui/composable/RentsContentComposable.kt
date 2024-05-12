@@ -46,6 +46,9 @@ import com.rendo.feature.rents.ui.OnUserInteraction
 import com.rendo.feature.rents.ui.model.RentUiModel
 import com.rendo.feature.rents.ui.model.RentsUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
+import org.jetbrains.compose.resources.painterResource
+import rendo.core.generated.resources.Res
+import rendo.core.generated.resources.ill_no_photo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -96,6 +99,8 @@ private fun RentComposable(
         Row {
             AutoSizeImage(
                 url = uiModel.imageUrl.orEmpty(),
+                placeholderPainter = { painterResource(Res.drawable.ill_no_photo) },
+                errorPainter = { painterResource(Res.drawable.ill_no_photo) },
                 contentDescription = null,
                 modifier = Modifier.clip(RoundedCornerShape(8.dp)).size(88.dp),
             )

@@ -1,10 +1,10 @@
-package com.rendo.feature.home.data.model
+package com.rendo.core.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class ProductDto(
+data class ProductDataModel(
     @SerialName("name")
     val name: String,
     @SerialName("image_url")
@@ -13,4 +13,6 @@ internal data class ProductDto(
     val price: Double,
     @SerialName("currency")
     val currency: String,
+    @SerialName("owner_id")
+    val ownerId: String,
 )

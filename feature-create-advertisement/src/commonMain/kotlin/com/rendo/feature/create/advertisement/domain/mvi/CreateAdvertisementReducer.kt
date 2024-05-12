@@ -7,6 +7,12 @@ internal class CreateAdvertisementReducer : Reducer<CreateAdvertisementState, Cr
     override fun CreateAdvertisementState.reduce(
         msg: CreateAdvertisementMessage,
     ): CreateAdvertisementState = when (msg) {
+        is CreateAdvertisementMessage.StateUpdated -> {
+            msg.state
+        }
+        is CreateAdvertisementMessage.AuthorizationStateUpdated -> {
+            copy(isAuthorized = msg.isAuthorized)
+        }
         is CreateAdvertisementMessage.InputUpdated -> {
             when (msg.type) {
                 InputType.PRODUCT_NAME -> copy(productName = msg.input)

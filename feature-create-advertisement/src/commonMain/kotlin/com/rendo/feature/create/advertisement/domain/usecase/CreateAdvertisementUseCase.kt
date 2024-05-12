@@ -6,7 +6,7 @@ import com.rendo.feature.create.advertisement.domain.repository.CreateAdvertisem
 internal class CreateAdvertisementUseCase(
     private val repository: CreateAdvertisementRepository,
 ) {
-    fun invoke(advertisement: AdvertisementDomainModel) {
-        return repository.createRent()
+    suspend fun invoke(advertisement: AdvertisementDomainModel): Result<Unit> {
+        return repository.createAdvertisement(advertisement)
     }
 }

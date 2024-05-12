@@ -6,7 +6,7 @@ import com.rendo.feature.advertisements.domain.repository.AdvertisementsReposito
 internal class GetAdvertisementsUseCase(
     private val rentsRepository: AdvertisementsRepository,
 ) {
-    fun invoke(): List<AdvertisementDomainModel> {
+    suspend fun invoke(): List<AdvertisementDomainModel> {
         return rentsRepository.getAdvertisements()
     }
 }

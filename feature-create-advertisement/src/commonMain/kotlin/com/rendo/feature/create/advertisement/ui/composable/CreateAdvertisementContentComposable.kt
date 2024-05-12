@@ -47,7 +47,7 @@ import com.seiko.imageloader.ui.AutoSizeImage
 
 @Composable
 internal fun CreateAdvertisementContentComposable(
-    uiModel: CreateAdvertisementUiModel,
+    uiModel: CreateAdvertisementUiModel.Content,
     onUserInteraction: OnUserInteraction
 ) {
     var showImagePicker by remember { mutableStateOf(false) }

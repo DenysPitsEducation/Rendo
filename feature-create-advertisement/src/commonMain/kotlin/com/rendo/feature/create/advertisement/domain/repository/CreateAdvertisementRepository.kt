@@ -1,5 +1,7 @@
 package com.rendo.feature.create.advertisement.domain.repository
 
+import com.rendo.feature.create.advertisement.domain.model.AdvertisementDomainModel
+
 internal interface CreateAdvertisementRepository {
-    fun createRent()
+    suspend fun createAdvertisement(advertisement: AdvertisementDomainModel): Result<Unit>
 }

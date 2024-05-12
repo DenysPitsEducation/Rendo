@@ -1,10 +1,10 @@
-package com.rendo.feature.product.details.data.model
+package com.rendo.core.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class OwnerDto(
+data class OwnerDataModel(
     @SerialName("id")
     val id: String,
     @SerialName("name")

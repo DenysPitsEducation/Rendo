@@ -11,7 +11,7 @@ import com.rendo.feature.create.advertisement.ui.model.TextFieldUiModel
 private fun CreateAdvertisementScreenPreview() {
     PreviewContainer {
         CreateAdvertisementContentComposable(
-            uiModel = CreateAdvertisementUiModel(
+            uiModel = CreateAdvertisementUiModel.Content(
                 productName = TextFieldUiModel("", null),
                 productDescription = TextFieldUiModel("", null),
                 productPrice = TextFieldUiModel("", null),
