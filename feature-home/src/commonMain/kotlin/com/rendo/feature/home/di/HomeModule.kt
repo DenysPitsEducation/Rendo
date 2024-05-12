@@ -1,6 +1,5 @@
 package com.rendo.feature.home.di
 
-import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.rendo.feature.home.data.repository.HomeRepositoryImpl
 import com.rendo.feature.home.domain.mvi.HomeAction
@@ -53,6 +52,6 @@ fun featureHomeModule() = module {
     }
 
     factory<HomeRepository> {
-        HomeRepositoryImpl()
+        HomeRepositoryImpl(mapper = get())
     }
 }

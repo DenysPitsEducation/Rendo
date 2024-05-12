@@ -45,8 +45,10 @@ internal class ProductDetailsExecutor(
     }
 
     private fun onFavoriteButtonClicked() {
-        val product = state().product ?: return
-        changeFavoriteStateUseCase.invoke(product.toProductDomainModel())
+        scope.launch {
+            val product = state().product ?: return@launch
+            changeFavoriteStateUseCase.invoke(product.toProductDomainModel())
+        }
     }
 
     private fun onRentButtonClicked() {

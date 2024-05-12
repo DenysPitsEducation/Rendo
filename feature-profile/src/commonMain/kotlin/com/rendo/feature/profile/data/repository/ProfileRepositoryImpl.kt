@@ -26,7 +26,12 @@ internal class ProfileRepositoryImpl(
 
     override suspend fun signIn(token: GoogleToken) {
         val authCredential = GoogleAuthProvider.credential(idToken = token.idToken, accessToken = token.accessToken)
-        Firebase.auth.signInWithCredential(authCredential)
+        val user = Firebase.auth.currentUser
+        if (user != null) {
+            Firebase.auth.currentUser?.linkWithCredential(authCredential)
+        } else {
+            Firebase.auth.signInWithCredential(authCredential)
+        }
     }
 
     override suspend fun signOut() {

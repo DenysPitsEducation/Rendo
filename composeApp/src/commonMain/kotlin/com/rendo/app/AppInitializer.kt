@@ -1,7 +1,8 @@
 package com.rendo.app
 
-import com.rendo.core.favorites.domain.repository.FavoritesRepository
+import com.rendo.core.favorites.domain.usecase.RefreshFavoriteProductsUseCase
 import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.auth.auth
 import dev.gitlive.firebase.firestore.firestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,11 +12,14 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 class AppInitializer(
-    private val favoritesRepository: FavoritesRepository,
+    private val refreshFavoriteProductsUseCase: RefreshFavoriteProductsUseCase,
 ) {
     fun initialize() {
         CoroutineScope(Dispatchers.IO).launch {
-            //initProductDetails()
+            if (Firebase.auth.currentUser == null) {
+                Firebase.auth.signInAnonymously()
+            }
+            refreshFavoriteProductsUseCase.invoke()
         }
     }
 

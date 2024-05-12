@@ -6,7 +6,7 @@ import com.rendo.core.product.ProductDomainModel
 class ChangeFavoriteStateUseCase(
     private val favoritesRepository: FavoritesRepository,
 ) {
-    fun invoke(product: ProductDomainModel) {
+    suspend fun invoke(product: ProductDomainModel) {
         if (product.isInFavorites) {
             favoritesRepository.removeFavorite(product.id)
         } else {

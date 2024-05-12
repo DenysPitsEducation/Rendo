@@ -2,6 +2,7 @@ package com.rendo.feature.favorites.domain.mvi
 
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.rendo.core.favorites.domain.usecase.RemoveFavoriteUseCase
+import kotlinx.coroutines.launch
 
 internal class FavoritesExecutor(
     private val removeFavoriteUseCase: RemoveFavoriteUseCase,
@@ -21,6 +22,8 @@ internal class FavoritesExecutor(
     }
 
     private fun onFavoriteStateChanged(intent: FavoritesIntent.FavoriteStateRemoved) {
-        removeFavoriteUseCase.invoke(id = intent.id)
+        scope.launch {
+            removeFavoriteUseCase.invoke(id = intent.id)
+        }
     }
 }

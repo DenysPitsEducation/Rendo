@@ -1,5 +1,6 @@
 package com.rendo.core.di
 
+import com.rendo.core.data.mapper.ProductDomainMapper
 import com.rendo.core.data.repository.ThemeRepositoryImpl
 import com.rendo.core.domain.repository.ThemeRepository
 import com.rendo.core.domain.usecase.GetUiModeFlowUseCase
@@ -33,5 +34,9 @@ fun coreModule() = module {
         ThemeRepositoryImpl(
             dataStore = get(),
         )
+    }
+
+    factory {
+        ProductDomainMapper()
     }
 }

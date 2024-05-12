@@ -43,7 +43,9 @@ internal class HomeExecutor(
     }
 
     private fun onFavoriteButtonClicked(intent: HomeIntent.FavoriteButtonClicked) {
-        val product = state().products.firstOrNull { it.id == intent.id } ?: return
-        changeFavoriteStateUseCase.invoke(product)
+        scope.launch {
+            val product = state().products.firstOrNull { it.id == intent.id } ?: return@launch
+            changeFavoriteStateUseCase.invoke(product)
+        }
     }
 }

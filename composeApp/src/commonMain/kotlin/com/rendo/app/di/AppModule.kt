@@ -14,7 +14,7 @@ import org.koin.dsl.module
 
 fun appModule() = module {
     factory {
-        AppInitializer(favoritesRepository = get())
+        AppInitializer(refreshFavoriteProductsUseCase = get())
     }
     factory<HomeRouter> {
         object : HomeRouter {
