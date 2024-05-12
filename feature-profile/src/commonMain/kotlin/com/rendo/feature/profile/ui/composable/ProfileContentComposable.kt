@@ -94,7 +94,7 @@ private fun ProfileInfoRow(name: String?, imageUrl: String?, onUserInteraction: 
         modifier = Modifier
             .padding(horizontal = 8.dp)
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.background, RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.background, RoundedCornerShape(8.dp))
             .padding(16.dp),
     ) {
         AutoSizeImage(

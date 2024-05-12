@@ -3,7 +3,7 @@ package com.rendo.app.di
 import com.rendo.core.di.coreModule
 import com.rendo.core.favorites.di.coreFavoritesModule
 import com.rendo.feature.advertisements.di.featureAdvertisementsModule
-import com.rendo.feature.create.rent.di.featureCreateRentModule
+import com.rendo.feature.create.advertisement.di.featureCreateAdvertisementModule
 import com.rendo.feature.favorites.di.featureFavoritesModule
 import com.rendo.feature.home.di.featureHomeModule
 import com.rendo.feature.product.details.di.featureProductDetailsModule
@@ -15,7 +15,7 @@ fun getAllKoinModules() = listOf(
     coreModule(),
     coreFavoritesModule(),
     featureAdvertisementsModule(),
-    featureCreateRentModule(),
+    featureCreateAdvertisementModule(),
     featureFavoritesModule(),
     featureHomeModule(),
     featureProductDetailsModule(),

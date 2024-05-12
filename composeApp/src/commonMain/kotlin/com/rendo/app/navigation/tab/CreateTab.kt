@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import com.rendo.feature.create.rent.ui.CreateRentScreen
+import com.rendo.feature.create.advertisement.ui.CreateAdvertisementScreen
 
 object CreateTab : Tab {
 
@@ -28,6 +28,6 @@ object CreateTab : Tab {
 
     @Composable
     override fun Content() {
-        Navigator(CreateRentScreen())
+        Navigator(CreateAdvertisementScreen())
     }
 }
