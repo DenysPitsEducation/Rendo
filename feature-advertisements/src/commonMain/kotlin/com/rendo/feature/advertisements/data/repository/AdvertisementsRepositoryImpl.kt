@@ -6,8 +6,11 @@ import com.rendo.feature.advertisements.domain.model.AdvertisementDomainModel
 import com.rendo.feature.advertisements.domain.repository.AdvertisementsRepository
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.auth
+import dev.gitlive.firebase.firestore.Direction
 import dev.gitlive.firebase.firestore.firestore
+import dev.gitlive.firebase.firestore.orderBy
 import dev.gitlive.firebase.firestore.where
+import dev.gitlive.firebase.storage.storage
 
 internal class AdvertisementsRepositoryImpl(
     private val mapper: AdvertisementDomainMapper,
@@ -17,7 +20,7 @@ internal class AdvertisementsRepositoryImpl(
         val collection = Firebase.firestore.collection("products")
         val products = collection.where {
             all("owner_id" equalTo user.uid)
-        }.get()
+        }.orderBy("creation_timestamp", Direction.DESCENDING).get()
         return products.documents.map { documentSnapshot ->
             val productDataModel = documentSnapshot.data(ProductDataModel.serializer())
             mapper.mapToDomainModel(productDataModel, documentSnapshot.id)
@@ -32,5 +35,10 @@ internal class AdvertisementsRepositoryImpl(
             delete(productsCollection.document(id))
             delete(productDetailsCollection.document(id))
         }.commit()
+        val storage = Firebase.storage.reference
+        val imagesDirectory = storage.child("products/$id")
+        imagesDirectory.listAll().items.forEach {
+            it.delete()
+        }
     }
 }

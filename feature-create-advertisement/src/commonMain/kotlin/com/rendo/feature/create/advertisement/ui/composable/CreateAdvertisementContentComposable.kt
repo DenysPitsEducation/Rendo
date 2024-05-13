@@ -40,21 +40,26 @@ import com.darkrockstudios.libraries.mpfilepicker.MultipleFilePicker
 import com.rendo.feature.create.advertisement.domain.model.InputType
 import com.rendo.feature.create.advertisement.domain.mvi.CreateAdvertisementIntent
 import com.rendo.feature.create.advertisement.ui.OnUserInteraction
+import com.rendo.feature.create.advertisement.ui.image.ImageHelper
 import com.rendo.feature.create.advertisement.ui.model.CreateAdvertisementUiModel
 import com.rendo.feature.create.advertisement.ui.phone.transformTextPhoneNumber
 import com.seiko.imageloader.model.ImageRequest
 import com.seiko.imageloader.ui.AutoSizeImage
+import org.koin.compose.koinInject
 
 @Composable
 internal fun CreateAdvertisementContentComposable(
     uiModel: CreateAdvertisementUiModel.Content,
     onUserInteraction: OnUserInteraction
 ) {
+    val imageHelper: ImageHelper = koinInject()
     var showImagePicker by remember { mutableStateOf(false) }
     var selectedImages by remember { mutableStateOf<List<Any>>(listOf()) }
     val fileType = listOf("jpg", "png", "webp")
     MultipleFilePicker(show = showImagePicker, fileExtensions = fileType) { files ->
         selectedImages = files?.map { it.platformFile }.orEmpty()
+        val imageFiles = files?.map { imageHelper.getFileFromPath(it.platformFile) }.orEmpty()
+        onUserInteraction(CreateAdvertisementIntent.ImagesSelected(imageFiles))
         showImagePicker = false
     }
     val imageModifier = Modifier.size(120.dp)

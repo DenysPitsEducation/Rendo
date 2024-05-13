@@ -13,6 +13,9 @@ internal class CreateAdvertisementReducer : Reducer<CreateAdvertisementState, Cr
         is CreateAdvertisementMessage.AuthorizationStateUpdated -> {
             copy(isAuthorized = msg.isAuthorized)
         }
+        is CreateAdvertisementMessage.ImagesUpdated -> {
+            copy(images = msg.images)
+        }
         is CreateAdvertisementMessage.InputUpdated -> {
             when (msg.type) {
                 InputType.PRODUCT_NAME -> copy(productName = msg.input)

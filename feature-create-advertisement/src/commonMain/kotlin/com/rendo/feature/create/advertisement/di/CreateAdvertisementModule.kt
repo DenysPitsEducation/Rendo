@@ -36,6 +36,7 @@ fun featureCreateAdvertisementModule() = module {
             name = CREATE_ADVERTISEMENT_STORE_NAME,
             initialState = CreateAdvertisementState(
                 isAuthorized = false,
+                images = emptyList(),
                 productName = InputDomainModel("", null),
                 productDescription = InputDomainModel("", null),
                 productPrice = InputDomainModel("", null),

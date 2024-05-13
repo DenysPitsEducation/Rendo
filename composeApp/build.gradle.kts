@@ -60,6 +60,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(libs.firebase.auth)
             implementation(libs.firebase.firestore)
+            implementation(libs.firebase.storage)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)

@@ -26,6 +26,7 @@ voyager = "1.0.0"
 [libraries]
 
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+#noinspection CredentialDependency
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
 androidx-credentials-playServicesAuth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentials" }
 androidx-datastore-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "datastore" }
@@ -34,6 +35,7 @@ androidx-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref =
 androidx-testManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-uiTest" }
 firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebase-gitlive" }
 firebase-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "firebase-gitlive" }
+firebase-storage = { module = "dev.gitlive:firebase-storage", version.ref = "firebase-gitlive" }
 google-identity-googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "google-identity-googleid" }
 imageLoader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 koin-android = { module = "io.insert-koin:koin-android" }

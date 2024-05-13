@@ -7,21 +7,21 @@ import com.rendo.feature.create.advertisement.domain.model.AdvertisementDomainMo
 import dev.gitlive.firebase.auth.FirebaseUser
 
 internal class ProductDataMapper {
-    fun mapToProductDataModel(model: AdvertisementDomainModel, user: FirebaseUser): ProductDataModel = model.run {
+    fun mapToProductDataModel(model: AdvertisementDomainModel, user: FirebaseUser, imageUrl: String?): ProductDataModel = model.run {
         ProductDataModel(
             name = productName,
-            imageUrl = null, // TODO Pits:
+            imageUrl = imageUrl,
             price = productPrice,
             currency = "₴",
             ownerId = user.uid,
         )
     }
 
-    fun mapToProductDetailsDataModel(model: AdvertisementDomainModel, user: FirebaseUser): ProductDetailsDataModel = model.run {
+    fun mapToProductDetailsDataModel(model: AdvertisementDomainModel, user: FirebaseUser, imageUrls: List<String>): ProductDetailsDataModel = model.run {
         ProductDetailsDataModel(
             name = productName,
             description = productDescription,
-            imageUrls = listOf(), // TODO Pits:
+            imageUrls = imageUrls,
             price = productPrice,
             currency = "₴",
             prohibitedDates = listOf(),

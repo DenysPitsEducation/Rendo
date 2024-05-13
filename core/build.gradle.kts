@@ -31,6 +31,7 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.runtime)
             implementation(libs.androidx.datastore.core)
+            implementation(libs.firebase.firestore)
             implementation(libs.imageLoader)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.datetime)

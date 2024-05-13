@@ -49,7 +49,6 @@ fun ProductComposable(
         Column {
             AutoSizeImage(
                 url = model.imageUrl.orEmpty(),
-                placeholderPainter = { painterResource(Res.drawable.ill_no_photo) },
                 errorPainter = { painterResource(Res.drawable.ill_no_photo) },
                 contentDescription = null,
                 modifier = Modifier.aspectRatio(1f),

@@ -19,8 +19,13 @@ internal class CreateAdvertisementExecutor(
     }
 
     override fun executeIntent(intent: CreateAdvertisementIntent) = when (intent) {
+        is CreateAdvertisementIntent.ImagesSelected -> onImagesSelected(intent)
         is CreateAdvertisementIntent.InputChanged -> onInputChanged(intent)
         is CreateAdvertisementIntent.CreateAdvertisementButtonClicked -> onCreateAdvertisementButtonClicked()
+    }
+
+    private fun onImagesSelected(intent: CreateAdvertisementIntent.ImagesSelected) {
+        dispatch(CreateAdvertisementMessage.ImagesUpdated(intent.images))
     }
 
     private fun onInputChanged(intent: CreateAdvertisementIntent.InputChanged) {
@@ -45,6 +50,7 @@ internal class CreateAdvertisementExecutor(
             if (areFieldsValid) {
                 createAdvertisementUseCase.invoke(
                     AdvertisementDomainModel(
+                        images = state.images,
                         productName = state.productName.text,
                         productDescription = state.productDescription.text,
                         productPrice = getProductPriceDouble(state.productPrice)!!,
@@ -54,6 +60,7 @@ internal class CreateAdvertisementExecutor(
                 ).onSuccess {
                     val stateUpdated = CreateAdvertisementState(
                         isAuthorized = true,
+                        images = listOf(),
                         productName = InputDomainModel("", null),
                         productDescription = InputDomainModel("", null),
                         productPrice = InputDomainModel("", null),

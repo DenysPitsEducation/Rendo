@@ -33,6 +33,7 @@ kotlin {
             implementation(libs.bundles.mvi)
             implementation(libs.firebase.auth)
             implementation(libs.firebase.firestore)
+            implementation(libs.firebase.storage)
             implementation(libs.imageLoader)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
