@@ -5,4 +5,5 @@ internal data class UserDomainModel(
     val name: String,
     val imageUrl: String?,
     val phoneNumber: String?,
+    val isAnonymous: Boolean,
 )

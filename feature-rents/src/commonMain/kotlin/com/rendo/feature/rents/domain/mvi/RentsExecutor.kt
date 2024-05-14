@@ -3,16 +3,32 @@ package com.rendo.feature.rents.domain.mvi
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.rendo.feature.rents.domain.model.DropdownAction
 import com.rendo.feature.rents.domain.model.RentDomainModel
+import com.rendo.feature.rents.domain.usecase.AcceptRentUseCase
+import com.rendo.feature.rents.domain.usecase.CancelRentUseCase
+import com.rendo.feature.rents.domain.usecase.DeleteRentUseCase
 import com.rendo.feature.rents.domain.usecase.GetRentsUseCase
+import com.rendo.feature.rents.domain.usecase.RejectRentUseCase
+import kotlinx.coroutines.launch
 
 internal class RentsExecutor(
     private val getRentsUseCase: GetRentsUseCase,
+    private val acceptRentUseCase: AcceptRentUseCase,
+    private val rejectRentUseCase: RejectRentUseCase,
+    private val cancelRentUseCase: CancelRentUseCase,
+    private val deleteRentUseCase: DeleteRentUseCase,
 ) : CoroutineExecutor<RentsIntent, RentsAction, RentsState, RentsMessage, RentsLabel>() {
 
     override fun executeAction(action: RentsAction) = when (action) {
-        is RentsAction.Init -> {
-            val rents = getRentsUseCase.invoke()
-            dispatch(RentsMessage.RentsUpdated(rents))
+        is RentsAction.Init -> onInit()
+    }
+
+    private fun onInit() {
+        scope.launch {
+            getRentsUseCase.invoke().onSuccess { rents ->
+                dispatch(RentsMessage.RentsUpdated(rents))
+            }.onFailure {
+                it.printStackTrace()
+            }
         }
     }
 
@@ -30,15 +46,23 @@ internal class RentsExecutor(
     }
 
     private fun onAcceptButtonClicked(intent: RentsIntent.AcceptButtonClicked) {
-        val rent = state().rents.firstOrNull { it.id == intent.id } ?: return
-        val rentUpdated = rent.copy(status = RentDomainModel.Status.ACCEPTED)
-        dispatch(RentsMessage.RentUpdated(rentUpdated))
+        scope.launch {
+            val rent = state().rents.firstOrNull { it.id == intent.id } ?: return@launch
+            acceptRentUseCase.invoke(rent).onSuccess {
+                val rentUpdated = rent.copy(status = RentDomainModel.Status.ACCEPTED)
+                dispatch(RentsMessage.RentUpdated(rentUpdated))
+            }
+        }
     }
 
     private fun onRejectButtonClicked(intent: RentsIntent.RejectButtonClicked) {
-        val rent = state().rents.firstOrNull { it.id == intent.id } ?: return
-        val rentUpdated = rent.copy(status = RentDomainModel.Status.REJECTED)
-        dispatch(RentsMessage.RentUpdated(rentUpdated))
+        scope.launch {
+            val rent = state().rents.firstOrNull { it.id == intent.id } ?: return@launch
+            rejectRentUseCase.invoke(rent).onSuccess {
+                val rentUpdated = rent.copy(status = RentDomainModel.Status.REJECTED)
+                dispatch(RentsMessage.RentUpdated(rentUpdated))
+            }
+        }
     }
 
     private fun onDialNumberButtonClicked(intent: RentsIntent.DialNumberButtonClicked) {
@@ -54,13 +78,21 @@ internal class RentsExecutor(
     }
 
     private fun onCancelRentSelected(id: String) {
-        val rent = state().rents.firstOrNull { it.id == id } ?: return
-        val rentUpdated = rent.copy(status = RentDomainModel.Status.CANCELLED)
-        dispatch(RentsMessage.RentUpdated(rentUpdated))
+        scope.launch {
+            val rent = state().rents.firstOrNull { it.id == id } ?: return@launch
+            cancelRentUseCase.invoke(rent).onSuccess {
+                val rentUpdated = rent.copy(status = RentDomainModel.Status.CANCELLED)
+                dispatch(RentsMessage.RentUpdated(rentUpdated))
+            }
+        }
     }
 
     private fun onDeleteRentSelected(id: String) {
-        val rentsUpdated = state().rents.filter { it.id != id }
-        dispatch(RentsMessage.RentsUpdated(rentsUpdated))
+        scope.launch {
+            deleteRentUseCase.invoke(id).onSuccess {
+                val rentsUpdated = state().rents.filter { it.id != id }
+                dispatch(RentsMessage.RentsUpdated(rentsUpdated))
+            }
+        }
     }
 }

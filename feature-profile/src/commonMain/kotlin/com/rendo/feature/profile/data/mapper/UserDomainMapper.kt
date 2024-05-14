@@ -10,6 +10,7 @@ internal class UserDomainMapper {
             name = displayName.orEmpty(),
             imageUrl = photoURL,
             phoneNumber = phoneNumber,
+            isAnonymous = isAnonymous,
         )
     }
 }

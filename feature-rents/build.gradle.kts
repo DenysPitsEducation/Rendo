@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.multiplatform)
+    alias(libs.plugins.serialization)
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.android.library)
@@ -31,10 +32,15 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
             implementation(libs.bundles.mvi)
+            implementation(libs.firebase.auth)
+            implementation(libs.firebase.firestore)
             implementation(libs.imageLoader)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
+            implementation(libs.kotlinx.datetime.ext)
+            implementation(libs.kotlinx.serialization)
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
         }

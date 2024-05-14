@@ -3,10 +3,10 @@ package com.rendo.feature.rents.domain.usecase
 import com.rendo.feature.rents.domain.model.RentDomainModel
 import com.rendo.feature.rents.domain.repository.RentsRepository
 
-internal class GetRentsUseCase(
+internal class RejectRentUseCase(
     private val rentsRepository: RentsRepository,
 ) {
-    suspend fun invoke(): Result<List<RentDomainModel>> {
-        return rentsRepository.getRents()
+    suspend fun invoke(rent: RentDomainModel): Result<Unit> {
+        return rentsRepository.rejectRent(rent)
     }
 }

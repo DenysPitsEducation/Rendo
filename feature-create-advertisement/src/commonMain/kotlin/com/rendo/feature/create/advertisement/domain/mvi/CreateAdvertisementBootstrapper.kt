@@ -17,7 +17,7 @@ internal class CreateAdvertisementBootstrapper(
     private fun collectAuthorization() {
         scope.launch {
             Firebase.auth.authStateChanged.collect { user ->
-                val isAuthorized = user != null
+                val isAuthorized = user != null && !user.isAnonymous
                 dispatch(CreateAdvertisementAction.AuthorizationStateUpdated(isAuthorized = isAuthorized))
             }
         }

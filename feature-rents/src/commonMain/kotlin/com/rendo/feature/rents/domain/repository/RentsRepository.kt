@@ -3,5 +3,9 @@ package com.rendo.feature.rents.domain.repository
 import com.rendo.feature.rents.domain.model.RentDomainModel
 
 internal interface RentsRepository {
-    fun getRents(): List<RentDomainModel>
+    suspend fun getRents(): Result<List<RentDomainModel>>
+    suspend fun acceptRent(rent: RentDomainModel): Result<Unit>
+    suspend fun rejectRent(rent: RentDomainModel): Result<Unit>
+    suspend fun cancelRent(rent: RentDomainModel): Result<Unit>
+    suspend fun deleteRent(rentId: String): Result<Unit>
 }

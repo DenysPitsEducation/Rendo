@@ -2,6 +2,7 @@ package com.rendo.feature.product.details.di
 
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.rendo.feature.product.details.data.mapper.ProductDetailsDomainMapper
+import com.rendo.feature.product.details.data.mapper.RentDataMapper
 import com.rendo.feature.product.details.data.repository.ProductDetailsRepositoryImpl
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsAction
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsBootstrapper
@@ -78,10 +79,17 @@ fun featureProductDetailsModule() = module {
     }
 
     factory<ProductDetailsRepository> {
-        ProductDetailsRepositoryImpl(mapper = get())
+        ProductDetailsRepositoryImpl(
+            productMapper = get(),
+            rentMapper = get(),
+        )
     }
 
     factory {
         ProductDetailsDomainMapper()
+    }
+
+    factory {
+        RentDataMapper()
     }
 }

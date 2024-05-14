@@ -53,8 +53,10 @@ internal class ProductDetailsExecutor(
 
     private fun onRentButtonClicked() {
         val product = state().product ?: return
-        rentProductUseCase.invoke(product).onSuccess {
-            publish(ProductDetailsLabel.ShowSuccessfulRentDialog)
+        scope.launch {
+            rentProductUseCase.invoke(product).onSuccess {
+                publish(ProductDetailsLabel.ShowSuccessfulRentDialog)
+            }
         }
     }
 

@@ -50,6 +50,7 @@ kotlin {
             implementation(libs.androidx.datastore.core)
             implementation(libs.bundles.mvi)
             implementation(libs.firebase.auth)
+            implementation(libs.firebase.firestore)
             implementation(libs.imageLoader)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)

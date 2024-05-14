@@ -6,7 +6,7 @@ import com.rendo.feature.product.details.domain.repository.ProductDetailsReposit
 internal class RentProductUseCase(
     private val productDetailsRepository: ProductDetailsRepository,
 ) {
-    fun invoke(product: ProductDetailsDomainModel): Result<Unit> {
-        return Result.success(Unit)
+    suspend fun invoke(product: ProductDetailsDomainModel): Result<Unit> {
+        return productDetailsRepository.createProductRent(product)
     }
 }

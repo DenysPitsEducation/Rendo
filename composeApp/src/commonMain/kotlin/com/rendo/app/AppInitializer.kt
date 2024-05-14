@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+// TODO Pits: Add to ios
 class AppInitializer(
     private val refreshFavoriteProductsUseCase: RefreshFavoriteProductsUseCase,
 ) {
@@ -240,7 +241,7 @@ class AppInitializer(
         val database = Firebase.firestore
         val collection = database.collection("product_details")
 
-        Firebase.firestore.batch().apply {
+        database.batch().apply {
             list.forEachIndexed { index, product ->
                 val document = collection.document((index + 1).toString())
                 set(document, product)

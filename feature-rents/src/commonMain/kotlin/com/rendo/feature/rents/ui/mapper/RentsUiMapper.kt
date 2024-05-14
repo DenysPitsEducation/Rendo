@@ -6,6 +6,8 @@ import androidx.compose.material.icons.outlined.HighlightOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
+import com.raedghazal.kotlinx_datetime_ext.LocalDateTimeFormatter
+import com.raedghazal.kotlinx_datetime_ext.Locale
 import com.rendo.core.theme.LocalThemeIsDark
 import com.rendo.core.utils.formatPrice
 import com.rendo.feature.rents.domain.model.DropdownAction
@@ -31,6 +33,9 @@ internal class RentsUiMapper {
         val orangeColor = if (isDark) Color(color = 0xFFECA537) else Color(color = 0xFFCD5915)
         val redColor = if (isDark) Color(color = 0xFFFF6444) else Color(color = 0xFFDE0404)
         val greenColor = if (isDark) Color(color = 0xFF54B44B) else Color(color = 0xFF188711)
+        val formatter = LocalDateTimeFormatter.ofPattern("dd MMMM", Locale.default())
+        val pickupDateFormatted = formatter.format(pickupDate)
+        val returnDateFormatted = formatter.format(returnDate)
         return RentUiModel(
             id = id,
             name = name,
@@ -41,7 +46,7 @@ internal class RentsUiMapper {
                 RentDomainModel.Status.REJECTED -> StatusUiModel("Rejected", redColor)
                 RentDomainModel.Status.CANCELLED -> StatusUiModel("Cancelled", redColor)
             },
-            dates = dates,
+            dates = "$pickupDateFormatted - $returnDateFormatted",
             price = price.formatPrice(currency),
             showAcceptanceButtons = status == RentDomainModel.Status.WAITING_FOR_ACCEPTANCE && type == RentDomainModel.Type.RENT_OUT,
             dropdownItems = listOfNotNull(
