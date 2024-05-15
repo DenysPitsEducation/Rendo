@@ -9,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override init() {
         FirebaseApp.configure()
         HelperKt.doInitKoin()
+        AppInitializerHelper().initialize()
     }
 
     func application(
