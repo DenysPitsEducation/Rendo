@@ -1,11 +1,12 @@
 package com.rendo.feature.rents.domain.usecase
 
+import com.rendo.feature.rents.domain.model.RentDomainModel
 import com.rendo.feature.rents.domain.repository.RentsRepository
 
 internal class DeleteRentUseCase(
     private val rentsRepository: RentsRepository,
 ) {
-    suspend fun invoke(rentId: String): Result<Unit> {
-        return rentsRepository.deleteRent(rentId)
+    suspend fun invoke(rent: RentDomainModel): Result<Unit> {
+        return rentsRepository.deleteRent(rent)
     }
 }

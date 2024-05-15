@@ -7,5 +7,5 @@ internal interface RentsRepository {
     suspend fun acceptRent(rent: RentDomainModel): Result<Unit>
     suspend fun rejectRent(rent: RentDomainModel): Result<Unit>
     suspend fun cancelRent(rent: RentDomainModel): Result<Unit>
-    suspend fun deleteRent(rentId: String): Result<Unit>
+    suspend fun deleteRent(rent: RentDomainModel): Result<Unit>
 }

@@ -24,14 +24,14 @@ internal class RentsExecutor(
     }
 
     private fun onInit() {
-        fetchRents()
+        refreshRents()
     }
 
     private fun onAuthorizationStateUpdated() {
-        fetchRents()
+        refreshRents()
     }
 
-    private fun fetchRents() {
+    private fun refreshRents() {
         scope.launch {
             getRentsUseCase.invoke().onSuccess { rents ->
                 dispatch(RentsMessage.RentsUpdated(rents))
@@ -98,7 +98,8 @@ internal class RentsExecutor(
 
     private fun onDeleteRentSelected(id: String) {
         scope.launch {
-            deleteRentUseCase.invoke(id).onSuccess {
+            val rent = state().rents.firstOrNull { it.id == id } ?: return@launch
+            deleteRentUseCase.invoke(rent).onSuccess {
                 val rentsUpdated = state().rents.filter { it.id != id }
                 dispatch(RentsMessage.RentsUpdated(rentsUpdated))
             }

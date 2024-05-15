@@ -30,6 +30,7 @@ internal class ProductDetailsRepositoryImpl(
         val user = Firebase.auth.currentUser ?: throw Exception("User not found")
         val rentDataModel = rentMapper.mapToRentDataModel(productDetails, tenantPhoneNumber, user)
         val rentsCollection = firestore.collection("rents")
+        val rentsDocument = rentsCollection.document
         val productDetailsCollection = firestore.collection("product_details")
         val productDetailsDocument = productDetailsCollection.document(productDetails.id)
         val formatter = LocalDateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.default())
@@ -38,9 +39,9 @@ internal class ProductDetailsRepositoryImpl(
             prohibitedDatesFormatted.add(formatter.format(prohibitedDate))
         }
         firestore.batch().apply {
+            set(rentsDocument, rentDataModel)
+            set(rentsDocument, mapOf("creation_timestamp" to Timestamp.ServerTimestamp), merge = true)
             update(productDetailsDocument, "prohibited_dates" to FieldValue.arrayUnion(*prohibitedDatesFormatted.toTypedArray()))
-            set(rentsCollection.document, rentDataModel)
-            set(rentsCollection.document, mapOf("creation_timestamp" to Timestamp.ServerTimestamp), merge = true)
         }.commit()
     }
 }
