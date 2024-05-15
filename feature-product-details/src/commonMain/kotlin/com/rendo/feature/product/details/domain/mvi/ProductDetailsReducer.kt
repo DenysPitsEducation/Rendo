@@ -7,5 +7,7 @@ internal class ProductDetailsReducer : Reducer<ProductDetailsState, ProductDetai
         msg: ProductDetailsMessage,
     ): ProductDetailsState = when (msg) {
         is ProductDetailsMessage.ProductUpdated -> copy(product = msg.product)
+        is ProductDetailsMessage.DateRangeChanged -> copy(dateRangeDialogState = msg.dateRange)
+        is ProductDetailsMessage.PhoneFieldUpdated -> copy(phoneField = msg.phoneField)
     }
 }

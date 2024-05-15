@@ -7,6 +7,7 @@ internal data class ProductDetailsUiModel(
     val imageUrls: List<String>,
     val price: String,
     val isInFavorites: Boolean,
+    val phoneField: TextFieldUiModel,
     val pickupDate: String,
     val returnDate: String,
     val totalPrice: String,

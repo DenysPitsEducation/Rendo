@@ -4,6 +4,8 @@ import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.rendo.core.favorites.domain.usecase.ChangeFavoriteStateUseCase
 import com.rendo.core.utils.fromEpochMilliseconds
 import com.rendo.feature.product.details.domain.mapper.toProductDomainModel
+import com.rendo.feature.product.details.domain.model.DateRangeDomainModel
+import com.rendo.feature.product.details.domain.model.PhoneFieldDomainModel
 import com.rendo.feature.product.details.domain.usecase.GetProductDetailsUseCase
 import com.rendo.feature.product.details.domain.usecase.RentProductUseCase
 import kotlinx.coroutines.launch
@@ -36,12 +38,17 @@ internal class ProductDetailsExecutor(
 
     override fun executeIntent(intent: ProductDetailsIntent) = when (intent) {
         is ProductDetailsIntent.FavoriteButtonClicked -> onFavoriteButtonClicked()
+        is ProductDetailsIntent.PhoneTextFieldChanged -> onPhoneTextFieldChanged(intent)
         is ProductDetailsIntent.RentButtonClicked -> onRentButtonClicked()
         is ProductDetailsIntent.ChangeDatesButtonClicked -> onChangeDatesButtonClicked()
         is ProductDetailsIntent.CallOwnerButtonClicked -> onCallOwnerButtonClicked()
-        is ProductDetailsIntent.ChooseDateDialogButtonClicked -> onChooseDateDialogButtonClicked(
-            intent
-        )
+        is ProductDetailsIntent.DateRangeChanged -> onDateRangeChanged(intent)
+        is ProductDetailsIntent.ChooseDateDialogButtonClicked -> onChooseDateDialogButtonClicked(intent)
+    }
+
+    private fun onPhoneTextFieldChanged(intent: ProductDetailsIntent.PhoneTextFieldChanged) {
+        val text = intent.text.take(SHORT_PHONE_NUMBER_LENGTH)
+        dispatch(ProductDetailsMessage.PhoneFieldUpdated(PhoneFieldDomainModel(text, null)))
     }
 
     private fun onFavoriteButtonClicked() {
@@ -52,10 +59,20 @@ internal class ProductDetailsExecutor(
     }
 
     private fun onRentButtonClicked() {
-        val product = state().product ?: return
+        val state = state()
+        val product = state.product ?: return
         scope.launch {
-            rentProductUseCase.invoke(product).onSuccess {
-                publish(ProductDetailsLabel.ShowSuccessfulRentDialog)
+            val isPhoneValid = state.phoneField.text.length == SHORT_PHONE_NUMBER_LENGTH
+            if (isPhoneValid) {
+                rentProductUseCase.invoke(
+                    product = product,
+                    tenantPhoneNumber = "380" + state.phoneField.text,
+                ).onSuccess {
+                    publish(ProductDetailsLabel.ShowSuccessfulRentDialog)
+                }
+            } else {
+                val fieldUpdated = state.phoneField.copy(errorText = "Field must be filled")
+                dispatch(ProductDetailsMessage.PhoneFieldUpdated(fieldUpdated))
             }
         }
     }
@@ -69,6 +86,12 @@ internal class ProductDetailsExecutor(
         publish(ProductDetailsLabel.DialNumber(product.owner.phone))
     }
 
+    private fun onDateRangeChanged(intent: ProductDetailsIntent.DateRangeChanged) {
+        val pickupDate = intent.pickupDateMillis?.let { LocalDate.fromEpochMilliseconds(it) }
+        val returnDate = intent.returnDateMillis?.let { LocalDate.fromEpochMilliseconds(it) }
+        dispatch(ProductDetailsMessage.DateRangeChanged(DateRangeDomainModel(pickupDate, returnDate)))
+    }
+
     private fun onChooseDateDialogButtonClicked(intent: ProductDetailsIntent.ChooseDateDialogButtonClicked) {
         val product = state().product ?: return
         val pickupDate = LocalDate.fromEpochMilliseconds(intent.pickupDateMillis)
@@ -79,5 +102,9 @@ internal class ProductDetailsExecutor(
             totalPrice = product.price * (pickupDate.daysUntil(returnDate) + 1),
         )
         dispatch(ProductDetailsMessage.ProductUpdated(productUpdated))
+    }
+
+    companion object {
+        const val SHORT_PHONE_NUMBER_LENGTH = 9
     }
 }

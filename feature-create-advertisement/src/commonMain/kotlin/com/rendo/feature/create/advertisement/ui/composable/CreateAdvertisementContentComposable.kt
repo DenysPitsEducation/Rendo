@@ -37,12 +37,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.darkrockstudios.libraries.mpfilepicker.MultipleFilePicker
+import com.rendo.core.phone.PhoneNumberVisualTransformation
 import com.rendo.feature.create.advertisement.domain.model.InputType
 import com.rendo.feature.create.advertisement.domain.mvi.CreateAdvertisementIntent
 import com.rendo.feature.create.advertisement.ui.OnUserInteraction
 import com.rendo.feature.create.advertisement.ui.image.ImageHelper
 import com.rendo.feature.create.advertisement.ui.model.CreateAdvertisementUiModel
-import com.rendo.feature.create.advertisement.ui.phone.transformTextPhoneNumber
 import com.seiko.imageloader.model.ImageRequest
 import com.seiko.imageloader.ui.AutoSizeImage
 import org.koin.compose.koinInject
@@ -123,7 +123,12 @@ internal fun CreateAdvertisementContentComposable(
             OutlinedTextField(
                 uiModel.productName.text,
                 onValueChange = {
-                    onUserInteraction(CreateAdvertisementIntent.InputChanged(it, InputType.PRODUCT_NAME))
+                    onUserInteraction(
+                        CreateAdvertisementIntent.InputChanged(
+                            it,
+                            InputType.PRODUCT_NAME
+                        )
+                    )
                 },
                 placeholder = { Text("Name of the product") },
                 singleLine = true,
@@ -157,7 +162,12 @@ internal fun CreateAdvertisementContentComposable(
             OutlinedTextField(
                 uiModel.productPrice.text,
                 onValueChange = {
-                    onUserInteraction(CreateAdvertisementIntent.InputChanged(it, InputType.PRODUCT_PRICE))
+                    onUserInteraction(
+                        CreateAdvertisementIntent.InputChanged(
+                            it,
+                            InputType.PRODUCT_PRICE
+                        )
+                    )
                 },
                 placeholder = { Text("Price per one day") },
                 suffix = { Text("₴") },
@@ -184,7 +194,12 @@ internal fun CreateAdvertisementContentComposable(
             OutlinedTextField(
                 uiModel.ownerName.text,
                 onValueChange = {
-                    onUserInteraction(CreateAdvertisementIntent.InputChanged(it, InputType.OWNER_NAME))
+                    onUserInteraction(
+                        CreateAdvertisementIntent.InputChanged(
+                            it,
+                            InputType.OWNER_NAME
+                        )
+                    )
                 },
                 placeholder = { Text("Name of the contact person") },
                 singleLine = true,
@@ -212,14 +227,10 @@ internal fun CreateAdvertisementContentComposable(
                     keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Done
                 ),
-                visualTransformation = {
-                    transformTextPhoneNumber(
-                        text = it,
-                        hintFontStyle = hintFontStyle,
-                        textFontStyle = textFontStyle,
-                        editableLength = 9
-                    )
-                },
+                visualTransformation = PhoneNumberVisualTransformation(
+                    hintFontStyle = hintFontStyle,
+                    textFontStyle = textFontStyle,
+                ),
                 isError = uiModel.ownerPhoneNumber.errorText != null,
                 supportingText = uiModel.ownerPhoneNumber.errorText?.let { { Text(it) } },
                 shape = RoundedCornerShape(8.dp),

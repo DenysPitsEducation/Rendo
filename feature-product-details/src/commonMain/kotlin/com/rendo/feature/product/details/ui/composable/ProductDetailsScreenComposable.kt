@@ -22,6 +22,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,14 +47,14 @@ import org.koin.compose.koinInject
 @OptIn(ExperimentalCoroutinesApi::class, ExperimentalMaterial3Api::class)
 @Composable
 internal fun ProductDetailsScreenComposable(screenModel: ProductDetailsScreenModel) {
-    val stateFlow by screenModel.store.stateFlow.collectAsState()
+    val state by screenModel.store.stateFlow.collectAsState()
     val productMapper: ProductDetailsUiMapper = koinInject()
     val dialer: Dialer = koinInject()
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     var showBottomSheet by remember { mutableStateOf(false) }
     var showAlertDialog by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
-    val uiModel = stateFlow.product?.let { productMapper.mapToUiModel(it) }
+    val uiModel = productMapper.mapToUiModel(state)
     val onUserInteraction: OnUserInteraction = { screenModel.store.accept(it) }
 
     Scaffold(
@@ -89,16 +90,23 @@ internal fun ProductDetailsScreenComposable(screenModel: ProductDetailsScreenMod
                 ) {
                     Column {
                         val datePickerState = rememberDateRangePickerState(
-                            initialSelectedStartDateMillis = uiModel.datePickerUiModel.pickupDateMillis,
-                            initialSelectedEndDateMillis = uiModel.datePickerUiModel.returnDateMillis,
+                            initialSelectedStartDateMillis = uiModel.datePickerUiModel.initialPickupDateMillis,
+                            initialSelectedEndDateMillis = uiModel.datePickerUiModel.initialReturnDateMillis,
                             selectableDates = uiModel.datePickerUiModel.selectableDates,
                         )
+
+                        LaunchedEffect(datePickerState.selectedStartDateMillis, datePickerState.selectedEndDateMillis) {
+                            onUserInteraction(ProductDetailsIntent.DateRangeChanged(
+                                pickupDateMillis = datePickerState.selectedStartDateMillis,
+                                returnDateMillis = datePickerState.selectedEndDateMillis
+                            ))
+                        }
+
                         DateRangePicker(
                             datePickerState,
                             showModeToggle = false,
                             modifier = Modifier.weight(1f)
                         )
-                        datePickerState.selectedStartDateMillis
                         Button(
                             onClick = {
                                 coroutineScope.launch {
@@ -110,7 +118,7 @@ internal fun ProductDetailsScreenComposable(screenModel: ProductDetailsScreenMod
                                     showBottomSheet = false
                                 }
                             },
-                            enabled = datePickerState.selectedStartDateMillis != null && datePickerState.selectedEndDateMillis != null,
+                            enabled = uiModel.datePickerUiModel.isButtonEnabled,
                             modifier = Modifier.padding(16.dp).fillMaxWidth()
                         ) {
                             Text("Choose these dates")

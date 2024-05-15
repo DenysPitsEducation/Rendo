@@ -9,12 +9,12 @@ import dev.gitlive.firebase.auth.FirebaseUser
 
 internal class RentDataMapper {
 
-    fun mapToRentDataModel(productDetails: ProductDetailsDomainModel, user: FirebaseUser) = productDetails.run {
+    fun mapToRentDataModel(productDetails: ProductDetailsDomainModel, tenantPhoneNumber: String, user: FirebaseUser) = productDetails.run {
         val formatter = LocalDateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.default())
         RentDataModel(
             productId = id,
             tenantId = user.uid,
-            tenantPhoneNumber = "+380991234567", // TODO Pits:
+            tenantPhoneNumber = tenantPhoneNumber,
             ownerId = owner.id,
             ownerPhoneNumber = owner.phone,
             imageUrl = imageUrls.firstOrNull(),

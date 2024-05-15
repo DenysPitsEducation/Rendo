@@ -4,6 +4,8 @@ import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.rendo.feature.product.details.data.mapper.ProductDetailsDomainMapper
 import com.rendo.feature.product.details.data.mapper.RentDataMapper
 import com.rendo.feature.product.details.data.repository.ProductDetailsRepositoryImpl
+import com.rendo.feature.product.details.domain.model.DateRangeDomainModel
+import com.rendo.feature.product.details.domain.model.PhoneFieldDomainModel
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsAction
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsBootstrapper
 import com.rendo.feature.product.details.domain.mvi.ProductDetailsExecutor
@@ -42,7 +44,14 @@ fun featureProductDetailsModule() = module {
     factory(named(PRODUCT_DETAILS_STORE_NAME)) { (payload: ProductDetailsPayload) ->
         DefaultStoreFactory().create(
             name = PRODUCT_DETAILS_STORE_NAME,
-            initialState = ProductDetailsState(product = null),
+            initialState = ProductDetailsState(
+                product = null,
+                phoneField = PhoneFieldDomainModel(
+                    text = "",
+                    errorText = null,
+                ),
+                dateRangeDialogState = DateRangeDomainModel(null, null)
+            ),
             executorFactory = { get<ProductDetailsExecutor>() },
             reducer = get<ProductDetailsReducer>(),
             bootstrapper = ProductDetailsBootstrapper(

@@ -20,9 +20,18 @@ internal class RentsExecutor(
 
     override fun executeAction(action: RentsAction) = when (action) {
         is RentsAction.Init -> onInit()
+        is RentsAction.AuthorizationStateUpdated -> onAuthorizationStateUpdated()
     }
 
     private fun onInit() {
+        fetchRents()
+    }
+
+    private fun onAuthorizationStateUpdated() {
+        fetchRents()
+    }
+
+    private fun fetchRents() {
         scope.launch {
             getRentsUseCase.invoke().onSuccess { rents ->
                 dispatch(RentsMessage.RentsUpdated(rents))

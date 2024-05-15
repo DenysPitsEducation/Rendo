@@ -10,6 +10,7 @@ import com.rendo.core.theme.PreviewContainer
 import com.rendo.feature.product.details.ui.model.DatePickerUiModel
 import com.rendo.feature.product.details.ui.model.OwnerUiModel
 import com.rendo.feature.product.details.ui.model.ProductDetailsUiModel
+import com.rendo.feature.product.details.ui.model.TextFieldUiModel
 
 @Composable
 @Preview
@@ -28,6 +29,7 @@ private fun ProductDetailsContentPreview() {
                 ),
                 price = "199.99$ / 1 day",
                 isInFavorites = true,
+                phoneField = TextFieldUiModel("951234567", null),
                 pickupDate = "20 May",
                 returnDate = "21 May",
                 totalPrice = "199.99$",
@@ -35,11 +37,16 @@ private fun ProductDetailsContentPreview() {
                     name = "George",
                     imageUrl = "https://picsum.photos/100?random=4",
                 ),
-                datePickerUiModel = DatePickerUiModel(1, 1, object : SelectableDates {
-                    override fun isSelectableDate(utcTimeMillis: Long): Boolean {
-                        return true
-                    }
-                })
+                datePickerUiModel = DatePickerUiModel(
+                    initialPickupDateMillis = 1,
+                    initialReturnDateMillis = 1,
+                    selectableDates = object : SelectableDates {
+                        override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+                            return true
+                        }
+                    },
+                    isButtonEnabled = true
+                )
             ),
             onUserInteraction = {},
         )

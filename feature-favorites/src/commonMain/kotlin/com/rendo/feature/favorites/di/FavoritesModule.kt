@@ -33,7 +33,10 @@ fun featureFavoritesModule() = module {
     }
 
     factory {
-        FavoritesExecutor(removeFavoriteUseCase = get())
+        FavoritesExecutor(
+            removeFavoriteUseCase = get(),
+            refreshFavoriteProductsUseCase = get(),
+        )
     }
 
     factory {

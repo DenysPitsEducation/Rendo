@@ -25,10 +25,10 @@ internal class ProductDetailsRepositoryImpl(
         productMapper.mapToDomainModel(productDetailsDataModel, id)
     }
 
-    override suspend fun createProductRent(productDetails: ProductDetailsDomainModel): Result<Unit> = runCatching {
+    override suspend fun createProductRent(productDetails: ProductDetailsDomainModel, tenantPhoneNumber: String): Result<Unit> = runCatching {
         val firestore = Firebase.firestore
         val user = Firebase.auth.currentUser ?: throw Exception("User not found")
-        val rentDataModel = rentMapper.mapToRentDataModel(productDetails, user)
+        val rentDataModel = rentMapper.mapToRentDataModel(productDetails, tenantPhoneNumber, user)
         val rentsCollection = firestore.collection("rents")
         val productDetailsCollection = firestore.collection("product_details")
         val productDetailsDocument = productDetailsCollection.document(productDetails.id)

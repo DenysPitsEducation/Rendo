@@ -1,15 +1,24 @@
 package com.rendo.feature.favorites.domain.mvi
 
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
+import com.rendo.core.favorites.domain.usecase.RefreshFavoriteProductsUseCase
 import com.rendo.core.favorites.domain.usecase.RemoveFavoriteUseCase
 import kotlinx.coroutines.launch
 
 internal class FavoritesExecutor(
     private val removeFavoriteUseCase: RemoveFavoriteUseCase,
+    private val refreshFavoriteProductsUseCase: RefreshFavoriteProductsUseCase,
 ) : CoroutineExecutor<FavoritesIntent, FavoritesAction, FavoritesState, FavoritesMessage, FavoritesLabel>() {
 
     override fun executeAction(action: FavoritesAction) = when (action) {
         is FavoritesAction.FavoritesListUpdated -> dispatch(FavoritesMessage.FavoritesListUpdated(action.products))
+        is FavoritesAction.AuthorizationStateUpdated -> onAuthorizationStateUpdated()
+    }
+
+    private fun onAuthorizationStateUpdated() {
+        scope.launch {
+            refreshFavoriteProductsUseCase.invoke()
+        }
     }
 
     override fun executeIntent(intent: FavoritesIntent) = when (intent) {

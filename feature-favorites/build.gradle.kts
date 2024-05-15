@@ -31,6 +31,7 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.runtime)
             implementation(libs.bundles.mvi)
+            implementation(libs.firebase.auth)
             implementation(libs.imageLoader)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)

@@ -7,21 +7,22 @@ import com.raedghazal.kotlinx_datetime_ext.Locale
 import com.raedghazal.kotlinx_datetime_ext.atStartOfDay
 import com.raedghazal.kotlinx_datetime_ext.now
 import com.rendo.core.utils.formatPrice
+import com.rendo.core.utils.fromEpochMilliseconds
+import com.rendo.core.utils.iterator
 import com.rendo.feature.product.details.domain.model.OwnerDomainModel
-import com.rendo.feature.product.details.domain.model.ProductDetailsDomainModel
+import com.rendo.feature.product.details.domain.mvi.ProductDetailsState
 import com.rendo.feature.product.details.ui.model.DatePickerUiModel
 import com.rendo.feature.product.details.ui.model.OwnerUiModel
 import com.rendo.feature.product.details.ui.model.ProductDetailsUiModel
-import kotlinx.datetime.Instant
+import com.rendo.feature.product.details.ui.model.TextFieldUiModel
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
-import kotlinx.datetime.toLocalDateTime
 
 
 internal class ProductDetailsUiMapper {
     @OptIn(ExperimentalMaterial3Api::class)
-    fun mapToUiModel(model: ProductDetailsDomainModel): ProductDetailsUiModel = model.run {
+    fun mapToUiModel(state: ProductDetailsState): ProductDetailsUiModel? = state.product?.run {
         val formatter = LocalDateTimeFormatter.ofPattern("dd MMMM", Locale.default())
         return ProductDetailsUiModel(
             id = id,
@@ -30,26 +31,41 @@ internal class ProductDetailsUiMapper {
             imageUrls = imageUrls,
             price = "${price.formatPrice()}$currency / day",
             isInFavorites = isInFavorites,
+            phoneField = TextFieldUiModel(state.phoneField.text, state.phoneField.errorText),
             pickupDate = formatter.format(pickupDate),
             returnDate = formatter.format(returnDate),
             totalPrice = "${totalPrice.formatPrice()}$currency",
             ownerUiModel = owner.toUiModel(),
             datePickerUiModel = DatePickerUiModel(
-                pickupDateMillis = pickupDate.atStartOfDay().toInstant(TimeZone.UTC).toEpochMilliseconds(),
-                returnDateMillis = returnDate.atStartOfDay().toInstant(TimeZone.UTC).toEpochMilliseconds(),
+                initialPickupDateMillis = pickupDate.atStartOfDay().toInstant(TimeZone.UTC).toEpochMilliseconds(),
+                initialReturnDateMillis = returnDate.atStartOfDay().toInstant(TimeZone.UTC).toEpochMilliseconds(),
                 selectableDates = object : SelectableDates {
                     override fun isSelectableDate(utcTimeMillis: Long): Boolean {
-                        val date: LocalDate = Instant.fromEpochMilliseconds(utcTimeMillis)
-                            .toLocalDateTime(TimeZone.UTC).date
+                        val date: LocalDate = LocalDate.fromEpochMilliseconds(utcTimeMillis)
                         val nowDate = LocalDate.now(TimeZone.UTC)
-                        return date >= nowDate && date !in model.prohibitedDates
+                        return date >= nowDate && date !in prohibitedDates
                     }
-                }
+                },
+                isButtonEnabled = isDateRangeValid(
+                    pickupDate = state.dateRangeDialogState.pickupDate,
+                    returnDate = state.dateRangeDialogState.returnDate,
+                    prohibitedDates = prohibitedDates,
+                ),
             )
         )
     }
 
     private fun OwnerDomainModel.toUiModel(): OwnerUiModel {
         return OwnerUiModel(imageUrl = imageUrl, name = name)
+    }
+
+    private fun isDateRangeValid(pickupDate: LocalDate?, returnDate: LocalDate?, prohibitedDates: List<LocalDate>): Boolean {
+        if (pickupDate == null || returnDate == null) return false
+
+        for (date in pickupDate..returnDate) {
+            if (date in prohibitedDates) return false
+        }
+
+        return true
     }
 }

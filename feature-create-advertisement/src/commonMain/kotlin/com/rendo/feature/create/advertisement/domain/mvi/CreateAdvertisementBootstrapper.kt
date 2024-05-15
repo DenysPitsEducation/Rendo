@@ -11,10 +11,10 @@ internal class CreateAdvertisementBootstrapper(
 
     override fun invoke() {
         actions.forEach(::dispatch)
-        collectAuthorization()
+        collectAuthorizationChange()
     }
 
-    private fun collectAuthorization() {
+    private fun collectAuthorizationChange() {
         scope.launch {
             Firebase.auth.authStateChanged.collect { user ->
                 val isAuthorized = user != null && !user.isAnonymous

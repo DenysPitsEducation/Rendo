@@ -5,7 +5,8 @@ import androidx.compose.material3.SelectableDates
 
 @OptIn(ExperimentalMaterial3Api::class)
 internal data class DatePickerUiModel(
-    val pickupDateMillis: Long,
-    val returnDateMillis: Long,
+    val initialPickupDateMillis: Long,
+    val initialReturnDateMillis: Long,
     val selectableDates: SelectableDates,
+    val isButtonEnabled: Boolean,
 )
