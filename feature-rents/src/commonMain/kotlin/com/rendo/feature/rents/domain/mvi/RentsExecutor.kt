@@ -21,6 +21,7 @@ internal class RentsExecutor(
     override fun executeAction(action: RentsAction) = when (action) {
         is RentsAction.Init -> onInit()
         is RentsAction.AuthorizationStateUpdated -> onAuthorizationStateUpdated()
+        is RentsAction.RentsUpdateRequested -> onRentsUpdateTriggered()
     }
 
     private fun onInit() {
@@ -28,6 +29,10 @@ internal class RentsExecutor(
     }
 
     private fun onAuthorizationStateUpdated() {
+        refreshRents()
+    }
+
+    private fun onRentsUpdateTriggered() {
         refreshRents()
     }
 

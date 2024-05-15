@@ -39,7 +39,7 @@ fun featureRentsModule() = module {
             ),
             executorFactory = { get<RentsExecutor>() },
             reducer = get<RentsReducer>(),
-            bootstrapper = RentsBootstrapper(RentsAction.Init),
+            bootstrapper = RentsBootstrapper(rentsUpdateListener = get(), RentsAction.Init),
         )
     }
 
