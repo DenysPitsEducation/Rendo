@@ -50,11 +50,11 @@ internal class CreateAdvertisementExecutor(
             if (areFieldsValid) {
                 createAdvertisementUseCase.invoke(
                     AdvertisementDomainModel(
-                        images = state.images,
-                        productName = state.productName.text,
-                        productDescription = state.productDescription.text,
+                        images = state.images.map { it.file },
+                        productName = state.productName.text.trim(),
+                        productDescription = state.productDescription.text.trim(),
                         productPrice = getProductPriceDouble(state.productPrice)!!,
-                        ownerName = state.ownerName.text,
+                        ownerName = state.ownerName.text.trim(),
                         ownerPhoneNumber = "380" + state.ownerPhoneNumber.text,
                     )
                 ).onSuccess {

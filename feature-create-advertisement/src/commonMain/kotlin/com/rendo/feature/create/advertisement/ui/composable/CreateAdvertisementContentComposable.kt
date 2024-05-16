@@ -38,6 +38,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.darkrockstudios.libraries.mpfilepicker.MultipleFilePicker
 import com.rendo.core.phone.PhoneNumberVisualTransformation
+import com.rendo.feature.create.advertisement.domain.model.ImageDomainModel
 import com.rendo.feature.create.advertisement.domain.model.InputType
 import com.rendo.feature.create.advertisement.domain.mvi.CreateAdvertisementIntent
 import com.rendo.feature.create.advertisement.ui.OnUserInteraction
@@ -54,11 +55,14 @@ internal fun CreateAdvertisementContentComposable(
 ) {
     val imageHelper: ImageHelper = koinInject()
     var showImagePicker by remember { mutableStateOf(false) }
-    var selectedImages by remember { mutableStateOf<List<Any>>(listOf()) }
     val fileType = listOf("jpg", "png", "webp")
     MultipleFilePicker(show = showImagePicker, fileExtensions = fileType) { files ->
-        selectedImages = files?.map { it.platformFile }.orEmpty()
-        val imageFiles = files?.map { imageHelper.getFileFromPath(it.platformFile) }.orEmpty()
+        val imageFiles = files?.map {
+            ImageDomainModel(
+                image = it.platformFile,
+                file = imageHelper.getFileFromPath(it.platformFile)
+            )
+        }.orEmpty()
         onUserInteraction(CreateAdvertisementIntent.ImagesSelected(imageFiles))
         showImagePicker = false
     }
@@ -87,7 +91,7 @@ internal fun CreateAdvertisementContentComposable(
                 contentPadding = PaddingValues(horizontal = 16.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                items(selectedImages) { image ->
+                items(uiModel.images) { image ->
                     AutoSizeImage(
                         ImageRequest(image),
                         contentDescription = null,

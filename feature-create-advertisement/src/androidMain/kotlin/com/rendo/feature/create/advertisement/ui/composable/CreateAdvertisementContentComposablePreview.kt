@@ -12,6 +12,7 @@ private fun CreateAdvertisementScreenPreview() {
     PreviewContainer {
         CreateAdvertisementContentComposable(
             uiModel = CreateAdvertisementUiModel.Content(
+                images = emptyList(),
                 productName = TextFieldUiModel("", null),
                 productDescription = TextFieldUiModel("", null),
                 productPrice = TextFieldUiModel("", null),

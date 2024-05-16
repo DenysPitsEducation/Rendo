@@ -4,6 +4,7 @@ internal sealed class CreateAdvertisementUiModel {
     data object AuthorizationRequirement : CreateAdvertisementUiModel()
 
     data class Content(
+        val images: List<Any>,
         val productName: TextFieldUiModel,
         val productDescription: TextFieldUiModel,
         val productPrice: TextFieldUiModel,

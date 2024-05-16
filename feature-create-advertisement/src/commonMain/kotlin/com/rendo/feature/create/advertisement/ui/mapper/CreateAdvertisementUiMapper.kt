@@ -10,6 +10,7 @@ internal class CreateAdvertisementUiMapper {
     fun mapToUiModel(model: CreateAdvertisementState): CreateAdvertisementUiModel = model.run {
         return if (model.isAuthorized) {
             CreateAdvertisementUiModel.Content(
+                images = model.images.map { it.image },
                 productName = TextFieldUiModel(productName.text, productName.errorText),
                 productDescription = TextFieldUiModel(productDescription.text, productDescription.errorText),
                 productPrice = TextFieldUiModel(productPrice.text, productPrice.errorText),
