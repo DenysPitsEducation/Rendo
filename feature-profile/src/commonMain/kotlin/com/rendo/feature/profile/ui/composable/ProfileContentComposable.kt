@@ -34,8 +34,12 @@ import com.rendo.feature.profile.ui.OnUserInteraction
 import com.rendo.feature.profile.ui.model.ProfileUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import rendo.feature_profile.generated.resources.Res
 import rendo.feature_profile.generated.resources.ill_user_placeholder
+import rendo.feature_profile.generated.resources.my_advertisements
+import rendo.feature_profile.generated.resources.sign_in_button
+import rendo.feature_profile.generated.resources.sign_out_button
 
 @Composable
 internal fun ProfileContentComposable(
@@ -63,14 +67,14 @@ internal fun ProfileContentComposable(
                 ) {
                     Icon(Icons.AutoMirrored.Filled.FormatListBulleted, null)
                     Spacer(modifier = Modifier.width(16.dp))
-                    Text("My advertisements")
+                    Text(stringResource(Res.string.my_advertisements))
                 }
                 Spacer(modifier = Modifier.height(12.dp))
                 Button(
                     onClick = { onUserInteraction(ProfileIntent.SignOutButtonClicked) },
                     modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
                 ) {
-                    Text(text = "Sign out")
+                    Text(text = stringResource(Res.string.sign_out_button))
                 }
             }
 
@@ -80,7 +84,7 @@ internal fun ProfileContentComposable(
                     onClick = { onUserInteraction(ProfileIntent.SignInButtonClicked) },
                     modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
                 ) {
-                    Text(text = "Sign in")
+                    Text(text = stringResource(Res.string.sign_in_button))
                 }
             }
         }

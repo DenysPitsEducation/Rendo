@@ -13,6 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
+import rendo.feature_create_advertisement.generated.resources.Res
+import rendo.feature_create_advertisement.generated.resources.authorization_requirement
+import rendo.feature_create_advertisement.generated.resources.profile_to_sign_in
 
 @Composable
 fun AuthorizationRequirementComposable(modifier: Modifier = Modifier) {
@@ -22,13 +26,13 @@ fun AuthorizationRequirementComposable(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "You must be authorized to create an advertisement",
+            text = stringResource(Res.string.authorization_requirement),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleLarge,
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "Go to the \"Profile\" tab to sign in",
+            text = stringResource(Res.string.profile_to_sign_in),
             textAlign = TextAlign.Center,
         )
     }

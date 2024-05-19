@@ -1,0 +1,16 @@
+<resources>
+    <string name="rent_period_unit">day</string>
+    <string name="error_not_filled">Field must be filled</string>
+    <string name="product_description">Description</string>
+    <string name="pickup_date">Pickup date:</string>
+    <string name="return_date">Return date:</string>
+    <string name="final_price">Final price:</string>
+    <string name="phone_number_label">Your phone number</string>
+    <string name="rent_button">Rent</string>
+    <string name="change_dates_button">Change dates</string>
+    <string name="owner_button">Call the owner</string>
+    <string name="date_picker_dialog_button">Choose these dates</string>
+    <string name="successful_rent_title">Rent is successful!</string>
+    <string name="successful_rent_description">You can see your rent in "My rents" tab</string>
+    <string name="successful_rent_confirm_button">Ok</string>
+</resources>

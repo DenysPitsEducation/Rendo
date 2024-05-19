@@ -9,6 +9,9 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.rendo.feature.home.ui.HomeScreen
+import org.jetbrains.compose.resources.stringResource
+import rendo.composeapp.generated.resources.Res
+import rendo.composeapp.generated.resources.home
 
 object HomeTab : Tab {
 
@@ -16,11 +19,12 @@ object HomeTab : Tab {
         @Composable
         get() {
             val icon = rememberVectorPainter(Icons.Default.Home)
+            val title = stringResource(Res.string.home)
 
             return remember {
                 TabOptions(
                     index = 0u,
-                    title = "Home",
+                    title = title,
                     icon = icon
                 )
             }

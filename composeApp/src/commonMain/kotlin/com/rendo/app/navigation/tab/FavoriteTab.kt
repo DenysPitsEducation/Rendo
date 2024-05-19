@@ -9,6 +9,9 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.rendo.feature.favorites.ui.FavoritesScreen
+import org.jetbrains.compose.resources.stringResource
+import rendo.composeapp.generated.resources.Res
+import rendo.composeapp.generated.resources.favorites
 
 object FavoriteTab : Tab {
 
@@ -16,11 +19,12 @@ object FavoriteTab : Tab {
         @Composable
         get() {
             val icon = rememberVectorPainter(Icons.Default.Favorite)
+            val title = stringResource(Res.string.favorites)
 
             return remember {
                 TabOptions(
                     index = 0u,
-                    title = "Favorites",
+                    title = title,
                     icon = icon
                 )
             }

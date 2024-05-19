@@ -1,0 +1,18 @@
+<resources>
+    <string name="error_not_filled">Поле має бути заповнене</string>
+    <string name="error_invalid_number">Неправильно введене число</string>
+    <string name="authorization_requirement">Ви повинні бути авторизовані для створення оголошення</string>
+    <string name="profile_to_sign_in">Перейдіть на вкладку «Профіль», щоб увійти</string>
+    <string name="product_pictures">Зображення продукту</string>
+    <string name="rental_product_info">Інформація про товар</string>
+    <string name="placeholder_product_name">Назва товару</string>
+    <string name="placeholder_product_description">Опис товару</string>
+    <string name="placeholder_product_price">Ціна за один день</string>
+    <string name="personal_info">Особиста інформація</string>
+    <string name="person_name">Ім'я контактної особи</string>
+    <string name="phone_number">Номер телефону</string>
+    <string name="create_advertisement">Створити оголошення про оренду</string>
+    <string name="successful_creation_title">Оголошення успішно створено!</string>
+    <string name="successful_creation_description">Ви можете переглянути своє оголошення на вкладці "Профіль"</string>
+    <string name="successful_creation_confirm_button">Добре</string>
+</resources>

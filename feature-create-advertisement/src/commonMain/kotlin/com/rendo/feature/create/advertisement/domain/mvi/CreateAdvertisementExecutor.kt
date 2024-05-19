@@ -7,6 +7,9 @@ import com.rendo.feature.create.advertisement.domain.model.InputDomainModel
 import com.rendo.feature.create.advertisement.domain.model.InputType
 import com.rendo.feature.create.advertisement.domain.usecase.CreateAdvertisementUseCase
 import kotlinx.coroutines.launch
+import rendo.feature_create_advertisement.generated.resources.Res
+import rendo.feature_create_advertisement.generated.resources.error_invalid_number
+import rendo.feature_create_advertisement.generated.resources.error_not_filled
 
 internal class CreateAdvertisementExecutor(
     private val createAdvertisementUseCase: CreateAdvertisementUseCase,
@@ -82,7 +85,7 @@ internal class CreateAdvertisementExecutor(
         ownerPhoneNumber: InputDomainModel
     ): Boolean {
         var isValid = true
-        val blankFieldError = "Field must be filled"
+        val blankFieldError = Res.string.error_not_filled
 
         if (productName.text.isBlank()) {
             val fieldUpdated = productName.copy(errorText = blankFieldError)
@@ -104,7 +107,7 @@ internal class CreateAdvertisementExecutor(
         val productPriceText = productPrice.text
         val priceErrorText = when {
             productPriceText.isBlank() -> blankFieldError
-            getProductPriceDouble(productPrice) == null -> "Invalid number"
+            getProductPriceDouble(productPrice) == null -> Res.string.error_invalid_number
             else -> null
         }
         if (priceErrorText != null) {

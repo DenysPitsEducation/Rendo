@@ -9,6 +9,9 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.rendo.feature.rents.ui.RentsScreen
+import org.jetbrains.compose.resources.stringResource
+import rendo.composeapp.generated.resources.Res
+import rendo.composeapp.generated.resources.rents
 
 object RentsTab : Tab {
 
@@ -16,11 +19,12 @@ object RentsTab : Tab {
         @Composable
         get() {
             val icon = rememberVectorPainter(Icons.AutoMirrored.Default.List)
+            val title = stringResource(Res.string.rents)
 
             return remember {
                 TabOptions(
                     index = 0u,
-                    title = "My rents",
+                    title = title,
                     icon = icon
                 )
             }

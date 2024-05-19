@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-// TODO Pits: Add to ios
 class AppInitializer(
     private val refreshFavoriteProductsUseCase: RefreshFavoriteProductsUseCase,
 ) {

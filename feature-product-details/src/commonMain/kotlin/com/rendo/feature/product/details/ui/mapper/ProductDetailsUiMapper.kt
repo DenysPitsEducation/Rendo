@@ -2,6 +2,7 @@ package com.rendo.feature.product.details.ui.mapper
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SelectableDates
+import androidx.compose.runtime.Composable
 import com.raedghazal.kotlinx_datetime_ext.LocalDateTimeFormatter
 import com.raedghazal.kotlinx_datetime_ext.Locale
 import com.raedghazal.kotlinx_datetime_ext.atStartOfDay
@@ -18,10 +19,14 @@ import com.rendo.feature.product.details.ui.model.TextFieldUiModel
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
+import org.jetbrains.compose.resources.stringResource
+import rendo.feature_product_details.generated.resources.Res
+import rendo.feature_product_details.generated.resources.rent_period_unit
 
 
 internal class ProductDetailsUiMapper {
     @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
     fun mapToUiModel(state: ProductDetailsState): ProductDetailsUiModel? = state.product?.run {
         val formatter = LocalDateTimeFormatter.ofPattern("dd MMMM", Locale.default())
         return ProductDetailsUiModel(
@@ -29,7 +34,7 @@ internal class ProductDetailsUiMapper {
             name = name,
             description = description,
             imageUrls = imageUrls,
-            price = "${price.formatPrice()}$currency / day",
+            price = "${price.formatPrice()}$currency / ${stringResource(Res.string.rent_period_unit)}",
             isInFavorites = isInFavorites,
             phoneField = TextFieldUiModel(state.phoneField.text, state.phoneField.errorText),
             pickupDate = formatter.format(pickupDate),

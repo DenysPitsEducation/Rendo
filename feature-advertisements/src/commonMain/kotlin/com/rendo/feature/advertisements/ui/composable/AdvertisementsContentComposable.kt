@@ -31,8 +31,11 @@ import com.rendo.feature.advertisements.ui.model.AdvertisementUiModel
 import com.rendo.feature.advertisements.ui.model.AdvertisementsUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
 import org.jetbrains.compose.resources.painterResource
-import rendo.core.generated.resources.Res
+import org.jetbrains.compose.resources.stringResource
 import rendo.core.generated.resources.ill_no_photo
+import rendo.feature_advertisements.generated.resources.Res
+import rendo.feature_advertisements.generated.resources.delete_advertisement
+import rendo.core.generated.resources.Res as CoreRes
 
 @Composable
 internal fun AdvertisementsContentComposable(
@@ -68,8 +71,8 @@ private fun AdvertisementComposable(
         Row {
             AutoSizeImage(
                 url = uiModel.imageUrl.orEmpty(),
-                placeholderPainter = { painterResource(Res.drawable.ill_no_photo) },
-                errorPainter = { painterResource(Res.drawable.ill_no_photo) },
+                placeholderPainter = { painterResource(CoreRes.drawable.ill_no_photo) },
+                errorPainter = { painterResource(CoreRes.drawable.ill_no_photo) },
                 contentDescription = null,
                 modifier = Modifier.clip(RoundedCornerShape(8.dp)).size(88.dp),
             )
@@ -87,7 +90,7 @@ private fun AdvertisementComposable(
             border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
             colors = ButtonDefaults.outlinedButtonColors(),
         ) {
-            Text("Delete the advertisement")
+            Text(stringResource(Res.string.delete_advertisement))
         }
     }
 }

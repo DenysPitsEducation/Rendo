@@ -1,0 +1,18 @@
+<resources>
+    <string name="error_not_filled">Field must be filled</string>
+    <string name="error_invalid_number">Invalid number</string>
+    <string name="authorization_requirement">You must be authorized to create an advertisement</string>
+    <string name="profile_to_sign_in">Go to the "Profile" tab to sign in</string>
+    <string name="product_pictures">Product pictures</string>
+    <string name="rental_product_info">Rental product info</string>
+    <string name="placeholder_product_name">Name of the product</string>
+    <string name="placeholder_product_description">Description of the product</string>
+    <string name="placeholder_product_price">Price per one day</string>
+    <string name="personal_info">Personal info</string>
+    <string name="person_name">Name of the contact person</string>
+    <string name="phone_number">Phone number</string>
+    <string name="create_advertisement">Create the rental advertisement</string>
+    <string name="successful_creation_title">Advertisement is successfully created!</string>
+    <string name="successful_creation_description">You can see your advertisement in "Profile" tab</string>
+    <string name="successful_creation_confirm_button">Ok</string>
+</resources>

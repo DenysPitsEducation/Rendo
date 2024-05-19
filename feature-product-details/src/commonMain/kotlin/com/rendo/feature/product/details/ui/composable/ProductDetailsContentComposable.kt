@@ -40,8 +40,18 @@ import com.rendo.feature.product.details.domain.mvi.ProductDetailsIntent
 import com.rendo.feature.product.details.ui.model.ProductDetailsUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
 import org.jetbrains.compose.resources.painterResource
-import rendo.core.generated.resources.Res
+import org.jetbrains.compose.resources.stringResource
 import rendo.core.generated.resources.ill_no_photo
+import rendo.feature_product_details.generated.resources.Res
+import rendo.feature_product_details.generated.resources.change_dates_button
+import rendo.feature_product_details.generated.resources.final_price
+import rendo.feature_product_details.generated.resources.owner_button
+import rendo.feature_product_details.generated.resources.phone_number_label
+import rendo.feature_product_details.generated.resources.pickup_date
+import rendo.feature_product_details.generated.resources.product_description
+import rendo.feature_product_details.generated.resources.rent_button
+import rendo.feature_product_details.generated.resources.return_date
+import rendo.core.generated.resources.Res as CoreRes
 
 @Composable
 internal fun ProductDetailsContentComposable(
@@ -60,7 +70,7 @@ internal fun ProductDetailsContentComposable(
                 .background(MaterialTheme.colorScheme.background, RoundedCornerShape(8.dp))
                 .padding(16.dp)
         ) {
-            Text(text = "Description", style = MaterialTheme.typography.titleMedium)
+            Text(text = stringResource(Res.string.product_description), style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = model.description)
         }
@@ -98,7 +108,7 @@ private fun HeaderBlock(model: ProductDetailsUiModel) {
             }
         } else {
             Image(
-                painter = painterResource(Res.drawable.ill_no_photo),
+                painter = painterResource(CoreRes.drawable.ill_no_photo),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -136,19 +146,19 @@ private fun RentBlock(model: ProductDetailsUiModel, onUserInteraction: OnUserInt
             .padding(16.dp)
     ) {
         Row {
-            Text(text = "Pickup date:")
+            Text(text = stringResource(Res.string.pickup_date))
             Spacer(modifier = Modifier.weight(1f))
             Text(text = model.pickupDate)
         }
         Spacer(modifier = Modifier.height(4.dp))
         Row {
-            Text(text = "Return date:")
+            Text(text = stringResource(Res.string.return_date))
             Spacer(modifier = Modifier.weight(1f))
             Text(text = model.returnDate)
         }
         Spacer(modifier = Modifier.height(4.dp))
         Row {
-            Text(text = "Final price:")
+            Text(text = stringResource(Res.string.final_price))
             Spacer(modifier = Modifier.weight(1f))
             Text(text = model.totalPrice)
         }
@@ -158,7 +168,7 @@ private fun RentBlock(model: ProductDetailsUiModel, onUserInteraction: OnUserInt
             onValueChange = {
                 onUserInteraction(ProductDetailsIntent.PhoneTextFieldChanged(it))
             },
-            label = { Text("Your phone number") },
+            label = { Text(stringResource(Res.string.phone_number_label)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -169,7 +179,7 @@ private fun RentBlock(model: ProductDetailsUiModel, onUserInteraction: OnUserInt
                 textFontStyle = phoneTextStyle,
             ),
             isError = model.phoneField.errorText != null,
-            supportingText = model.phoneField.errorText?.let { { Text(it) } },
+            supportingText = model.phoneField.errorText?.let { { Text(stringResource(it)) } },
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.fillMaxWidth(),
         )
@@ -178,7 +188,7 @@ private fun RentBlock(model: ProductDetailsUiModel, onUserInteraction: OnUserInt
             onClick = { onUserInteraction(ProductDetailsIntent.RentButtonClicked) },
             modifier = Modifier.fillMaxWidth(),
         ) {
-            Text(text = "Rent")
+            Text(text = stringResource(Res.string.rent_button))
         }
         Button(
             onClick = { onUserInteraction(ProductDetailsIntent.ChangeDatesButtonClicked) },
@@ -186,7 +196,7 @@ private fun RentBlock(model: ProductDetailsUiModel, onUserInteraction: OnUserInt
             border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
             colors = ButtonDefaults.outlinedButtonColors(),
         ) {
-            Text(text = "Change dates")
+            Text(text = stringResource(Res.string.change_dates_button))
         }
     }
 }
@@ -212,7 +222,7 @@ private fun OwnerInfoBlock(model: ProductDetailsUiModel, onUserInteraction: OnUs
             onClick = { onUserInteraction(ProductDetailsIntent.CallOwnerButtonClicked) },
             modifier = Modifier.fillMaxWidth(),
         ) {
-            Text(text = "Call the owner")
+            Text(text = stringResource(Res.string.owner_button))
         }
     }
 }

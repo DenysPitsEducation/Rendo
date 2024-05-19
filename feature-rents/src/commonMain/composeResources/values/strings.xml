@@ -1,0 +1,13 @@
+<resources>
+    <string name="tab_rent_ins">Rent Ins</string>
+    <string name="tab_rent_outs">Rent Outs</string>
+    <string name="rent_accept">Accept</string>
+    <string name="rent_reject">Reject</string>
+    <string name="dial_number">Dial a number</string>
+    <string name="status_waiting_for_acceptance">Waiting for acceptance</string>
+    <string name="status_accepted">Accepted</string>
+    <string name="status_rejected">Rejected</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="action_cancel">Cancel the rent</string>
+    <string name="action_delete">Delete the rent</string>
+</resources>

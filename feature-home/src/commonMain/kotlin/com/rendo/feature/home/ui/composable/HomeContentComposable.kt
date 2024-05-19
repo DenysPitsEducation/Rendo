@@ -14,6 +14,9 @@ import com.rendo.core.product.ProductUiModel
 import com.rendo.core.product.ProductVerticalGrid
 import com.rendo.feature.home.domain.mvi.HomeIntent
 import com.rendo.feature.home.ui.OnUserInteraction
+import org.jetbrains.compose.resources.stringResource
+import rendo.feature_home.generated.resources.Res
+import rendo.feature_home.generated.resources.search_placeholder
 
 @Composable
 internal fun HomeContentComposable(
@@ -26,7 +29,7 @@ internal fun HomeContentComposable(
             value = searchInput,
             onValueChange = { onUserInteraction(HomeIntent.SearchInputChanged(it)) },
             placeholder = {
-                Text("Enter a name of the product")
+                Text(stringResource(Res.string.search_placeholder))
             },
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.fillMaxWidth().padding(8.dp),

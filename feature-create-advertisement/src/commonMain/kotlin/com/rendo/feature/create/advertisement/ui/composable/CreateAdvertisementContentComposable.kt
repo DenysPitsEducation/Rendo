@@ -46,7 +46,18 @@ import com.rendo.feature.create.advertisement.ui.image.ImageHelper
 import com.rendo.feature.create.advertisement.ui.model.CreateAdvertisementUiModel
 import com.seiko.imageloader.model.ImageRequest
 import com.seiko.imageloader.ui.AutoSizeImage
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import rendo.feature_create_advertisement.generated.resources.Res
+import rendo.feature_create_advertisement.generated.resources.create_advertisement
+import rendo.feature_create_advertisement.generated.resources.person_name
+import rendo.feature_create_advertisement.generated.resources.personal_info
+import rendo.feature_create_advertisement.generated.resources.phone_number
+import rendo.feature_create_advertisement.generated.resources.placeholder_product_description
+import rendo.feature_create_advertisement.generated.resources.placeholder_product_name
+import rendo.feature_create_advertisement.generated.resources.placeholder_product_price
+import rendo.feature_create_advertisement.generated.resources.product_pictures
+import rendo.feature_create_advertisement.generated.resources.rental_product_info
 
 @Composable
 internal fun CreateAdvertisementContentComposable(
@@ -82,7 +93,7 @@ internal fun CreateAdvertisementContentComposable(
         ) {
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Product pictures",
+                text = stringResource(Res.string.product_pictures),
                 modifier = Modifier.padding(horizontal = 16.dp),
                 style = MaterialTheme.typography.titleMedium,
             )
@@ -119,7 +130,7 @@ internal fun CreateAdvertisementContentComposable(
         ) {
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Rental product info",
+                text = stringResource(Res.string.rental_product_info),
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
@@ -134,11 +145,11 @@ internal fun CreateAdvertisementContentComposable(
                         )
                     )
                 },
-                placeholder = { Text("Name of the product") },
+                placeholder = { Text(stringResource(Res.string.placeholder_product_name)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 isError = uiModel.productName.errorText != null,
-                supportingText = uiModel.productName.errorText?.let { { Text(it) } },
+                supportingText = uiModel.productName.errorText?.let { { Text(stringResource(it)) } },
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
             )
@@ -153,12 +164,12 @@ internal fun CreateAdvertisementContentComposable(
                         )
                     )
                 },
-                placeholder = { Text("Description of the product") },
+                placeholder = { Text(stringResource(Res.string.placeholder_product_description)) },
                 minLines = 4,
                 maxLines = 4,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 isError = uiModel.productDescription.errorText != null,
-                supportingText = uiModel.productDescription.errorText?.let { { Text(it) } },
+                supportingText = uiModel.productDescription.errorText?.let { { Text(stringResource(it)) } },
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
             )
@@ -173,7 +184,7 @@ internal fun CreateAdvertisementContentComposable(
                         )
                     )
                 },
-                placeholder = { Text("Price per one day") },
+                placeholder = { Text(stringResource(Res.string.placeholder_product_price)) },
                 suffix = { Text("₴") },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
@@ -181,7 +192,7 @@ internal fun CreateAdvertisementContentComposable(
                     imeAction = ImeAction.Next,
                 ),
                 isError = uiModel.productPrice.errorText != null,
-                supportingText = uiModel.productPrice.errorText?.let { { Text(it) } },
+                supportingText = uiModel.productPrice.errorText?.let { { Text(stringResource(it)) } },
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
             )
@@ -193,7 +204,7 @@ internal fun CreateAdvertisementContentComposable(
                 .background(MaterialTheme.colorScheme.background, RoundedCornerShape(8.dp))
                 .padding(16.dp)
         ) {
-            Text("Personal info", style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(Res.string.personal_info), style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
                 uiModel.ownerName.text,
@@ -205,11 +216,11 @@ internal fun CreateAdvertisementContentComposable(
                         )
                     )
                 },
-                placeholder = { Text("Name of the contact person") },
+                placeholder = { Text(stringResource(Res.string.person_name)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                 isError = uiModel.ownerName.errorText != null,
-                supportingText = uiModel.ownerName.errorText?.let { { Text(it) } },
+                supportingText = uiModel.ownerName.errorText?.let { { Text(stringResource(it)) } },
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth(),
             )
@@ -225,7 +236,7 @@ internal fun CreateAdvertisementContentComposable(
                         CreateAdvertisementIntent.InputChanged(it, InputType.OWNER_PHONE_NUMBER)
                     )
                 },
-                placeholder = { Text("Phone number") },
+                placeholder = { Text(stringResource(Res.string.phone_number)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number,
@@ -236,7 +247,7 @@ internal fun CreateAdvertisementContentComposable(
                     textFontStyle = textFontStyle,
                 ),
                 isError = uiModel.ownerPhoneNumber.errorText != null,
-                supportingText = uiModel.ownerPhoneNumber.errorText?.let { { Text(it) } },
+                supportingText = uiModel.ownerPhoneNumber.errorText?.let { { Text(stringResource(it)) } },
                 shape = RoundedCornerShape(8.dp),
                 modifier = Modifier.fillMaxWidth(),
             )
@@ -246,7 +257,7 @@ internal fun CreateAdvertisementContentComposable(
             onClick = { onUserInteraction.invoke(CreateAdvertisementIntent.CreateAdvertisementButtonClicked) },
             modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth()
         ) {
-            Text("Create the rental advertisement")
+            Text(stringResource(Res.string.create_advertisement))
         }
         Spacer(modifier = Modifier.height(32.dp))
     }

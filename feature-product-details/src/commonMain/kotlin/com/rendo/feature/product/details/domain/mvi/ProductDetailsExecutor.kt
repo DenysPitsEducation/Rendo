@@ -12,6 +12,8 @@ import com.rendo.feature.product.details.domain.usecase.RentProductUseCase
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.daysUntil
+import rendo.feature_product_details.generated.resources.Res
+import rendo.feature_product_details.generated.resources.error_not_filled
 
 internal class ProductDetailsExecutor(
     private val getProductDetailsUseCase: GetProductDetailsUseCase,
@@ -74,7 +76,7 @@ internal class ProductDetailsExecutor(
                     rentsUpdateListener.triggerUpdate()
                 }
             } else {
-                val fieldUpdated = state.phoneField.copy(errorText = "Field must be filled")
+                val fieldUpdated = state.phoneField.copy(errorText = Res.string.error_not_filled)
                 dispatch(ProductDetailsMessage.PhoneFieldUpdated(fieldUpdated))
             }
         }

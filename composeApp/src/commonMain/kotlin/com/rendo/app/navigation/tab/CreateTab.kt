@@ -9,6 +9,9 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.rendo.feature.create.advertisement.ui.CreateAdvertisementScreen
+import org.jetbrains.compose.resources.stringResource
+import rendo.composeapp.generated.resources.Res
+import rendo.composeapp.generated.resources.create
 
 object CreateTab : Tab {
 
@@ -16,11 +19,12 @@ object CreateTab : Tab {
         @Composable
         get() {
             val icon = rememberVectorPainter(Icons.Default.AddCircle)
+            val title = stringResource(Res.string.create)
 
             return remember {
                 TabOptions(
                     index = 0u,
-                    title = "Create",
+                    title = title,
                     icon = icon
                 )
             }

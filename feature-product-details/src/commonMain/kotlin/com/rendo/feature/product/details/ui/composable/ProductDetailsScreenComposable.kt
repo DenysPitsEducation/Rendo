@@ -42,7 +42,13 @@ import com.rendo.feature.product.details.ui.ProductDetailsScreenModel
 import com.rendo.feature.product.details.ui.mapper.ProductDetailsUiMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import rendo.feature_product_details.generated.resources.Res
+import rendo.feature_product_details.generated.resources.date_picker_dialog_button
+import rendo.feature_product_details.generated.resources.successful_rent_confirm_button
+import rendo.feature_product_details.generated.resources.successful_rent_description
+import rendo.feature_product_details.generated.resources.successful_rent_title
 
 @OptIn(ExperimentalCoroutinesApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -121,7 +127,7 @@ internal fun ProductDetailsScreenComposable(screenModel: ProductDetailsScreenMod
                             enabled = uiModel.datePickerUiModel.isButtonEnabled,
                             modifier = Modifier.padding(16.dp).fillMaxWidth()
                         ) {
-                            Text("Choose these dates")
+                            Text(stringResource(Res.string.date_picker_dialog_button))
                         }
                     }
                 }
@@ -129,10 +135,10 @@ internal fun ProductDetailsScreenComposable(screenModel: ProductDetailsScreenMod
             if (showAlertDialog) {
                 AlertDialog(
                     title = {
-                        Text(text = "Rent is successful!")
+                        Text(text = stringResource(Res.string.successful_rent_title))
                     },
                     text = {
-                        Text(text = "You can see your rent in \"My rents\" tab")
+                        Text(text = stringResource(Res.string.successful_rent_description))
                     },
                     onDismissRequest = {
                         showAlertDialog = false
@@ -143,7 +149,7 @@ internal fun ProductDetailsScreenComposable(screenModel: ProductDetailsScreenMod
                                 showAlertDialog = false
                             }
                         ) {
-                            Text("Ok")
+                            Text(stringResource(Res.string.successful_rent_confirm_button))
                         }
                     },
                 )

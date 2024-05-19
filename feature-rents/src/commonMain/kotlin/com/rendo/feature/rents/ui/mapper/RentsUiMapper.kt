@@ -16,6 +16,14 @@ import com.rendo.feature.rents.ui.model.DropdownItemUiModel
 import com.rendo.feature.rents.ui.model.RentUiModel
 import com.rendo.feature.rents.ui.model.RentsUiModel
 import com.rendo.feature.rents.ui.model.StatusUiModel
+import org.jetbrains.compose.resources.stringResource
+import rendo.feature_rents.generated.resources.Res
+import rendo.feature_rents.generated.resources.action_cancel
+import rendo.feature_rents.generated.resources.action_delete
+import rendo.feature_rents.generated.resources.status_accepted
+import rendo.feature_rents.generated.resources.status_cancelled
+import rendo.feature_rents.generated.resources.status_rejected
+import rendo.feature_rents.generated.resources.status_waiting_for_acceptance
 
 internal class RentsUiMapper {
     @Composable
@@ -41,10 +49,10 @@ internal class RentsUiMapper {
             name = name,
             imageUrl = imageUrl,
             status = when (status) {
-                RentDomainModel.Status.WAITING_FOR_ACCEPTANCE -> StatusUiModel("Waiting for acceptance", orangeColor)
-                RentDomainModel.Status.ACCEPTED -> StatusUiModel("Accepted", greenColor)
-                RentDomainModel.Status.REJECTED -> StatusUiModel("Rejected", redColor)
-                RentDomainModel.Status.CANCELLED -> StatusUiModel("Cancelled", redColor)
+                RentDomainModel.Status.WAITING_FOR_ACCEPTANCE -> StatusUiModel(stringResource(Res.string.status_waiting_for_acceptance), orangeColor)
+                RentDomainModel.Status.ACCEPTED -> StatusUiModel(stringResource(Res.string.status_accepted), greenColor)
+                RentDomainModel.Status.REJECTED -> StatusUiModel(stringResource(Res.string.status_rejected), redColor)
+                RentDomainModel.Status.CANCELLED -> StatusUiModel(stringResource(Res.string.status_cancelled), redColor)
             },
             dates = "$pickupDateFormatted - $returnDateFormatted",
             price = price.formatPrice(currency),
@@ -53,12 +61,12 @@ internal class RentsUiMapper {
                 DropdownItemUiModel(
                     action = DropdownAction.CANCEL_RENT,
                     icon = Icons.Outlined.HighlightOff,
-                    text = "Cancel the rent"
+                    text = stringResource(Res.string.action_cancel)
                 ).takeIf { type == RentDomainModel.Type.RENT_IN && status == RentDomainModel.Status.WAITING_FOR_ACCEPTANCE || status == RentDomainModel.Status.ACCEPTED },
                 DropdownItemUiModel(
                     action = DropdownAction.DELETE_RENT,
                     icon = Icons.Outlined.Delete,
-                    text = "Delete the rent"
+                    text = stringResource(Res.string.action_delete)
                 ),
             )
         )

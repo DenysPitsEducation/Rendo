@@ -18,7 +18,12 @@ import com.rendo.feature.create.advertisement.ui.OnUserInteraction
 import com.rendo.feature.create.advertisement.ui.mapper.CreateAdvertisementUiMapper
 import com.rendo.feature.create.advertisement.ui.model.CreateAdvertisementUiModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import rendo.feature_create_advertisement.generated.resources.Res
+import rendo.feature_create_advertisement.generated.resources.successful_creation_confirm_button
+import rendo.feature_create_advertisement.generated.resources.successful_creation_description
+import rendo.feature_create_advertisement.generated.resources.successful_creation_title
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
@@ -40,10 +45,10 @@ internal fun CreateAdvertisementScreenComposable(screenModel: CreateAdvertisemen
     if (showAlertDialog) {
         AlertDialog(
             title = {
-                Text(text = "Advertisement is successfully created!")
+                Text(stringResource(Res.string.successful_creation_title))
             },
             text = {
-                Text(text = "You can see your advertisement in \"Profile\" tab")
+                Text(stringResource(Res.string.successful_creation_description))
             },
             onDismissRequest = {
                 showAlertDialog = false
@@ -54,7 +59,7 @@ internal fun CreateAdvertisementScreenComposable(screenModel: CreateAdvertisemen
                         showAlertDialog = false
                     }
                 ) {
-                    Text("Ok")
+                    Text(stringResource(Res.string.successful_creation_confirm_button))
                 }
             },
         )

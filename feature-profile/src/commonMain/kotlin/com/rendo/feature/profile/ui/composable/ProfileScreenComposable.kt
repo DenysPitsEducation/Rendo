@@ -17,7 +17,10 @@ import com.rendo.feature.profile.ui.OnUserInteraction
 import com.rendo.feature.profile.ui.ProfileScreenModel
 import com.rendo.feature.profile.ui.mapper.ProfileUiMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
+import rendo.feature_profile.generated.resources.Res
+import rendo.feature_profile.generated.resources.sign_in_error
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
@@ -31,6 +34,7 @@ internal fun ProfileScreenComposable(screenModel: ProfileScreenModel) {
     val snackbarState = LocalSnackbarHostState.current
     val router: ProfileRouter = koinInject()
     val navigator = LocalNavigator.currentOrThrow
+    val signInErrorText = stringResource(Res.string.sign_in_error)
 
     ProfileContentComposable(uiModel, onUserInteraction)
 
@@ -46,7 +50,7 @@ internal fun ProfileScreenComposable(screenModel: ProfileScreenModel) {
                     val token = tokenResult.getOrThrow()
                     onUserInteraction(ProfileIntent.GoogleTokenReceived(token))
                 } else {
-                    snackbarState.showSnackbar("Something went wrong during google sign in")
+                    snackbarState.showSnackbar(signInErrorText)
                 }
             }
         }

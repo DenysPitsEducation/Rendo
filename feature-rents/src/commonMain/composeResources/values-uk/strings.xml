@@ -1,0 +1,13 @@
+<resources>
+    <string name="tab_rent_ins">Орендую</string>
+    <string name="tab_rent_outs">Здаю</string>
+    <string name="rent_accept">Прийняти</string>
+    <string name="rent_reject">Відхилити</string>
+    <string name="dial_number">Набрати номер</string>
+    <string name="status_waiting_for_acceptance">Очікується прийняття</string>
+    <string name="status_accepted">Прийнято</string>
+    <string name="status_rejected">Відхилено</string>
+    <string name="status_cancelled">Скасовано</string>
+    <string name="action_cancel">Скасувати оренду</string>
+    <string name="action_delete">Видалити оренду</string>
+</resources>

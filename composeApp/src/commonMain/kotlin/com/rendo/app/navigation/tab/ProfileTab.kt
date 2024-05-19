@@ -9,6 +9,9 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.rendo.feature.profile.ui.ProfileScreen
+import org.jetbrains.compose.resources.stringResource
+import rendo.composeapp.generated.resources.Res
+import rendo.composeapp.generated.resources.profile
 
 object ProfileTab : Tab {
 
@@ -16,11 +19,12 @@ object ProfileTab : Tab {
         @Composable
         get() {
             val icon = rememberVectorPainter(Icons.Default.Person)
+            val title = stringResource(Res.string.profile)
 
             return remember {
                 TabOptions(
                     index = 0u,
-                    title = "Profile",
+                    title = title,
                     icon = icon
                 )
             }

@@ -1,0 +1,7 @@
+<resources>
+    <string name="home">Головна</string>
+    <string name="favorites">Бажане</string>
+    <string name="create">Створити</string>
+    <string name="rents">Оренди</string>
+    <string name="profile">Профіль</string>
+</resources>

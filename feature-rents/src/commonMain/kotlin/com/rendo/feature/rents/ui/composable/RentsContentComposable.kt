@@ -47,8 +47,15 @@ import com.rendo.feature.rents.ui.model.RentUiModel
 import com.rendo.feature.rents.ui.model.RentsUiModel
 import com.seiko.imageloader.ui.AutoSizeImage
 import org.jetbrains.compose.resources.painterResource
-import rendo.core.generated.resources.Res
+import org.jetbrains.compose.resources.stringResource
 import rendo.core.generated.resources.ill_no_photo
+import rendo.feature_rents.generated.resources.Res
+import rendo.feature_rents.generated.resources.dial_number
+import rendo.feature_rents.generated.resources.rent_accept
+import rendo.feature_rents.generated.resources.rent_reject
+import rendo.feature_rents.generated.resources.tab_rent_ins
+import rendo.feature_rents.generated.resources.tab_rent_outs
+import rendo.core.generated.resources.Res as CoreRes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,14 +65,14 @@ internal fun RentsContentComposable(
 ) {
     var selectedTabIndex by remember { mutableStateOf(0) }
     val isRentInsSelected = selectedTabIndex == 0
-    val titles = listOf("Rent Ins", "Rent Outs")
+    val titles = listOf(Res.string.tab_rent_ins, Res.string.tab_rent_outs)
     Column {
         PrimaryTabRow(selectedTabIndex = selectedTabIndex) {
             titles.forEachIndexed { index, title ->
                 Tab(
                     selected = selectedTabIndex == index,
                     onClick = { selectedTabIndex = index },
-                    text = { Text(text = title) },
+                    text = { Text(text = stringResource(title)) },
                 )
             }
         }
@@ -99,8 +106,8 @@ private fun RentComposable(
         Row {
             AutoSizeImage(
                 url = uiModel.imageUrl.orEmpty(),
-                placeholderPainter = { painterResource(Res.drawable.ill_no_photo) },
-                errorPainter = { painterResource(Res.drawable.ill_no_photo) },
+                placeholderPainter = { painterResource(CoreRes.drawable.ill_no_photo) },
+                errorPainter = { painterResource(CoreRes.drawable.ill_no_photo) },
                 contentDescription = null,
                 modifier = Modifier.clip(RoundedCornerShape(8.dp)).size(88.dp),
             )
@@ -149,14 +156,14 @@ private fun RentComposable(
                     onClick = { onUserInteraction(RentsIntent.AcceptButtonClicked(uiModel.id)) },
                     modifier = Modifier.weight(0.5f)
                 ) {
-                    Text("Accept")
+                    Text(stringResource(Res.string.rent_accept))
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Button(
                     onClick = { onUserInteraction(RentsIntent.RejectButtonClicked(uiModel.id)) },
                     modifier = Modifier.weight(0.5f)
                 ) {
-                    Text("Reject")
+                    Text(stringResource(Res.string.rent_reject))
                 }
             }
         }
@@ -166,7 +173,7 @@ private fun RentComposable(
             border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
             colors = ButtonDefaults.outlinedButtonColors(),
         ) {
-            Text("Dial a number")
+            Text(stringResource(Res.string.dial_number))
         }
     }
 }
