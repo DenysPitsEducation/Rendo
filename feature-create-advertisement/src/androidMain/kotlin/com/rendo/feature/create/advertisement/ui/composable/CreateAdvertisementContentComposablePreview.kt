@@ -16,6 +16,7 @@ private fun CreateAdvertisementScreenPreview() {
                 productName = TextFieldUiModel("", null),
                 productDescription = TextFieldUiModel("", null),
                 productPrice = TextFieldUiModel("", null),
+                productLocation = TextFieldUiModel("", null),
                 ownerName = TextFieldUiModel("", null),
                 ownerPhoneNumber = TextFieldUiModel("", null),
             ),

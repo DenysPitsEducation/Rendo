@@ -28,6 +28,7 @@ private fun ProductDetailsContentPreview() {
                     "https://picsum.photos/200?random=4"
                 ),
                 price = "199.99$ / 1 day",
+                location = "Sydney",
                 isInFavorites = true,
                 phoneField = TextFieldUiModel("951234567", null),
                 pickupDate = "20 May",

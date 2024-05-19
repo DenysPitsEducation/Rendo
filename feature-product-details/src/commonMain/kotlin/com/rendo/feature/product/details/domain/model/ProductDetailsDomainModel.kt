@@ -8,6 +8,7 @@ internal data class ProductDetailsDomainModel(
     val description: String,
     val imageUrls: List<String>,
     val price: Double,
+    val location: String,
     val currency: String,
     val isInFavorites: Boolean,
     val pickupDate: LocalDate,

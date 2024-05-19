@@ -24,6 +24,7 @@ internal class ProductDataMapper {
             imageUrls = imageUrls,
             price = productPrice,
             currency = "₴",
+            location = productLocation,
             prohibitedDates = listOf(),
             owner = OwnerDataModel(
                 id = user.uid,

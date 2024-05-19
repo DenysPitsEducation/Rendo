@@ -24,6 +24,7 @@ internal class ProductDetailsDomainMapper {
             description = description,
             imageUrls = imageUrls,
             price = price,
+            location = location,
             currency = currency,
             isInFavorites = false,
             pickupDate = firstAllowedDate,

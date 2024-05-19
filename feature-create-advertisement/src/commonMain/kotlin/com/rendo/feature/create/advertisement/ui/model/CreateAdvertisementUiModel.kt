@@ -8,6 +8,7 @@ internal sealed class CreateAdvertisementUiModel {
         val productName: TextFieldUiModel,
         val productDescription: TextFieldUiModel,
         val productPrice: TextFieldUiModel,
+        val productLocation: TextFieldUiModel,
         val ownerName: TextFieldUiModel,
         val ownerPhoneNumber: TextFieldUiModel,
     ) : CreateAdvertisementUiModel()

@@ -8,6 +8,7 @@
     <string name="placeholder_product_name">Назва товару</string>
     <string name="placeholder_product_description">Опис товару</string>
     <string name="placeholder_product_price">Ціна за один день</string>
+    <string name="placeholder_product_location">Місцезнаходження товару</string>
     <string name="personal_info">Особиста інформація</string>
     <string name="person_name">Ім'я контактної особи</string>
     <string name="phone_number">Номер телефону</string>

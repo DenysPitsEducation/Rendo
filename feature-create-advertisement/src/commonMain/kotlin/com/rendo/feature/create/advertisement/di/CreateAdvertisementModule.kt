@@ -40,6 +40,7 @@ fun featureCreateAdvertisementModule() = module {
                 productName = InputDomainModel("", null),
                 productDescription = InputDomainModel("", null),
                 productPrice = InputDomainModel("", null),
+                productLocation = InputDomainModel("", null),
                 ownerName = InputDomainModel("", null),
                 ownerPhoneNumber = InputDomainModel("", null),
             ),

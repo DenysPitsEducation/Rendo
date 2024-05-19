@@ -1,6 +1,7 @@
 <resources>
     <string name="rent_period_unit">день</string>
     <string name="error_not_filled">Поле має бути заповнене</string>
+    <string name="product_location">Місцезнаходження</string>
     <string name="product_description">Опис</string>
     <string name="pickup_date">Дата отримання:</string>
     <string name="return_date">Дата повернення:</string>

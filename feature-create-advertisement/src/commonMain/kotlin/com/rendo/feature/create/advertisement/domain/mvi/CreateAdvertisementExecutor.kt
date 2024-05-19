@@ -47,6 +47,7 @@ internal class CreateAdvertisementExecutor(
                 productName = state.productName,
                 productDescription = state.productDescription,
                 productPrice = state.productPrice,
+                productLocation = state.productLocation,
                 ownerName = state.ownerName,
                 ownerPhoneNumber = state.ownerPhoneNumber
             )
@@ -57,6 +58,7 @@ internal class CreateAdvertisementExecutor(
                         productName = state.productName.text.trim(),
                         productDescription = state.productDescription.text.trim(),
                         productPrice = getProductPriceDouble(state.productPrice)!!,
+                        productLocation = state.productLocation.text.trim(),
                         ownerName = state.ownerName.text.trim(),
                         ownerPhoneNumber = "380" + state.ownerPhoneNumber.text,
                     )
@@ -67,6 +69,7 @@ internal class CreateAdvertisementExecutor(
                         productName = InputDomainModel("", null),
                         productDescription = InputDomainModel("", null),
                         productPrice = InputDomainModel("", null),
+                        productLocation = InputDomainModel("", null),
                         ownerName = InputDomainModel("", null),
                         ownerPhoneNumber = InputDomainModel("", null)
                     )
@@ -81,6 +84,7 @@ internal class CreateAdvertisementExecutor(
         productName: InputDomainModel,
         productDescription: InputDomainModel,
         productPrice: InputDomainModel,
+        productLocation: InputDomainModel,
         ownerName: InputDomainModel,
         ownerPhoneNumber: InputDomainModel
     ): Boolean {
@@ -113,6 +117,12 @@ internal class CreateAdvertisementExecutor(
         if (priceErrorText != null) {
             val fieldUpdated = productPrice.copy(errorText = priceErrorText)
             dispatch(CreateAdvertisementMessage.InputUpdated(fieldUpdated, InputType.PRODUCT_PRICE))
+            isValid = false
+        }
+
+        if (productLocation.text.isBlank()) {
+            val fieldUpdated = productName.copy(errorText = blankFieldError)
+            dispatch(CreateAdvertisementMessage.InputUpdated(fieldUpdated, InputType.PRODUCT_LOCATION))
             isValid = false
         }
 

@@ -1,6 +1,7 @@
 <resources>
     <string name="rent_period_unit">day</string>
     <string name="error_not_filled">Field must be filled</string>
+    <string name="product_location">Location</string>
     <string name="product_description">Description</string>
     <string name="pickup_date">Pickup date:</string>
     <string name="return_date">Return date:</string>

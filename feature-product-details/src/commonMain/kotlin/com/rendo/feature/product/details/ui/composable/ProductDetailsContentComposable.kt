@@ -49,6 +49,7 @@ import rendo.feature_product_details.generated.resources.owner_button
 import rendo.feature_product_details.generated.resources.phone_number_label
 import rendo.feature_product_details.generated.resources.pickup_date
 import rendo.feature_product_details.generated.resources.product_description
+import rendo.feature_product_details.generated.resources.product_location
 import rendo.feature_product_details.generated.resources.rent_button
 import rendo.feature_product_details.generated.resources.return_date
 import rendo.core.generated.resources.Res as CoreRes
@@ -63,6 +64,17 @@ internal fun ProductDetailsContentComposable(
         HeaderBlock(model = model)
         Spacer(modifier = Modifier.height(8.dp))
         RentBlock(model = model, onUserInteraction = onUserInteraction)
+        Spacer(modifier = Modifier.height(8.dp))
+        Column(
+            modifier = Modifier.padding(horizontal = 8.dp)
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.background, RoundedCornerShape(8.dp))
+                .padding(16.dp)
+        ) {
+            Text(text = stringResource(Res.string.product_location), style = MaterialTheme.typography.titleMedium)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(text = model.location)
+        }
         Spacer(modifier = Modifier.height(8.dp))
         Column(
             modifier = Modifier.padding(horizontal = 8.dp)

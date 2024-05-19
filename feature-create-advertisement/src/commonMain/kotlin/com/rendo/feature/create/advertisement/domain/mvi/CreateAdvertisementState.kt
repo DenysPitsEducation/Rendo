@@ -12,6 +12,7 @@ internal data class CreateAdvertisementState(
     val productName: InputDomainModel,
     val productDescription: InputDomainModel,
     val productPrice: InputDomainModel,
+    val productLocation: InputDomainModel,
     val ownerName: InputDomainModel,
     val ownerPhoneNumber: InputDomainModel,
 )

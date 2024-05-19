@@ -10,6 +10,7 @@ internal data class AdvertisementDomainModel(
     val productName: String,
     val productDescription: String,
     val productPrice: Double,
+    val productLocation: String,
     val ownerName: String,
     val ownerPhoneNumber: String,
 )

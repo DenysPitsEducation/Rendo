@@ -8,6 +8,7 @@
     <string name="placeholder_product_name">Name of the product</string>
     <string name="placeholder_product_description">Description of the product</string>
     <string name="placeholder_product_price">Price per one day</string>
+    <string name="placeholder_product_location">Location of the product</string>
     <string name="personal_info">Personal info</string>
     <string name="person_name">Name of the contact person</string>
     <string name="phone_number">Phone number</string>

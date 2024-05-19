@@ -14,6 +14,7 @@ internal class CreateAdvertisementUiMapper {
                 productName = TextFieldUiModel(productName.text, productName.errorText),
                 productDescription = TextFieldUiModel(productDescription.text, productDescription.errorText),
                 productPrice = TextFieldUiModel(productPrice.text, productPrice.errorText),
+                productLocation = TextFieldUiModel(productLocation.text, productLocation.errorText),
                 ownerName = TextFieldUiModel(ownerName.text, ownerName.errorText),
                 ownerPhoneNumber = TextFieldUiModel(ownerPhoneNumber.text, ownerPhoneNumber.errorText),
             )

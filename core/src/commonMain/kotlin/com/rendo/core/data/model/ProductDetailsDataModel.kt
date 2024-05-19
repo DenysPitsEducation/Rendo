@@ -15,6 +15,8 @@ data class ProductDetailsDataModel(
     val price: Double,
     @SerialName("currency")
     val currency: String,
+    @SerialName("location")
+    val location: String,
     @SerialName("prohibited_dates")
     val prohibitedDates: List<String>,
     @SerialName("owner")

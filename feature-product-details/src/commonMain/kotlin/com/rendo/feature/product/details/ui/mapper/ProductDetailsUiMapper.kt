@@ -35,6 +35,7 @@ internal class ProductDetailsUiMapper {
             description = description,
             imageUrls = imageUrls,
             price = "${price.formatPrice()}$currency / ${stringResource(Res.string.rent_period_unit)}",
+            location = location,
             isInFavorites = isInFavorites,
             phoneField = TextFieldUiModel(state.phoneField.text, state.phoneField.errorText),
             pickupDate = formatter.format(pickupDate),
