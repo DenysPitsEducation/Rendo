@@ -14,3 +14,5 @@ xcuserdata/
 Pods/
 *.jks
 *yarn.lock
+
+google-services.json
