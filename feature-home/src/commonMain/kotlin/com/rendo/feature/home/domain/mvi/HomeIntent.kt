@@ -4,4 +4,5 @@ internal sealed class HomeIntent {
     data class SearchInputChanged(val input: String) : HomeIntent()
     data class ProductClicked(val id: String) : HomeIntent()
     data class FavoriteButtonClicked(val id: String) : HomeIntent()
+    data class ProductWatched(val id: String) : HomeIntent()
 }

@@ -2,6 +2,7 @@ package com.rendo.feature.home.di
 
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.rendo.feature.home.data.repository.HomeRepositoryImpl
+import com.rendo.feature.home.domain.model.PaginationState
 import com.rendo.feature.home.domain.mvi.HomeAction
 import com.rendo.feature.home.domain.mvi.HomeBootstrapper
 import com.rendo.feature.home.domain.mvi.HomeExecutor
@@ -26,6 +27,7 @@ fun featureHomeModule() = module {
             initialState = HomeState(
                 searchInput = "",
                 products = emptyList(),
+                paginationState = PaginationState.LOADING,
             ),
             executorFactory = { get<HomeExecutor>() },
             reducer = get<HomeReducer>(),

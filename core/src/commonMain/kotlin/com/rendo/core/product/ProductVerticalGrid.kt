@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -18,12 +18,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ProductVerticalGrid(
+    lazyGridState: LazyGridState,
     products: List<ProductUiModel>,
     contentPadding: PaddingValues,
     onProductClick: (id: String) -> Unit,
     onFavoriteButtonClick: (id: String) -> Unit,
 ) {
-    val lazyGridState = rememberLazyGridState()
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         state = lazyGridState,
