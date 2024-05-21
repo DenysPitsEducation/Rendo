@@ -18,5 +18,7 @@ internal class HomeReducer : Reducer<HomeState, HomeMessage> {
             }
             copy(products = productsUpdated)
         }
+        is HomeMessage.PaginationStateUpdated -> copy(paginationState = msg.state)
+        is HomeMessage.ProductsAdded -> copy(products = products + msg.products)
     }
 }
