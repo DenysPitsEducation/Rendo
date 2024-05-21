@@ -1,10 +1,12 @@
 package com.rendo.feature.home.domain.mvi
 
+import app.cash.paging.PagingData
+import app.cash.paging.filter
 import com.rendo.core.product.ProductDomainModel
 
 internal data class HomeState(
     val searchInput: String,
-    val products: List<ProductDomainModel>,
+    val products: PagingData<ProductDomainModel>,
 ) {
-    val visibleProducts: List<ProductDomainModel> = products.filter { it.name.contains(searchInput, ignoreCase = true) }
+    val visibleProducts: PagingData<ProductDomainModel> = products.filter { it.name.contains(searchInput, ignoreCase = true) }
 }

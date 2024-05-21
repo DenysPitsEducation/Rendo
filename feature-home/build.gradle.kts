@@ -38,6 +38,8 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.serialization)
+            implementation(libs.paging.common)
+            implementation(libs.paging.compose.common)
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
         }

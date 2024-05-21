@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -18,10 +17,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ProductVerticalGrid(
-    products: List<ProductUiModel>,
+    itemCount: Int,
+    key: (index: Int) -> Any,
+    getProductModel: (index: Int) -> ProductUiModel,
     contentPadding: PaddingValues,
     onProductClick: (id: String) -> Unit,
-    onFavoriteButtonClick: (id: String) -> Unit,
+    onFavoriteButtonClick: (model: ProductUiModel) -> Unit
 ) {
     val lazyGridState = rememberLazyGridState()
     LazyVerticalGrid(
@@ -31,7 +32,8 @@ fun ProductVerticalGrid(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(products, key = { it.id }) { model ->
+        items(count = itemCount, key = key) { index ->
+            val model = getProductModel(index)
             val itemsInRow by remember {
                 derivedStateOf {
                     val row =
@@ -46,7 +48,7 @@ fun ProductVerticalGrid(
                 model = model,
                 modifier = Modifier.height(maxHeightInRowDp),
                 onProductClick = { onProductClick(model.id) },
-                onFavoriteButtonClick = { onFavoriteButtonClick(model.id) },
+                onFavoriteButtonClick = { onFavoriteButtonClick(model) },
             )
         }
     }

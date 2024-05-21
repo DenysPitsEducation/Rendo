@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import app.cash.paging.compose.LazyPagingItems
+import app.cash.paging.compose.itemKey
 import com.rendo.core.product.ProductUiModel
 import com.rendo.core.product.ProductVerticalGrid
 import com.rendo.feature.home.domain.mvi.HomeIntent
@@ -21,7 +23,7 @@ import rendo.feature_home.generated.resources.search_placeholder
 @Composable
 internal fun HomeContentComposable(
     searchInput: String,
-    products: List<ProductUiModel>,
+    products: LazyPagingItems<ProductUiModel>,
     onUserInteraction: OnUserInteraction
 ) {
     Column {
@@ -36,7 +38,9 @@ internal fun HomeContentComposable(
             singleLine = true,
         )
         ProductVerticalGrid(
-            products = products,
+            itemCount = products.itemCount,
+            key = products.itemKey { it.id },
+            getProductModel = { products[it]!! },
             contentPadding = PaddingValues(start = 8.dp, end = 8.dp, bottom = 8.dp),
             onProductClick = { onUserInteraction(HomeIntent.ProductClicked(it)) },
             onFavoriteButtonClick = { onUserInteraction(HomeIntent.FavoriteButtonClicked(it)) },

@@ -6,4 +6,5 @@ data class ProductUiModel(
     val imageUrl: String?,
     val price: String,
     val isInFavorites: Boolean,
+    val payload: ProductDomainModel? = null,
 )

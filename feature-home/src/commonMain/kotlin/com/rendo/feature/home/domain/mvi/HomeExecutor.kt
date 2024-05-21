@@ -1,25 +1,21 @@
 package com.rendo.feature.home.domain.mvi
 
+import app.cash.paging.map
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.rendo.core.favorites.domain.usecase.ChangeFavoriteStateUseCase
-import com.rendo.feature.home.domain.usecase.GetProductsUseCase
 import kotlinx.coroutines.launch
 
 internal class HomeExecutor(
-    private val getProductsUseCase: GetProductsUseCase,
     private val changeFavoriteStateUseCase: ChangeFavoriteStateUseCase,
 ) : CoroutineExecutor<HomeIntent, HomeAction, HomeState, HomeMessage, HomeLabel>() {
 
     override fun executeAction(action: HomeAction) = when (action) {
-        is HomeAction.Init -> onInit()
+        is HomeAction.ProductListUpdated -> onProductListUpdated(action)
         is HomeAction.FavoriteStateChanged -> onFavoriteStateChanged(action)
     }
 
-    private fun onInit() {
-        scope.launch {
-            val products = getProductsUseCase.invoke()
-            dispatch(HomeMessage.ProductListUpdated(products))
-        }
+    private fun onProductListUpdated(action: HomeAction.ProductListUpdated) {
+        dispatch(HomeMessage.ProductListUpdated(action.products))
     }
 
     override fun executeIntent(intent: HomeIntent) = when (intent) {
@@ -37,15 +33,20 @@ internal class HomeExecutor(
     }
 
     private fun onFavoriteStateChanged(action: HomeAction.FavoriteStateChanged) {
-        val product = state().products.firstOrNull { it.id == action.id } ?: return
-        val productUpdated = product.copy(isInFavorites = action.isInFavorites)
-        dispatch(HomeMessage.ProductUpdated(productUpdated))
+        val productsUpdated = state().products.map { product ->
+            if (product.id == action.id) {
+                product.copy(isInFavorites = action.isInFavorites)
+            } else {
+                product
+            }
+        }
+        dispatch(HomeMessage.ProductListUpdated(productsUpdated))
     }
 
     private fun onFavoriteButtonClicked(intent: HomeIntent.FavoriteButtonClicked) {
         scope.launch {
-            val product = state().products.firstOrNull { it.id == intent.id } ?: return@launch
-            changeFavoriteStateUseCase.invoke(product)
+            val productDomainModel = intent.model.payload ?: return@launch
+            changeFavoriteStateUseCase.invoke(productDomainModel)
         }
     }
 }

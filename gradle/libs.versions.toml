@@ -20,6 +20,7 @@ kotlinx-datetime = "0.6.0-RC.2"
 kotlinx-datetime-ext = "1.2.0"
 mpfilepicker = "3.1.0"
 mvi = "4.0.0"
+paging = "3.3.0-alpha02-0.5.1"
 stately = "2.0.7"
 voyager = "1.0.0"
 
@@ -53,6 +54,8 @@ mpfilepicker = { module = "com.darkrockstudios:mpfilepicker", version.ref = "mpf
 mvi-core = { group = "com.arkivanov.mvikotlin", name = "mvikotlin", version.ref = "mvi" }
 mvi-coroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-extensions-coroutines", version.ref = "mvi" }
 mvi-main = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-main", version.ref = "mvi" }
+paging-common = { module = "app.cash.paging:paging-common", version.ref = "paging" }
+paging-compose-common = { module = "app.cash.paging:paging-compose-common", version.ref = "paging" }
 stately-common = { module = "co.touchlab:stately-common", version.ref = "stately" }
 voyager-bottomSheetNavigator = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
 voyager-core = { module = "cafe.adriel.voyager:voyager-core", version.ref = "voyager" }

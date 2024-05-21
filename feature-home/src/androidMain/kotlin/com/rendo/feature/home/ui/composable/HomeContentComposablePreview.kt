@@ -2,14 +2,17 @@ package com.rendo.feature.home.ui.composable
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import app.cash.paging.PagingData
+import app.cash.paging.compose.collectAsLazyPagingItems
 import com.rendo.core.product.ProductUiModel
 import com.rendo.core.theme.PreviewContainer
+import kotlinx.coroutines.flow.flowOf
 
 @Composable
 @Preview
 private fun HomeScreenPreview() {
     PreviewContainer {
-        HomeContentComposable(searchInput = "", products = listOf(
+        val products = listOf(
             ProductUiModel(
                 id = "1",
                 name = "HyperDrive 3000",
@@ -45,6 +48,12 @@ private fun HomeScreenPreview() {
                 price = "29.99 ₴",
                 isInFavorites = false
             )
-        ), onUserInteraction = {})
+        )
+        val pagingProducts = flowOf(PagingData.from(products)).collectAsLazyPagingItems()
+        HomeContentComposable(
+            searchInput = "",
+            products = pagingProducts,
+            onUserInteraction = {},
+        )
     }
 }

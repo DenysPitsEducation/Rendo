@@ -9,7 +9,8 @@ class ProductUiMapper {
             name = name,
             imageUrl = imageUrl,
             price = price.formatPrice(currency),
-            isInFavorites = isInFavorites
+            isInFavorites = isInFavorites,
+            payload = model,
         )
     }
 }

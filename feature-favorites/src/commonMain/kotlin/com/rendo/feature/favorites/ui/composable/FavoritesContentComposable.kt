@@ -14,9 +14,11 @@ internal fun FavoritesContentComposable(
     onUserInteraction: OnUserInteraction
 ) {
     ProductVerticalGrid(
-        products = products,
+        itemCount = products.size,
+        key = { products[it].id },
+        getProductModel = { products[it] },
         contentPadding = PaddingValues(start = 8.dp, end = 8.dp, bottom = 8.dp, top = 8.dp),
         onProductClick = { onUserInteraction(FavoritesIntent.ProductClicked(it)) },
-        onFavoriteButtonClick = { onUserInteraction(FavoritesIntent.FavoriteStateRemoved(it)) },
+        onFavoriteButtonClick = { onUserInteraction(FavoritesIntent.FavoriteStateRemoved(it.id)) },
     )
 }

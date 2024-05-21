@@ -1,8 +1,8 @@
 package com.rendo.feature.home.di
 
+import androidx.paging.PagingData
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.rendo.feature.home.data.repository.HomeRepositoryImpl
-import com.rendo.feature.home.domain.mvi.HomeAction
 import com.rendo.feature.home.domain.mvi.HomeBootstrapper
 import com.rendo.feature.home.domain.mvi.HomeExecutor
 import com.rendo.feature.home.domain.mvi.HomeReducer
@@ -25,17 +25,19 @@ fun featureHomeModule() = module {
             name = HOME_STORE_NAME,
             initialState = HomeState(
                 searchInput = "",
-                products = emptyList(),
+                products = PagingData.empty(),
             ),
             executorFactory = { get<HomeExecutor>() },
             reducer = get<HomeReducer>(),
-            bootstrapper = HomeBootstrapper(getFavoritesFlowUseCase = get(), HomeAction.Init),
+            bootstrapper = HomeBootstrapper(
+                getFavoritesFlowUseCase = get(),
+                getProductsUseCase = get(),
+            ),
         )
     }
 
     factory<HomeExecutor> {
         HomeExecutor(
-            getProductsUseCase = get(),
             changeFavoriteStateUseCase = get(),
         )
     }
