@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.darkrockstudios.libraries.mpfilepicker.MultipleFilePicker
@@ -147,7 +148,10 @@ private fun ProductPicturesBlockComposable(images: List<Any>, onAddImageClick: (
 }
 
 @Composable
-private fun ProductInfoBlockComposable(uiModel: CreateAdvertisementUiModel.Content, onUserInteraction: OnUserInteraction) {
+private fun ProductInfoBlockComposable(
+    uiModel: CreateAdvertisementUiModel.Content,
+    onUserInteraction: OnUserInteraction
+) {
     Column(
         modifier = Modifier
             .padding(horizontal = 8.dp)
@@ -172,7 +176,10 @@ private fun ProductInfoBlockComposable(uiModel: CreateAdvertisementUiModel.Conte
             },
             placeholder = { Text(stringResource(Res.string.placeholder_product_name)) },
             singleLine = true,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Sentences,
+                imeAction = ImeAction.Next,
+            ),
             isError = uiModel.productName.errorText != null,
             supportingText = uiModel.productName.errorText?.let { { Text(stringResource(it)) } },
             shape = RoundedCornerShape(8.dp),
@@ -192,7 +199,10 @@ private fun ProductInfoBlockComposable(uiModel: CreateAdvertisementUiModel.Conte
             placeholder = { Text(stringResource(Res.string.placeholder_product_description)) },
             minLines = 4,
             maxLines = 4,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Sentences,
+                imeAction = ImeAction.Next,
+            ),
             isError = uiModel.productDescription.errorText != null,
             supportingText = uiModel.productDescription.errorText?.let {
                 {
@@ -242,7 +252,10 @@ private fun ProductInfoBlockComposable(uiModel: CreateAdvertisementUiModel.Conte
             },
             placeholder = { Text(stringResource(Res.string.placeholder_product_location)) },
             singleLine = true,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Sentences,
+                imeAction = ImeAction.Next,
+            ),
             isError = uiModel.productLocation.errorText != null,
             supportingText = uiModel.productLocation.errorText?.let { { Text(stringResource(it)) } },
             shape = RoundedCornerShape(8.dp),
@@ -253,7 +266,10 @@ private fun ProductInfoBlockComposable(uiModel: CreateAdvertisementUiModel.Conte
 }
 
 @Composable
-private fun OwnerInfoBlockComposable(uiModel: CreateAdvertisementUiModel.Content, onUserInteraction: OnUserInteraction) {
+private fun OwnerInfoBlockComposable(
+    uiModel: CreateAdvertisementUiModel.Content,
+    onUserInteraction: OnUserInteraction
+) {
     Column(
         modifier = Modifier.padding(8.dp)
             .background(MaterialTheme.colorScheme.background, RoundedCornerShape(8.dp))
@@ -276,7 +292,10 @@ private fun OwnerInfoBlockComposable(uiModel: CreateAdvertisementUiModel.Content
             },
             placeholder = { Text(stringResource(Res.string.person_name)) },
             singleLine = true,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Sentences,
+                imeAction = ImeAction.Next,
+            ),
             isError = uiModel.ownerName.errorText != null,
             supportingText = uiModel.ownerName.errorText?.let { { Text(stringResource(it)) } },
             shape = RoundedCornerShape(8.dp),

@@ -21,7 +21,7 @@ internal class CreateAdvertisementReducer : Reducer<CreateAdvertisementState, Cr
                 InputType.PRODUCT_NAME -> copy(productName = msg.input)
                 InputType.PRODUCT_DESCRIPTION -> copy(productDescription = msg.input)
                 InputType.PRODUCT_PRICE -> copy(productPrice = msg.input)
-                InputType.PRODUCT_LOCATION -> copy(productPrice = msg.input)
+                InputType.PRODUCT_LOCATION -> copy(productLocation = msg.input)
                 InputType.OWNER_NAME -> copy(ownerName = msg.input)
                 InputType.OWNER_PHONE_NUMBER -> copy(ownerPhoneNumber = msg.input)
             }

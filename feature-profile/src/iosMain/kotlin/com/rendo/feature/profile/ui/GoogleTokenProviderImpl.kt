@@ -19,14 +19,16 @@ internal class GoogleTokenProviderImpl : GoogleTokenProvider {
             } else {
                 GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID = "447278892031-utjebfm2htr6drcb6vt6k0dujk3ml60a.apps.googleusercontent.com")
                 GIDSignIn.sharedInstance.signInWithPresentingViewController(rootViewController) { gidSignInResult, error ->
-                    if (error != null) throw Exception(error.toString())
-
-                    val idToken = gidSignInResult?.user?.idToken?.tokenString
-                    val accessToken = gidSignInResult?.user?.accessToken?.tokenString
-                    continutation.resume(Result.success(GoogleToken(idToken, accessToken)))
+                    if (error != null) {
+                        continutation.resume(Result.failure(Throwable(error.toString())))
+                    } else {
+                        val idToken = gidSignInResult?.user?.idToken?.tokenString
+                        val accessToken = gidSignInResult?.user?.accessToken?.tokenString
+                        continutation.resume(Result.success(GoogleToken(idToken, accessToken)))
+                    }
                 }
             }
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
             continutation.resume(Result.failure(e))
         }
     }

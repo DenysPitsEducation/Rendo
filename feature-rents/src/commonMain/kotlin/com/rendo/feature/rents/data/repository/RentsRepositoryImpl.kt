@@ -57,10 +57,11 @@ internal class RentsRepositoryImpl(
         val rentsCollection = firestore.collection("rents")
         val rentDocument = rentsCollection.document(rent.id)
 
-        firestore.batch().apply {
-            update(productDocument, "prohibited_dates" to FieldValue.arrayRemove(*rentDatesFormatted.toTypedArray()))
-            delete(rentDocument)
-        }.commit()
+        try {
+            productDocument.update("prohibited_dates" to FieldValue.arrayRemove(*rentDatesFormatted.toTypedArray()))
+        } catch (e: Throwable) { /* ignore */ }
+
+        rentDocument.delete()
     }
 
     private suspend fun updateRentStatus(rentId: String, status: RentDomainModel.Status) {
