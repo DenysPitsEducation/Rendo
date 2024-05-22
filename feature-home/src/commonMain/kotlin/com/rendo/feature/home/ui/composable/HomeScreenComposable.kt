@@ -7,12 +7,12 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
+import com.rendo.core.product.ProductUiMapper
 import com.rendo.core.utils.LabelLaunchedEffect
 import com.rendo.feature.home.di.HomeRouter
 import com.rendo.feature.home.domain.mvi.HomeLabel
 import com.rendo.feature.home.ui.HomeScreenModel
 import com.rendo.feature.home.ui.OnUserInteraction
-import com.rendo.core.product.ProductUiMapper
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.compose.koinInject
 

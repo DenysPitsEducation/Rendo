@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.android.application)
+    alias(libs.plugins.crashlytics)
     alias(libs.plugins.googleServices)
 }
 
@@ -59,6 +60,7 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.runtime)
             implementation(libs.firebase.auth)
+            implementation(libs.firebase.crashlytics)
             implementation(libs.firebase.firestore)
             implementation(libs.firebase.storage)
             implementation(libs.koin.compose)
