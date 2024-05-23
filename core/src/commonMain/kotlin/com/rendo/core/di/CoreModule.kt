@@ -2,7 +2,6 @@ package com.rendo.core.di
 
 import com.rendo.core.data.mapper.ProductDomainMapper
 import com.rendo.core.data.repository.ThemeRepositoryImpl
-import com.rendo.core.domain.listener.RentsUpdateListener
 import com.rendo.core.domain.repository.ThemeRepository
 import com.rendo.core.domain.usecase.GetUiModeFlowUseCase
 import com.rendo.core.domain.usecase.SaveUiModeUseCase
@@ -39,9 +38,5 @@ fun coreModule() = module {
 
     factory {
         ProductDomainMapper()
-    }
-
-    single {
-        RentsUpdateListener()
     }
 }

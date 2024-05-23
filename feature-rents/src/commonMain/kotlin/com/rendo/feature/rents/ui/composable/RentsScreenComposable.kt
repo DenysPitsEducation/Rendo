@@ -5,11 +5,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import androidx.lifecycle.Lifecycle
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.stateFlow
 import com.rendo.core.dial.Dialer
+import com.rendo.core.utils.ComposableLifecycle
 import com.rendo.core.utils.LabelLaunchedEffect
 import com.rendo.feature.rents.di.RentsRouter
+import com.rendo.feature.rents.domain.mvi.RentsIntent
 import com.rendo.feature.rents.domain.mvi.RentsLabel
 import com.rendo.feature.rents.ui.OnUserInteraction
 import com.rendo.feature.rents.ui.RentsScreenModel
@@ -41,6 +44,12 @@ internal fun RentsScreenComposable(screenModel: RentsScreenModel) {
             is RentsLabel.DialNumber -> {
                 dialer.makeCall(it.phoneNumber)
             }
+        }
+    }
+
+    ComposableLifecycle { event ->
+        if (event == Lifecycle.Event.ON_RESUME) {
+            onUserInteraction(RentsIntent.ScreenOpened)
         }
     }
 }

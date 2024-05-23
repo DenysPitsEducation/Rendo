@@ -4,7 +4,6 @@ import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.rendo.feature.rents.data.mapper.RentDomainMapper
 import com.rendo.feature.rents.data.mapper.RentStatusMapper
 import com.rendo.feature.rents.data.repository.RentsRepositoryImpl
-import com.rendo.feature.rents.domain.mvi.RentsAction
 import com.rendo.feature.rents.domain.mvi.RentsBootstrapper
 import com.rendo.feature.rents.domain.mvi.RentsExecutor
 import com.rendo.feature.rents.domain.mvi.RentsReducer
@@ -39,7 +38,7 @@ fun featureRentsModule() = module {
             ),
             executorFactory = { get<RentsExecutor>() },
             reducer = get<RentsReducer>(),
-            bootstrapper = RentsBootstrapper(rentsUpdateListener = get(), RentsAction.Init),
+            bootstrapper = RentsBootstrapper(),
         )
     }
 

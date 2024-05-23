@@ -1,7 +1,6 @@
 package com.rendo.feature.product.details.domain.mvi
 
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
-import com.rendo.core.domain.listener.RentsUpdateListener
 import com.rendo.core.favorites.domain.usecase.ChangeFavoriteStateUseCase
 import com.rendo.core.utils.fromEpochMilliseconds
 import com.rendo.feature.product.details.domain.mapper.toProductDomainModel
@@ -19,7 +18,6 @@ internal class ProductDetailsExecutor(
     private val getProductDetailsUseCase: GetProductDetailsUseCase,
     private val rentProductUseCase: RentProductUseCase,
     private val changeFavoriteStateUseCase: ChangeFavoriteStateUseCase,
-    private val rentsUpdateListener: RentsUpdateListener,
 ) : CoroutineExecutor<ProductDetailsIntent, ProductDetailsAction, ProductDetailsState, ProductDetailsMessage, ProductDetailsLabel>() {
     override fun executeAction(action: ProductDetailsAction) = when (action) {
         is ProductDetailsAction.Init -> onInit(action)
@@ -73,7 +71,6 @@ internal class ProductDetailsExecutor(
                     tenantPhoneNumber = "380" + state.phoneField.text,
                 ).onSuccess {
                     publish(ProductDetailsLabel.ShowSuccessfulRentDialog)
-                    rentsUpdateListener.triggerUpdate()
                 }
             } else {
                 val fieldUpdated = state.phoneField.copy(errorText = Res.string.error_not_filled)

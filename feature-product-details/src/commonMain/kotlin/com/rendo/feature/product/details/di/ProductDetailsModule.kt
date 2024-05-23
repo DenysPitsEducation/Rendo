@@ -69,7 +69,6 @@ fun featureProductDetailsModule() = module {
             getProductDetailsUseCase = get(),
             rentProductUseCase = get(),
             changeFavoriteStateUseCase = get(),
-            rentsUpdateListener = get(),
         )
     }
 

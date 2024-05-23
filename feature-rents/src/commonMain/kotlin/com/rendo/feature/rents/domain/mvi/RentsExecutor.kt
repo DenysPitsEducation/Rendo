@@ -19,20 +19,10 @@ internal class RentsExecutor(
 ) : CoroutineExecutor<RentsIntent, RentsAction, RentsState, RentsMessage, RentsLabel>() {
 
     override fun executeAction(action: RentsAction) = when (action) {
-        is RentsAction.Init -> onInit()
         is RentsAction.AuthorizationStateUpdated -> onAuthorizationStateUpdated()
-        is RentsAction.RentsUpdateRequested -> onRentsUpdateTriggered()
-    }
-
-    private fun onInit() {
-        refreshRents()
     }
 
     private fun onAuthorizationStateUpdated() {
-        refreshRents()
-    }
-
-    private fun onRentsUpdateTriggered() {
         refreshRents()
     }
 
@@ -47,11 +37,16 @@ internal class RentsExecutor(
     }
 
     override fun executeIntent(intent: RentsIntent) = when (intent) {
+        is RentsIntent.ScreenOpened -> onScreenOpened()
         is RentsIntent.RentClicked -> onRentClicked(intent)
         is RentsIntent.AcceptButtonClicked -> onAcceptButtonClicked(intent)
         is RentsIntent.RejectButtonClicked -> onRejectButtonClicked(intent)
         is RentsIntent.DialNumberButtonClicked -> onDialNumberButtonClicked(intent)
         is RentsIntent.DropdownItemClicked -> onDropdownItemClicked(intent)
+    }
+
+    private fun onScreenOpened() {
+        refreshRents()
     }
 
     private fun onRentClicked(intent: RentsIntent.RentClicked) {
